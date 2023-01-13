@@ -262,8 +262,7 @@
                 <label class="minicart__conditions--label" for="accept">I agree with the <a class="minicart__conditions--link" href="privacy-policy.html">Privacy and Policy</a></label>
             </div>
             <div class="minicart__button d-flex justify-content-center">
-                <a class="primary__btn minicart__button--link" href="cart.html">View cart</a>
-                <a class="primary__btn minicart__button--link" href="checkout.html">Checkout</a>
+                <a class="primary__btn minicart__button--link" href="cart.php">View cart</a>
             </div>
         </div>
         <!-- End offCanvas minicart -->
