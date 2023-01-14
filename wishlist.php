@@ -154,7 +154,7 @@ include_once "slicing/headerlinks.php";
                             </table> 
                             <div class="continue__shopping d-flex justify-content-between">
                                 <a class="continue__shopping--link" href="product.php">Continue shopping</a>
-                                <a class="continue__shopping--clear" href="shop.html">View All Products</a>
+                                <a class="continue__shopping--clear" href="product.php">View All Products</a>
                             </div>
                         </div> 
                     </form> 

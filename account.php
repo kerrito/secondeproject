@@ -36,10 +36,25 @@ include_once "slicing/headerlinks.php";
                     <div class="account__left--sidebar">
                         <h2 class="account__content--title h3 mb-20">My Profile</h2>
                         <ul class="account__menu">
-                            <li class="account__menu--list"><a href="my-account.html">Dashboard</a></li>
-                            <li class="account__menu--list active"><a href="my-account-2.html">Addresses</a></li>
-                            <li class="account__menu--list"><a href="wishlist.html">Wishlist</a></li>
-                            <li class="account__menu--list"><a href="login.html">Log Out</a></li>
+                            <?php
+                            $email=$_SESSION['email'];
+                            $pass=$_SESSION['pass'];
+                            $sql="SELECT * FROM `signup` WHERE `email`='$email' AND `pass`='$pass'";
+                            $res=mysqli_query($con,$sql);
+                            if($res){
+                                $result=mysqli_fetch_assoc($res);
+                                if($result['status']==2 || $result['status']==3){
+                                    
+                            
+                            ?>
+                            <li class="account__menu--list"><a href="admin/index.php">Dashboard</a></li>
+                            <?php 
+                            }
+                        }
+                            ?>
+                            <li class="account__menu--list active"><a href="account.php">Addresses</a></li>
+                            <li class="account__menu--list"><a href="wishlist.php">Wishlist</a></li>
+                            <li class="account__menu--list"><a href="logout.php">Log Out</a></li>
                         </ul>
                     </div>
                     <div class="account__wrapper">

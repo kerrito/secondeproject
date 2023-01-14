@@ -83,68 +83,26 @@ include_once "slicing/headerlinks.php";
         <!-- End slider section -->
 
         <!-- Start banner section -->
-        <section class="banner__section banner__style2 section--padding color-scheme-2">
-            <div class="section__heading text-center mb-35">
-                <h2 class="section__heading--maintitle style2">Shop by Categories</h2>
-            </div>
+        <section class="banner__section banner__discount section--padding color-scheme-2 pt-0">
             <div class="container-fluid">
-                <div class="row mb--n28">
-                    <div class="col-lg-4 col-md-order mb-28">
-                        <div class="banner__items position__relative">
-                            <a class="banner__items--thumbnail " href="shop.html"><img class="banner__items--thumbnail__img" src="assets/img/banner/banner7.png" alt="banner-img">
-                                <div class="banner__items--content style2">
-                                    <h3 class="banner__items--content__title style2">NEW <br>
-                                        ACCESSORIES</h3>
-                                    <span class="banner__items--content__link style2">SHOP NOW</span>
-                                </div>
-                            </a>
+                <div class="banner__discount--inner position__relative">
+                    <div class="row row-cols-sm-2 row-cols-1">
+                        <div class="col">
+                            <div class="banner__items banner__discount--items position__relative">
+                                <a class="banner__items--thumbnail " href="shop.html"><img class="banner__items--thumbnail__img" src="assets/img/banner/banner12.png" alt="banner-img"></a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="banner__items banner__discount--items position__relative">
+                                <a class="banner__items--thumbnail " href="shop.html"><img class="banner__items--thumbnail__img" src="assets/img/banner/banner13.png" alt="banner-img"></a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-8">
-                        <div class="banner__style2--top__sidebar d-flex">
-                            <div class="banner__items position__relative mr-30 mb-28">
-                                <a class="banner__items--thumbnail" href="shop.html"><img class="banner__items--thumbnail__img banner__img--max__height" src="assets/img/banner/banner8.png" alt="banner-img">
-                                    <div class="banner__items--content style2">
-                                        <h3 class="banner__items--content__title style2">NEW <br>
-                                            ACCESSORIES</h3>
-                                        <span class="banner__items--content__link style2">SHOP NOW</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="banner__items position__relative mb-28">
-                                <a class="banner__items--thumbnail" href="shop.html"><img class="banner__items--thumbnail__img" src="assets/img/banner/banner9.png" alt="banner-img">
-                                    <div class="banner__items--content style2">
-                                        <h3 class="banner__items--content__title style2">TRENDING <br>
-                                            NOW</h3>
-                                        <span class="banner__items--content__link style2">SHOP NOW</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row row-cols-sm-2 row-cols-1">
-                            <div class="col mb-28">
-                                <div class="banner__items position__relative">
-                                    <a class="banner__items--thumbnail" href="shop.html"><img class="banner__items--thumbnail__img banner__img--max__height" src="assets/img/banner/banner10.png" alt="banner-img">
-                                        <div class="banner__items--content style2">
-                                            <h3 class="banner__items--content__title style2">TOP <br>
-                                                SELLER</h3>
-                                            <span class="banner__items--content__link style2">SHOP NOW</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col mb-28">
-                                <div class="banner__items position__relative">
-                                    <a class="banner__items--thumbnail" href="shop.html"><img class="banner__items--thumbnail__img banner__img--max__height" src="assets/img/banner/banner11.png" alt="banner-img">
-                                        <div class="banner__items--content style2 right">
-                                            <h3 class="banner__items--content__title style2">TOP <br>
-                                                DECORATION</h3>
-                                            <span class="banner__items--content__link style2">SHOP NOW</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="banner__discount--content text-center">
+                        <span class="banner__discount--content__subtitle">Summer Collection 2022</span>
+                        <h2 class="banner__discount--content__title h3">Get 35% Diseount For <br>
+                            Couple Special</h2>
+                        <a class="banner__discount--content__link" href="shop.html">SHOP NOW</a>
                     </div>
                 </div>
             </div>
@@ -1075,33 +1033,6 @@ include_once "slicing/headerlinks.php";
         </section>
         <!-- End product section -->
 
-        <!-- Start banner section -->
-        <section class="banner__section banner__discount section--padding color-scheme-2 pt-0">
-            <div class="container-fluid">
-                <div class="banner__discount--inner position__relative">
-                    <div class="row row-cols-sm-2 row-cols-1">
-                        <div class="col">
-                            <div class="banner__items banner__discount--items position__relative">
-                                <a class="banner__items--thumbnail " href="shop.html"><img class="banner__items--thumbnail__img" src="assets/img/banner/banner12.png" alt="banner-img"></a>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="banner__items banner__discount--items position__relative">
-                                <a class="banner__items--thumbnail " href="shop.html"><img class="banner__items--thumbnail__img" src="assets/img/banner/banner13.png" alt="banner-img"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="banner__discount--content text-center">
-                        <span class="banner__discount--content__subtitle">Summer Collection 2022</span>
-                        <h2 class="banner__discount--content__title h3">Get 35% Diseount For <br>
-                            Couple Special</h2>
-                        <a class="banner__discount--content__link" href="shop.html">SHOP NOW</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End banner section -->
-
         <!-- Start grid product section -->
         <section class="product__section section--padding color-scheme-2 pt-0">
             <div class="container-fluid">
@@ -1662,86 +1593,6 @@ include_once "slicing/headerlinks.php";
         </section>
         <!-- End contact section -->
 
-        <!-- Start blog section -->
-        <section class="blog__section section--padding color-scheme-2 pt-0">
-            <div class="container-fluid">
-                <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle style2">From The Blog</h2>
-                </div>
-                <div class="blog__section--inner blog__swiper--activation swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="blog__items">
-                                <div class="blog__thumbnail">
-                                    <a class="blog__thumbnail--link" href="blog-details.html"><img class="blog__thumbnail--img" src="assets/img/blog/blog1.png" alt="blog-img"></a>
-                                </div>
-                                <div class="blog__content style2">
-                                    <span class="blog__content--meta">February 03, 2022</span>
-                                    <h3 class="blog__content--title style2"><a href="blog-details.html">Fashion Trends In 2021 Styles,
-                                            Colors, Accessories</a></h3>
-                                    <a class="blog__content--btn style2 primary__btn" href="blog-details.html">Read more </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="blog__items">
-                                <div class="blog__thumbnail">
-                                    <a class="blog__thumbnail--link" href="blog-details.html"><img class="blog__thumbnail--img" src="assets/img/blog/blog2.png" alt="blog-img"></a>
-                                </div>
-                                <div class="blog__content style2">
-                                    <span class="blog__content--meta">February 03, 2022</span>
-                                    <h3 class="blog__content--title style2"><a href="blog-details.html">Meet the Woman Behind Cool
-                                            Ethical Label Reformation </a></h3>
-                                    <a class="blog__content--btn style2 primary__btn" href="blog-details.html">Read more </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="blog__items">
-                                <div class="blog__thumbnail">
-                                    <a class="blog__thumbnail--link" href="blog-details.html"><img class="blog__thumbnail--img" src="assets/img/blog/blog3.png" alt="blog-img"></a>
-                                </div>
-                                <div class="blog__content style2">
-                                    <span class="blog__content--meta">February 03, 2022</span>
-                                    <h3 class="blog__content--title style2"><a href="blog-details.html">Lauryn Hill Could Make Tulle
-                                            Skirt and Cowboy</a></h3>
-                                    <a class="blog__content--btn style2 primary__btn" href="blog-details.html">Read more </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="blog__items">
-                                <div class="blog__thumbnail">
-                                    <a class="blog__thumbnail--link" href="blog-details.html"><img class="blog__thumbnail--img" src="assets/img/blog/blog4.png" alt="blog-img"></a>
-                                </div>
-                                <div class="blog__content style2">
-                                    <span class="blog__content--meta">February 03, 2022</span>
-                                    <h3 class="blog__content--title style2"><a href="blog-details.html">Fashion Trends In 2021 Styles,
-                                            Colors, Accessories</a></h3>
-                                    <a class="blog__content--btn style2 primary__btn" href="blog-details.html">Read more </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="blog__items">
-                                <div class="blog__thumbnail">
-                                    <a class="blog__thumbnail--link" href="blog-details.html"><img class="blog__thumbnail--img" src="assets/img/blog/blog2.png" alt="blog-img"></a>
-                                </div>
-                                <div class="blog__content style2">
-                                    <span class="blog__content--meta">February 03, 2022</span>
-                                    <h3 class="blog__content--title style2"><a href="blog-details.html">Lauryn Hill Could Make Tulle
-                                            Skirt and Cowboy</a></h3>
-                                    <a class="blog__content--btn style2 primary__btn" href="blog-details.html">Read more </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper__nav--btn swiper-button-next"></div>
-                    <div class="swiper__nav--btn swiper-button-prev"></div>
-                </div>
-            </div>
-        </section>
-        <!-- End blog section -->
 
     </main>
     <?php

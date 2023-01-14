@@ -271,9 +271,9 @@
         <div class="predictive__search--box color-scheme-2">
             <div class="predictive__search--box__inner">
                 <h2 class="predictive__search--title">Search Products</h2>
-                <form class="predictive__search--form" action="#">
+                <form class="predictive__search--form" action="search.php" method="GET">
                     <label>
-                        <input class="predictive__search--input" placeholder="Search Here" type="text">
+                        <input class="predictive__search--input" placeholder="Search Here" type="text" name="name">
                     </label>
                     <button class="predictive__search--button"><svg class="header__search--button__svg" xmlns="http://www.w3.org/2000/svg" width="30.51" height="25.443" viewBox="0 0 512 512"><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"/></svg>  </button>
                 </form>

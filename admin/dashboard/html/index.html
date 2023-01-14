@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gull - Angular + Laravel + Bootstrap admin template</title>
+    <meta name="description" content="Admin template built with Bootstrap, Angular &amp; Laravel. 300+ UI Components and pages for your next web application project">
+    <meta name="keywords" content="Angular Admin, Laravel admin, Bootstrap Admin, ng bootstrap admin, Project management template, UI Lib">
+    <meta name="author" content="UI Lib">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="../dist-assets/css/themes/lite-purple.min.css">
+    <script>
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2268386293237836');
+        fbq('track', 'PageView');
+    </script>
+</head>
+<style>
+    .loadscreen {
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 0;
+        height: 100vh;
+        background: #ffffff;
+    }
+
+    .loadscreen .loader {
+        position: absolute;
+        top: calc(50vh - 50px);
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+
+    .loadscreen .logo {
+        display: inline-block !important;
+        width: 80px;
+        height: 80px;
+    }
+</style>
+<section class="homepage">
+    <div class="container">
+        <div class="main-content text-center">
+            <div class="logo"><img src="../dist-assets/images/logo.png" alt=""></div>
+            <h1 class="mb-24 font-weight-bold">Gull Admin<br><small>Bootstrap + Laravel + PSD Version</small></h1>
+            <p class="p-readable text-muted mx-auto mb-32">Highly customizable, developer-friendly admin template &amp; UI Kits - meant for powering versatile modern-day web applications.</p>
+            <div class="cta d-flex justify-content-center mb-48"><a class="view_demo btn btn-raised btn-raised-primary btn-xl rounded" href="#">View Demos</a><span style="width: 20px"></span><a class="btn btn-raised btn-raised-secondary btn-xl rounded" href="https://themeforest.net/item/gull-bootstrap-laravel-admin-dashboard-template/23101970">Buy Gull</a></div>
+            <div class="mb-48"><a class="mx-8 text-muted font-weight-bold" href="http://demos.ui-lib.com/gull-html-doc/" target="_blank">Documentation</a><a class="mx-8 text-muted font-weight-bold" href="https://ui-lib.com/github-access/" target="_blank">Github Access</a></div>
+            <div class="dashboard-photo"><img src="../dist-assets/images/screenshots/gull-large-sidebar.png" alt=""></div>
+        </div>
+    </div>
+</section>
+<section class="framework">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 class="font-weight-bold">3 in 1 Value Pack</h2>
+            <!-- <p>4 in 1 value pack</p>-->
+        </div>
+        <div class="row">
+            <div class="col-md-12 d-flex flex-column flex-md-row align-items-center justify-content-center">
+                <div class="item-photo card text-center"><img src="../dist-assets/images/bootstrap-logo.png" alt="">
+                    <!-- <span class="item-photo-text"><strong>Html</strong></span>-->
+                </div><span style="width: 30px"></span>
+                <div class="item-photo card text-center"><img src="../dist-assets/images/laravel-logo.png" alt="">
+                    <!-- <span class="item-photo-text"><strong>Sass</strong></span>-->
+                </div><span style="width: 30px"></span>
+                <div class="item-photo card text-center"><img style="opacity: .9" src="../dist-assets/images/ps.png" alt="">
+                    <!-- <span class="item-photo-text"><strong>Sass</strong></span>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="demos" id="demo">
+    <div class="container demo-photo">
+        <div class="text-center mb-5">
+            <div class="d-flex justify-content-center mb-3"><a class="view_demo btn btn-raised btn-raised-primary rounded" target="_blank" href="#">Demos</a></div>
+            <p>Gull includes all the components that you might need inside a project.</p>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-6">
+                <div class="demo-photo text-center mb-5 px-3"><a class="thumbnail card o-hidden mb-24" href="layout1/dashboard1.html" target="_blank"><img src="../dist-assets/images/screenshots/gull-large-sidebar.png" alt=""></a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout1/dashboard1.html">HTML</a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="http://gull-html-laravel.ui-lib.com/large-sidebar/dashboard/dashboard1">Laravel</a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout1-dark/dashboard1.html">Dark</a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout1-rtl/dashboard1.html">RTL</a></div>
+            </div>
+            <div class="col-md-6">
+                <div class="demo-photo text-center mb-5 px-3"><a class="thumbnail card o-hidden mb-24" href="layout2/dashboard1.html" target="_blank"><img src="../dist-assets/images/screenshots/gull-compact-sidebar.png" alt=""></a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout2/dashboard1.html">HTML</a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="http://gull-html-laravel.ui-lib.com/large-compact-sidebar/dashboard/dashboard1">Laravel</a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout2-dark/dashboard1.html">Dark</a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout2-rtl/dashboard1.html">RTL</a></div>
+            </div>
+            <div class="col-md-6">
+                <div class="demo-photo text-center mb-5 px-3"><a class="thumbnail card o-hidden mb-24" href="layout4/dashboard1.html" target="_blank"><img src="../dist-assets/images/screenshots/gull-classic-sidebar.png" alt=""></a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout4/dashboard1.html">HTML</a>
+                    <button class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" disabled href="">Laravel | Coming soon</button>
+                    <button class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" disabled href="">Dark | Coming soon</button><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout4-rtl/dashboard1.html">RTL</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="demo-photo text-center mb-5 px-3"><a class="thumbnail card o-hidden mb-24" href="layout3/dashboard1.html" target="_blank"><img src="../dist-assets/images/screenshots/gull-horizontal-nav.png" alt=""></a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout3/dashboard1.html">HTML</a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="http://gull-html-laravel.ui-lib.com/horizontal-bar/dashboard/dashboard1">Laravel</a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout3-dark/dashboard1.html">Dark</a><a class="btn btn-outline btn-outline-primary rounded mx-1" target="_blank" href="layout3-rtl/dashboard1.html">RTL</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="clients">
+    <div class="container">
+        <div class="section-title">
+            <h2>What our customers are saying</h2>
+            <p>1000+ happy users</p>
+        </div>
+        <div class="complement">
+            <div class="client-card card ml-3">
+                <div class="user d-flex">
+                    <div class="user-photo"><img src="https://public-assets.envato-static.com/assets/common/icons-buttons/default-user-2962fd43ee315eafee8bfc08f02fee84687beb0499de44e5ab2873399944b0fe.jpg" alt=""></div>
+                    <div class="user-detail">
+                        <h6>eprince31</h6>
+                        <p><small>Envato User</small></p>
+                    </div>
+                </div>
+                <div class="user-comment">
+                    <p>Design quality and customer support are excellent. Seller returns advice very quickly, especially as I am new to Laravel, which I cannot praise enough. Thank you</p>
+                </div>
+            </div>
+            <div class="client-card card">
+                <div class="user d-flex">
+                    <div class="user-photo"><img src="https://public-assets.envato-static.com/assets/common/icons-buttons/default-user-2962fd43ee315eafee8bfc08f02fee84687beb0499de44e5ab2873399944b0fe.jpg" alt=""></div>
+                    <div class="user-detail">
+                        <h6>zim_ejin</h6>
+                        <p><small>Envato User</small></p>
+                    </div>
+                </div>
+                <div class="user-comment">
+                    <p>I just started using this template, So far what I like is that it&apos;s not only beautiful and packed with features. But it appears to be a full Angular and TypeScript template.<br><br> A lot of templates claim to be built with Angular but are actually JQuery Templates inside of Angular.
+                        I&apos;ve had a bad experience with one of those.<br><br> I&apos;m looking forward to working more with this template and even learning a few Angular concepts from it.
+                    </p>
+                </div>
+            </div>
+            <div class="client-card card ml-3">
+                <div class="user d-flex">
+                    <div class="user-photo"><img src="https://public-assets.envato-static.com/assets/common/icons-buttons/default-user-2962fd43ee315eafee8bfc08f02fee84687beb0499de44e5ab2873399944b0fe.jpg" alt=""></div>
+                    <div class="user-detail">
+                        <h6>versing38</h6>
+                        <p><small>Envato User</small></p>
+                    </div>
+                </div>
+                <div class="user-comment">
+                    <p>It&apos;s very easy template for laravel, i&apos;have just launch &apos;composer install&apos; and &apos;npm run dev&apos; and i can work ! congratulations !!</p>
+                </div>
+            </div>
+            <div class="client-card card">
+                <div class="user d-flex">
+                    <div class="user-photo"><img src="https://public-assets.envato-static.com/assets/common/icons-buttons/default-user-2962fd43ee315eafee8bfc08f02fee84687beb0499de44e5ab2873399944b0fe.jpg" alt=""></div>
+                    <div class="user-detail">
+                        <h6>ljslol</h6>
+                        <p><small>Envato User</small></p>
+                    </div>
+                </div>
+                <div class="user-comment">
+                    <p>If you are a laravel user, please purchase it unconditionally. Easy. Fast. Good. Good quality.</p>
+                </div>
+            </div>
+            <div class="client-card card ml-3">
+                <div class="user d-flex">
+                    <div class="user-photo"><img src="https://public-assets.envato-static.com/assets/common/icons-buttons/default-user-2962fd43ee315eafee8bfc08f02fee84687beb0499de44e5ab2873399944b0fe.jpg" alt=""></div>
+                    <div class="user-detail">
+                        <h6>bagaskara7</h6>
+                        <p><small>Envato User</small></p>
+                    </div>
+                </div>
+                <div class="user-comment">
+                    <p>Great template with Laravel starter kit which make life easier ;)</p>
+                </div>
+            </div>
+            <div class="client-card card">
+                <div class="user d-flex">
+                    <div class="user-photo"><img src="https://public-assets.envato-static.com/assets/common/icons-buttons/default-user-2962fd43ee315eafee8bfc08f02fee84687beb0499de44e5ab2873399944b0fe.jpg" alt=""></div>
+                    <div class="user-detail">
+                        <h6>fubsz</h6>
+                        <p><small>Envato User</small></p>
+                    </div>
+                </div>
+                <div class="user-comment">
+                    <p>Truly one of the highest quality and greatest value items purchased on Themeforest, in addition to a great product stands an awesome creator who quickly replies to comments and questions.<br><br> Thank you!!!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- blog-->
+<section class="blog">
+    <div class="container">
+        <h2>Is it really worth it?</h2>
+        <p class="text-16">
+            A powerful admin template is like a high-end car.
+            Each of its components is built carefully and keeping efficiency in mind. Once the individual parts are developed, engineers can assemble the product.
+            The quality of their individual components defines the most powerful machines.
+        </p>
+        <p class="text-16">
+            Gull is just like the car in the above analogy. Yeah, it&apos;s powerful enough on its own right. But, it aims at SAVING your TIME.
+            As with every successful ERP dashboard, efficiency lies at the core of Gull -
+            and it makes sure you don&apos;t have to trade off the performance with productivity during the same time.
+        </p>
+        <p class="text-16">
+            If you are looking for a quality admin template to boost your ongoing startup application or are merely looking for pre-built chat application,
+            calendar schedule app, to-do list app, and such for your eCommerce backend or CMS solution,
+            Gull can and will be the perfect project management dashboard for you.
+        </p>
+    </div>
+</section>
+<!-- footer-->
+<section class="footer bg-home text-center">
+    <div class="container">
+        <div class="row footer-item">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="selling-btn"><a class="btn btn-raised btn-raised-primary btn-xl rounded" href="https://themeforest.net/item/gull-bootstrap-laravel-admin-dashboard-template/23101970">Buy Gull</a></div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    <div class="footer-bootom">
+        <p>&copy; 2019 Gull, By Team Ui Lib</p>
+    </div>
+</section>
+<div class="loadscreen">
+    <div class="loader"><img class="logo mb-3" src="../dist-assets/images/logo.png" style="display: none" alt="">
+        <div class="loader-bubble loader-bubble-primary d-block"></div>
+    </div>
+</div>
+<script src="../dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
+<script src="../dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
+<script src="../dist-assets/js/plugins/feather.min.js"></script>
+<script src="../dist-assets/js/scripts/landing.script.js"></script>
+<script>
+    /* -----------------------------
+  Pre Loader
+  ----------------------------- */
+    $(window).on('load', function() {
+        'use strict';
+        $('.loadscreen').delay(500).fadeOut();
+        // $('#preloader').delay(800).fadeOut('slow');
+    });
+</script>

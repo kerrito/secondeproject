@@ -62,12 +62,13 @@
                             </button>
                         </h2>
                         <ul class="footer__widget--menu footer__widget--inner">
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="my-account.html">My Account</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="cart.html">Shopping Cart</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.html">Login</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.html">Register</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="checkout.html">Checkout</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="wishlist.html">Wishlist</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="account.php">My Account</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="about.php">About Us</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="contact.php">Contact Us</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="cart.php">Shopping Cart</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.php">Login</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.php">Sign Up</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="wishlist.php">Wishlist</a></li>
                         </ul>
                     </div>
                     <div class="footer__widget">
@@ -79,12 +80,13 @@
                             </button>
                         </h2>
                         <ul class="footer__widget--menu footer__widget--inner">
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="about.html">About Us</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="contact.html">Contact Us</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="portfolio.html">Portfolio</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="privacy-policy.html">Privacy Policy</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="compare.html">Compare</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="faq.html">Frequently</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='gift'">Gifts Artical</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='art'">Art</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='handbags'">Hand Bags</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='wallet'">Wallet</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='dolls'">Dolls</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='files'">Files</a></li>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='greeting'">Greeting Cards</a></li>
                         </ul>
                     </div>
                 </div>
@@ -122,7 +124,7 @@
                     </div>
                 </div>
                 <div class="footer__widget footer__widget--width">
-                    <h2 class="footer__widget--title text-ofwhite h3">Newsletter 
+                    <h2 class="footer__widget--title text-ofwhite h3">Arts 
                         <button class="footer__widget--button" aria-label="footer widget button">
                             <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
                                 <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
