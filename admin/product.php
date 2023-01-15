@@ -31,7 +31,7 @@ include_once "slicing/headerlinks.php";
                                         <div class="col-sm-12">
                                             <div class="d-flex flex-row align-items-center justify-content-between">
                                                 <h1>Product List</h1>
-                                                <a href="adduser.php" class="btn btn-primary">Add product</a>
+                                                <a href="addproduct.php" class="btn btn-primary">Add product</a>
                                             </div>
                                             <table class="table ">
                                                 <thead>

@@ -1,6 +1,17 @@
 <?php
 include_once "slicing/headerlinks.php";
-
+if(isset($_POST['btn'])){
+$firstname=mysqli_real_escape_string($con,$_POST['firstname']);
+$lastname=mysqli_real_escape_string($con,$_POST['lastname']);
+$email=mysqli_real_escape_string($con,$_POST['email']);
+$msg=mysqli_real_escape_string($con,$_POST['message']);
+$number=$_POST['number'];
+$sql="INSERT INTO `contact` SET `name`='$firstname',`lastname`='$lastname',`email`='$email',`msg`='$msg',`number`=$number";
+if(mysqli_query($con,$sql)){
+    header("location:home.php");
+    exit;
+}
+}
 ?>
 
 <body>
@@ -39,7 +50,7 @@ include_once "slicing/headerlinks.php";
 
                     <div class="contact__form">
                         <h3 class="contact__form--title mb-40">Contact Me</h3>
-                        <form class="contact__form--inner" action="#">
+                        <form class="contact__form--inner" action="#" method="POST">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="contact__form--list mb-20">
@@ -72,7 +83,7 @@ include_once "slicing/headerlinks.php";
                                     </div>
                                 </div>
                             </div>
-                            <button class="contact__form--btn primary__btn" type="submit">Submit Now</button>
+                            <button class="contact__form--btn primary__btn" name="btn" type="submit">Submit Now</button>
                         </form>
                     </div>
                     <div class="contact__info border-radius-5">

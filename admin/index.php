@@ -64,6 +64,7 @@ include_once "slicing/headerlinks.php";
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card card-icon-big mb-4">
                                     <div class="card-body text-center"><i class="i-Money-2"></i>
+                                    <p class="text-muted mt-2 mb-2">Total order</p>
                                         <p class="line-height-1 text-title text-18 mt-2 mb-0">4021</p>
                                     </div>
                                 </div>
@@ -71,6 +72,7 @@ include_once "slicing/headerlinks.php";
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card card-icon-big mb-4">
                                     <div class="card-body text-center"><i class="i-Gear"></i>
+                                    <p class="text-muted mt-2 mb-2">Order Delievered</p>
                                         <p class="line-height-1 text-title text-18 mt-2 mb-0">2309</p>
                                     </div>
                                 </div>
@@ -78,6 +80,7 @@ include_once "slicing/headerlinks.php";
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card card-icon-big mb-4">
                                     <div class="card-body text-center"><i class="i-Bell"></i>
+                                    <p class="text-muted mt-2 mb-2">Contact</p>
                                     <?php 
                                     $l="SELECT COUNT(id) FROM `contact`";
                                     $msg=mysqli_query($con,$l);

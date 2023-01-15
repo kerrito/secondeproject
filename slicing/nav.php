@@ -107,7 +107,7 @@
                             } else{
                             ?>
                             <li class="header__account--items header__account2--items">
-                                <a class="header__account--btn" href="login.php">Login/Register</a>
+                                <a class="header__account--btn" href="login.php">Login</a><span>/</span><a href="signup.php">Register</a>
                             </li>
                             <?php 
                             }

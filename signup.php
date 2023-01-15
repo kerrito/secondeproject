@@ -4,9 +4,10 @@ if (isset($_POST['btn'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $number = $_POST['number'];
+    $address=$_POST['address'];
     $pass = md5($_POST['pass']);
 
-    $sql = "INSERT INTO `signup` SET  `name`='$name',`email`='$email',`number`=$number,`pass`='$pass',`status`=1";
+    $sql = "INSERT INTO `signup` SET  `name`='$name',`email`='$email',`number`=$number,`address`='$address',`pass`='$pass',`status`=1";
     if (mysqli_query($con, $sql)) {
         $_SESSION['login'] = "true";
         $_SESSION['email'] = "$email";
@@ -15,8 +16,6 @@ if (isset($_POST['btn'])) {
         $res = mysqli_query($con, $q);
         if ($res) {
             $result = mysqli_fetch_assoc($res);
-            $l = "UPDATE `signup` SET `status` WHERE `email`='$email' AND `pass`='$pass'";
-            if (mysqli_query($con, $l)) {
                 if ($result['user_rol'] == 2 || $result['user_rol'] == 3) {
                     header("location:admin/index.php");
                     exit;
@@ -27,30 +26,6 @@ if (isset($_POST['btn'])) {
             }
         }
     }
-}
-if (isset($_POST['btnn1'])) {
-    $email = $_POST['logemail'];
-    $pass = md5($_POST['logpass']);
-    $s = "SELECT * FROM `signup` WHERE `email`='$email' AND `pass`='$pass'";
-    $res = mysqli_query($con, $s);
-    if (mysqli_num_rows($res)>0 ) {
-        $_SESSION['login'] = "true";
-        $_SESSION['email'] = "$email";
-        $_SESSION['pass'] = "$pass";
-        $result = mysqli_fetch_assoc($res);
-        $sl = "UPDATE `signup` SET `status`=1 WHERE `email`='$email' AND `pass`='$pass'";
-        if (mysqli_query($con, $sl)) {
-            if ($result['user_rol'] == 2 || $result['user_rol'] == 3) {
-                header("location:admin/index.php");
-                exit;
-            } else {
-                header("location:home.php");
-                exit;
-            }
-        }
-    }
-}
-
 ?>
 
 <body>
@@ -68,10 +43,10 @@ if (isset($_POST['btnn1'])) {
                 <div class="row row-cols-1">
                     <div class="col">
                         <div class="breadcrumb__content text-center">
-                            <h1 class="breadcrumb__content--title text-white mb-25">Account Page</h1>
+                            <h1 class="breadcrumb__content--title text-white mb-25">Register Page</h1>
                             <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a class="text-white" href="index.html">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span class="text-white">Account Page</span></li>
+                                <li class="breadcrumb__content--menu__items"><a class="text-white" href="home.php">Home</a></li>
+                                <li class="breadcrumb__content--menu__items"><span class="text-white">Register Page</span></li>
                             </ul>
                         </div>
                     </div>
@@ -85,8 +60,8 @@ if (isset($_POST['btnn1'])) {
             <div class="container">
                 <form action="#" method="POST">
                     <div class="login__section--inner">
-                        <div class="row row-cols-md-2 row-cols-1">
-                            <div class="col">
+                        <div class="row row-cols-md-2 row-cols-1 justify-content-center">
+                            <!-- <div class="col">
                                 <div class="account__login">
                                     <div class="account__login--header mb-25">
                                         <h2 class="account__login--header__title h3 mb-10">Login</h2>
@@ -116,7 +91,7 @@ if (isset($_POST['btnn1'])) {
                                         <p class="account__login--signup__text">Don,t Have an Account? <button type="submit">Sign up now</button></p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col">
                                 <div class="account__login register">
                                     <div class="account__login--header mb-25">
@@ -129,14 +104,15 @@ if (isset($_POST['btnn1'])) {
                                         <input class="account__login--input" placeholder="Number" type="number" name="number">
                                         <input class="account__login--input" placeholder="Password" type="password" name="pass">
                                         <textarea name="address" class="account__login--input" id="" rows="3" placeholder="Address"></textarea>
-                                        <button class="account__login--btn primary__btn mb-10" name="btn" type="submit">Submit & Register</button>
                                         <div class="account__login--remember position__relative">
                                             <input class="checkout__checkbox--input" id="check2" type="checkbox">
                                             <span class="checkout__checkbox--checkmark"></span>
                                             <label class="checkout__checkbox--label login__remember--label" for="check2">
                                                 I have read and agree to the terms & conditions</label>
                                         </div>
+                                        <button class="account__login--btn primary__btn mb-10" name="btn" type="submit">Submit & Register</button>
                                     </div>
+                                    <p class="account__login--signup__text">Already Have An Account <button type="submit"><a href="login.php">Login now</a></button></p>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +123,7 @@ if (isset($_POST['btnn1'])) {
         <!-- End login section  -->
 
         <!-- Start shipping section -->
-        <section class="shipping__section2 shipping__style3 section--padding pt-0">
+        <!-- <section class="shipping__section2 shipping__style3 section--padding pt-0">
             <div class="container">
                 <div class="shipping__section2--inner shipping__style3--inner d-flex justify-content-between">
                     <div class="shipping__items2 d-flex align-items-center">
@@ -188,7 +164,7 @@ if (isset($_POST['btnn1'])) {
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- End shipping section -->
 
     </main>

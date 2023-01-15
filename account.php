@@ -43,7 +43,7 @@ include_once "slicing/headerlinks.php";
                             $res=mysqli_query($con,$sql);
                             if($res){
                                 $result=mysqli_fetch_assoc($res);
-                                if($result['status']==2 || $result['status']==3){
+                                if($result['user_rol']==2 || $result['user_rol']==3){
                                     
                             
                             ?>

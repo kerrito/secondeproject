@@ -10,7 +10,7 @@
             <li class="nav-item"><a class="nav-item-hold" href="contact.php"><i class="nav-icon i-Suitcase"></i><span class="nav-text">Messages</span></a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item"><a class="nav-item-hold" href="order.php"><i class="nav-icon i-Computer-Secure"></i><span class="nav-text">Orders</span></a>
+            <li class="nav-item"><a class="nav-item-hold" href="order.php"><i class="nav-icon i-File-Clipboard-File--Text"></i><span class="nav-text">Orders</span></a>
                 <div class="triangle"></div>
             </li>
             <li class="nav-item" data-item="widgets"><a class="nav-item-hold" href="#"><i class="nav-icon i-Computer-Secure"></i><span class="nav-text">Widgets</span></a>
