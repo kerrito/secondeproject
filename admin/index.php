@@ -152,7 +152,7 @@ include_once "slicing/headerlinks.php";
                                                             <td><?=$value['email']?></td>
                                                             <td><?=$value['number']?></td>
                                                             <td><span class="badge <?=$value['status']==1?"badge-success":"badge-warning"?>"><?=$value['status']==1?"Active":"Not Active"?></span></td>
-                                                            <td><a class="text-success mr-2" href="updateuser.php?id=<?=$value['id']?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="delete.php?id=<?=$value['id']?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                                            <td><a class="text-success mr-2" href="updateuser.php?id=<?=$value['id']?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="deleteuser.php?id=<?=$value['id']?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                                         </tr>
                                                         <?php 
                                                         }

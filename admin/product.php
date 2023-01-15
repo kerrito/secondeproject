@@ -38,11 +38,12 @@ include_once "slicing/headerlinks.php";
                                                     <tr role="row">
                                                         <th scope="col" class="sorting_asc" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 18.8125px;">#</th>
                                                         <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 82.375px;">Name</th>
-                                                        <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 155.406px;">Email</th>
-                                                        <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Avatar: activate to sort column ascending" style="width: 64.2031px;">Number</th>
+                                                        <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Avatar: activate to sort column ascending" style="width: 64.2031px;">Image</th>
                                                         <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Avatar: activate to sort column ascending" style="width: 64.2031px;">Brand</th>
                                                         <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Avatar: activate to sort column ascending" style="width: 64.2031px;">Categories</th>
-                                                        <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 84.781px;">Status</th>
+                                                        <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 155.406px;">Description</th>
+                                                        <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 40.781px;">Stock</th>
+                                                        <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 44px;">Status</th>
                                                         <th scope="col" class="sorting" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 64.9219px;">Action</th>
                                                     </tr>
                                                 </thead>
@@ -55,12 +56,13 @@ include_once "slicing/headerlinks.php";
                                                         <tr role="row" class="odd">
                                                             <th scope="row" class="sorting_1"><?= $value['id'] ?></th>
                                                             <td><?= $value['name'] ?></td>
-                                                            <td><?= $value['email'] ?></td>
-                                                            <td><?= $value['number'] ?></td>
+                                                            <td><img src="../uploads/img/<?= $value['img'] ?>" alt="" class="w-50 rounded-circle"></td>
                                                             <td><?= $value['brand'] ?></td>
                                                             <td><?= $value['categories'] ?></td>
-                                                            <td><span class="badge <?= $value['status'] == 1 ? "badge-success" : "badge-warning" ?>"><?= $value['status'] == 1 ? "Delivered" : "dispatch" ?></span></td>
-                                                            <td><a class="text-success mr-2" href="updateuser.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="delete.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                                            <td><?= $value['desc'] ?></td>
+                                                            <td><?= $value['stock'] ?></td>
+                                                            <td><span class="badge <?= $value['status'] == 1 ? "badge-success" : "badge-warning" ?>"><?= $value['status'] == 1 ? "Available" : "Not Available" ?></span></td>
+                                                            <td><a class="text-success mr-2" href="updateproduct.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="deleteproduct.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                                         </tr>
                                                     <?php
                                                     }
