@@ -14,7 +14,7 @@ include_once "slicing/headerlinks.php";
         <div class="main-content-wrap sidenav-open d-flex flex-column">
             <div class="main-content">
                 <div class="breadcrumb">
-                    <h1 class="mr-2"><a href="../home.php">
+                    <h1 class="mr-2"><a href="../index.php">
                             <h1>Home</h1>
                         </a></h1>
                     <ul>
@@ -59,7 +59,7 @@ include_once "slicing/headerlinks.php";
                                                             <td><img src="../uploads/img/<?= $value['img'] ?>" alt="" class="w-50 rounded-circle"></td>
                                                             <td><?= $value['brand'] ?></td>
                                                             <td><?= $value['categories'] ?></td>
-                                                            <td><?= $value['desc'] ?></td>
+                                                            <td class="h-25 overflow-hidden"><?= $value['desc'] ?></td>
                                                             <td><?= $value['stock'] ?></td>
                                                             <td><span class="badge <?= $value['status'] == 1 ? "badge-success" : "badge-warning" ?>"><?= $value['status'] == 1 ? "Available" : "Not Available" ?></span></td>
                                                             <td><a class="text-success mr-2" href="updateproduct.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="deleteproduct.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>

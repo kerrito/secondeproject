@@ -14,7 +14,7 @@ include_once "slicing/headerlinks.php";
         <div class="main-content-wrap sidenav-open d-flex flex-column">
             <div class="main-content">
                 <div class="breadcrumb">
-                    <h1 class="mr-2"><a href="../home.php">
+                    <h1 class="mr-2"><a href="../index.php">
                             <h1>Home</h1>
                         </a></h1>
                     <ul>

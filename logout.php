@@ -7,7 +7,7 @@ $sql="UPDATE `signup` SET `status`=0 WHERE `email`='$email' AND `pass`='$pass'";
 $res=mysqli_query($con,$sql);
 if($res){
 session_destroy();
-header("location:home.php");
+header("location:index.php");
 exit;
 }
 ?>

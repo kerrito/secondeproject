@@ -19,8 +19,20 @@ include_once "config.php";
 
   <!-- Plugin css -->
   <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+<!-- bootstrap -->
 
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <!-- Custom Style CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
-
+  <!-- sweet atert 3 -->
+<!-- <link rel="stylesheet" href="sweetalert2.min.css"> -->
+<style>
+  .card_an{
+    height: 250px !important;
+  }
+  .cardnav_an{
+    height: 150px !important;
+  }
+</style>
 </head>

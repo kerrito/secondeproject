@@ -40,7 +40,7 @@
                         <nav class="header__menu--navigation">
                             <ul class="d-flex">
                                 <li class="header__menu--items">
-                                    <a class="header__menu--link" href="home.php">HOME</a>
+                                    <a class="header__menu--link" href="index.php">HOME</a>
                                 </li>
                                 <li class="header__menu--items">
                                     <a class="header__menu--link" href="product.php">PRODUCTS</a>
@@ -52,13 +52,13 @@
                                         </svg>
                                     </a>
                                     <ul class="header__sub--menu">
-                                        <li class="header__sub--menu__items"><a href="product.php?id='handbags'" class="header__sub--menu__link">Hand Bags</a></li>
-                                        <li class="header__sub--menu__items"><a href="product.php?id='art'" class="header__sub--menu__link">Arts articals</a></li>
-                                        <li class="header__sub--menu__items"><a href="product.php?id='gift'" class="header__sub--menu__link">Gift articals</a></li>
-                                        <li class="header__sub--menu__items"><a href="product.php?id='wallet'" class="header__sub--menu__link">Wallet</a></li>
-                                        <li class="header__sub--menu__items"><a href="product.php?id='greeting'" class="header__sub--menu__link">Greeting Cards</a></li>
-                                        <li class="header__sub--menu__items"><a href="product.php?id='dolls'" class="header__sub--menu__link">Dolls</a></li> 
-                                        <li class="header__sub--menu__items"><a href="product.php?id='files'" class="header__sub--menu__link">Files</a></li>           
+                                        <li class="header__sub--menu__items"><a href="product.php?id=handbags" class="header__sub--menu__link">Hand Bags</a></li>
+                                        <li class="header__sub--menu__items"><a href="product.php?id=art" class="header__sub--menu__link">Arts articals</a></li>
+                                        <li class="header__sub--menu__items"><a href="product.php?id=gift" class="header__sub--menu__link">Gift articals</a></li>
+                                        <li class="header__sub--menu__items"><a href="product.php?id=wallet" class="header__sub--menu__link">Wallet</a></li>
+                                        <li class="header__sub--menu__items"><a href="product.php?id=greeting" class="header__sub--menu__link">Greeting Cards</a></li>
+                                        <li class="header__sub--menu__items"><a href="product.php?id=dolls" class="header__sub--menu__link">Dolls</a></li> 
+                                        <li class="header__sub--menu__items"><a href="product.php?id=files" class="header__sub--menu__link">Files</a></li>           
                                     </ul>  
                                 </li>
                                 <li class="header__menu--items">
@@ -115,8 +115,20 @@
                             <li class="header__account--items header__account2--items d-none d-lg-block">
                                 <a class="header__account--btn" href="wishlist.php">
                                     <svg  xmlns="http://www.w3.org/2000/svg" width="28.51" height="23.443" viewBox="0 0 512 512"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg>
-                                    <span class="items__count  wishlist style2">02</span> 
-                                </a>
+                                    <?php 
+                                    $email=$_SESSION['email'];
+                                    $sql="SELECT COUNT(user_email) FROM `wishlist` WHERE `user_email`='$email'";
+                                    $res=mysqli_query($con,$sql);
+                                    if($res){
+                                        $result=mysqli_fetch_assoc($res);
+                                    ?>
+                                    <span class="items__count  wishlist style2">0<?=$result['COUNT(user_email)']?></span> 
+                                 
+                                    <?php
+                                    }
+                                    
+                                    ?>
+                                   </a>
                             </li>
                             <li class="header__account--items header__account2--items d-none d-lg-block">
                                 <a class="header__account--btn minicart__open--btn" href="javascript:void(0)" data-offcanvas>
@@ -129,7 +141,17 @@
                                           </g>
                                         </g>
                                     </svg>
-                                    <span class="items__count style2">02</span> 
+                                    <?php 
+                                    $email=$_SESSION['email'];
+                                    $ql="SELECT COUNT(user_email) FROM `addtocart` WHERE `user_email`='$email'";
+                                    $re=mysqli_query($con,$ql);
+                                    if($re){
+                                        $resul=mysqli_fetch_assoc($re);
+                                    ?>
+                                    <span class="items__count style2">0<?=$resul['COUNT(user_email)']?></span> 
+                                    <?php 
+                                    }
+                                    ?>
                                 </a>
                             </li>
                         </ul>

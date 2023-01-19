@@ -1,5 +1,6 @@
 <?php
 include_once "slicing/headerlinks.php";
+$page="";
 if (isset($_POST['btn'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -20,7 +21,7 @@ if (isset($_POST['btn'])) {
                     header("location:admin/index.php");
                     exit;
                 } else {
-                    header("location:home.php");
+                    header("location:index.php");
                     exit;
                 }
             }

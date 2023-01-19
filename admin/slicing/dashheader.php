@@ -1,6 +1,6 @@
 <div class="main-header">
     <div class="logo mr-1">
-        <img src="../assets/img/logo/nav-log2.png" class="w-100" alt="">
+        <a href="../index.php"><img src="../assets/img/logo/nav-log2.png" class="w-100" alt=""></a>
     </div>
     <!-- <div class="menu-toggle">
         <div></div>

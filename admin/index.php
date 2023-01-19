@@ -16,7 +16,7 @@ include_once "slicing/headerlinks.php";
             <!-- ============ Body content start ============= -->
             <div class="main-content">
                 <div class="breadcrumb">
-                    <h1 class="mr-2"><a href="../home.php"><h1>Home</h1></a></h1>
+                    <h1 class="mr-2"><a href="../index.php"><h1>Home</h1></a></h1>
                     <ul>
                         <li><a href="index.php">Dashboard</a></li>
                     </ul>

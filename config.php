@@ -16,4 +16,8 @@ if(!isset($_SESSION['email'])){
 if(!isset($_SESSION['pass'])){
     $_SESSION['pass']="";
 }
+if(!isset($_SESSION['msg'])){
+    $_SESSION['msg']="";
+}
+
 ?>

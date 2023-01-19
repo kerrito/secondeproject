@@ -37,7 +37,7 @@ if(isset($_POST['btn'])){
         <div class="main-content-wrap sidenav-open d-flex flex-column">
             <div class="main-content">
                 <div class="breadcrumb">
-                    <h1 class="mr-2"><a href="../home.php">
+                    <h1 class="mr-2"><a href="../index.php">
                             <h1>Home</h1>
                         </a></h1>
                     <ul>
@@ -70,8 +70,8 @@ if(isset($_POST['btn'])){
                                         <div class="col-md-12 mb-3">
                                             <label for="email">Categories</label>
                                             <select name="categories" id="" class="form-control">
-                                                <option value="Gift Artical">Gift Articals</option>
-                                                <option value="Art Artical">Art Articals</option>
+                                                <option value="Gift">Gift Articals</option>
+                                                <option value="Art">Art Articals</option>
                                                 <option value="Hand Bags">Hand Bags</option>
                                                 <option value="Wallet">Wallet</option>
                                                 <option value="Doll">Dolls</option>

@@ -1,5 +1,6 @@
 <?php
 include_once "slicing/headerlinks.php";
+$page="";
 if(isset($_POST['btn'])){
 $firstname=mysqli_real_escape_string($con,$_POST['firstname']);
 $lastname=mysqli_real_escape_string($con,$_POST['lastname']);
@@ -8,7 +9,12 @@ $msg=mysqli_real_escape_string($con,$_POST['message']);
 $number=$_POST['number'];
 $sql="INSERT INTO `contact` SET `name`='$firstname',`lastname`='$lastname',`email`='$email',`msg`='$msg',`number`=$number";
 if(mysqli_query($con,$sql)){
-    header("location:home.php");
+    $_SESSION['error']=12;
+    header("location:contact.php");
+    exit;
+}else{
+    $_SESSION['error']=13;
+    header("location:contact.php");
     exit;
 }
 }

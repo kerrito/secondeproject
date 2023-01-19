@@ -1,33 +1,6 @@
 <?php
 include_once "slicing/headerlinks.php";
-// if (isset($_POST['btn'])) {
-//     $name = $_POST['name'];
-//     $email = $_POST['email'];
-//     $number = $_POST['number'];
-//     $pass = md5($_POST['pass']);
-
-//     $sql = "INSERT INTO `signup` SET  `name`='$name',`email`='$email',`number`=$number,`pass`='$pass',`status`=1";
-//     if (mysqli_query($con, $sql)) {
-//         $_SESSION['login'] = "true";
-//         $_SESSION['email'] = "$email";
-//         $_SESSION['pass'] = "$pass";
-//         $q = "SELECT * FROM `signup` WHERE `email`='$email' AND `pass`='$pass'";
-//         $res = mysqli_query($con, $q);
-//         if ($res) {
-//             $result = mysqli_fetch_assoc($res);
-//             $l = "UPDATE `signup` SET `status` WHERE `email`='$email' AND `pass`='$pass'";
-//             if (mysqli_query($con, $l)) {
-//                 if ($result['user_rol'] == 2 || $result['user_rol'] == 3) {
-//                     header("location:admin/index.php");
-//                     exit;
-//                 } else {
-//                     header("location:home.php");
-//                     exit;
-//                 }
-//             }
-//         }
-//     }
-// }
+$page="";
 if (isset($_POST['btnn1'])) {
     $email = $_POST['logemail'];
     $pass = md5($_POST['logpass']);
@@ -44,7 +17,7 @@ if (isset($_POST['btnn1'])) {
                 header("location:admin/index.php");
                 exit;
             } else {
-                header("location:home.php");
+                header("location:index.php");
                 exit;
             }
         }
@@ -90,6 +63,14 @@ if (isset($_POST['btnn1'])) {
                                 <div class="account__login">
                                     <div class="account__login--header mb-25">
                                         <h2 class="account__login--header__title h3 mb-10">Login</h2>
+                                        <?php 
+                                        if($_SESSION['msg']!=null){
+                                            ?>
+                                            <p class="account__login--header__desc text-danger text-center"><?=$_SESSION['msg']?></p>
+                                            <?php
+                                            $_SESSION['msg']="";
+                                        }
+                                        ?>
                                         <p class="account__login--header__desc">Login if you area a returning customer.</p>
                                     </div>
                                     <div class="account__login--inner">

@@ -14,7 +14,7 @@ include_once "slicing/headerlinks.php";
         <div class="main-content-wrap sidenav-open d-flex flex-column">
             <div class="main-content">
                 <div class="breadcrumb">
-                    <h1 class="mr-2"><a href="../home.php">
+                    <h1 class="mr-2"><a href="../index.php">
                             <h1>Home</h1>
                         </a></h1>
                     <ul>
@@ -55,7 +55,7 @@ include_once "slicing/headerlinks.php";
                                                             <td><?= $value['name'] ?></td>
                                                             <td><?= $value['email'] ?></td>
                                                             <td><?= $value['number'] ?></td>
-                                                            <td><?= $value['msg'] ?></td>
+                                                            <td><p style="white-space: nowrap;width:300px !important;text-overflow: ellipsis;overflow: hidden;"><?= $value['msg'] ?></p></td>
                                                             <td><span class="badge <?= $value['status'] == 1 ? "badge-success" : "badge-warning" ?>"><?= $value['status'] == 1 ? "Read" : "Not Read" ?></span></td>
                                                             <td><a class="text-success mr-2" href="contactupdate.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="contactdelete.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                                         </tr>
