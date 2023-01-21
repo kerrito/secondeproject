@@ -164,7 +164,7 @@ $page="productdeatil";
                                             </a>
                                         </div>
                                         <div class="product__variant--list quantity d-flex align-items-center mb-20">
-                                            <button class="quickview__cart--btn primary__btn" type="submit">Add To Cart</button>
+                                            <button class="quickview__cart--btn primary__btn" type="button" onclick="addtocard(<?= $result['id'] ?>)">Add To Cart</button>
                                         </div>
                                     </div>
 
@@ -228,6 +228,39 @@ $page="productdeatil";
                         success: function(load) {
                             console.log("ok function success");
                             console.log(load);
+                            if (load == 1) {
+                                location.reload();
+                            }
+                        }
+
+
+                    })
+                }
+            })
+        }
+        function addtocard(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want it to add to your Cart",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#B79E8C',
+                cancelButtonColor: '#061738',
+                confirmButtonText: 'Yes, Add it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Added',
+                        'Your file has been Added.',
+                        'success'
+                    )
+                    $.ajax({
+                        url: "cartadd.php",
+                        type: "POST",
+                        data: {
+                            "id": id
+                        },
+                        success: function(load) {
                             if (load == 1) {
                                 location.reload();
                             }

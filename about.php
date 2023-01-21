@@ -548,4 +548,34 @@ include_once "slicing/jslinks.php";
 ?>
 
 </body>
+<script>
+    // testimonial swiper activation
+var swiper = new Swiper(".testimonial__swiper--activation", {
+  slidesPerView: 3,
+  loop: true,
+  clickable: true,
+  spaceBetween: 30,
+  breakpoints: {
+    1200: {
+      slidesPerView: 3,
+    },
+    768: {
+      spaceBetween: 30,
+      slidesPerView: 2,
+    },
+    576: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+
+    0: {
+      slidesPerView: 1,
+    },
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+});
+</script>
 </html>

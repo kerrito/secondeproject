@@ -1176,6 +1176,33 @@ $page="";
                 }
             })
         }
+
+       // slider swiper activation
+var swiper = new Swiper(".hero__slider--activation", {
+  slidesPerView: 1,
+  loop: true,
+  clickable: true,
+  speed: 800,
+  spaceBetween: 30,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+ // testimonial swiper activation
+var swiper = new Swiper(".testimonial__activation--column1", {
+  slidesPerView: 1,
+  loop: true,
+  clickable: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+});
     </script>
 
 </body>

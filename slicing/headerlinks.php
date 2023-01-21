@@ -34,5 +34,16 @@ include_once "config.php";
   .cardnav_an{
     height: 150px !important;
   }
+  .an_button{
+    background-color:#b79e8c; 
+    color:white; 
+    border:none; 
+    border-radius:5px;
+  }
+  .an_button:hover{
+        background-color:#061738 !important;
+        padding: 6px 7px;
+
+    }
 </style>
 </head>
