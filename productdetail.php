@@ -151,8 +151,10 @@ $page="productdeatil";
                                     <p class="product__details--info__desc mb-15"><?= $result['desc'] ?></p>
                                     <div class="product__variant">
 
-                                        <div class="product__details--info__meta">
+                                        <div class="product__details--info__meta mb-15">
                                             <p class="product__details--info__meta--list"><strong>Brand :</strong> <span><?= $result['brand'] ?></span> </p>
+                                            <p class="product__details--info__meta--list"><strong>Stock :</strong> <span><?= $result['stock'] ?></span> </p>
+                                            <p class="product__details--info__meta--list"><strong>Available :</strong> <span><?= $result['status']==1?"Yes":"No" ?></span> </p>
                                             <p class="product__details--info__meta--list"><strong>categories :</strong> <span><?= $result['categories'] ?></span> </p>
                                         </div>
                                         <div class="product__variant--list mb-15" >

@@ -25,8 +25,8 @@ if(isset($_GET['btn1'])){
             <button class="form-control mt-4 py-2 fs-4 an_button" id="togglebtn" type="button">Advance Search</button>
         </div>
     </div>
-    <div class="row justify-content-center d-none" id="toggleopen">
-        <div class="col-lg-8 col-md-12">
+    <div class="row justify-content-center m-0 p-0 d-none" id="toggleopen">
+        <div class="col-md-8">
             <section class="product__section section--padding color-scheme-2 pt-0">
                 <div class="section__heading text-center mb-35">
                     <h2 class="section__heading--maintitle style2">Advance Search</h2>
@@ -40,7 +40,7 @@ if(isset($_GET['btn1'])){
                         <div class="col-lg-3">
                             <p class="fs-3">Brand</p>
                             <select name="brand" class="form-control py-2 fs-4">
-                                <option value="all">All</option>
+                                <option value="">All</option>
                                 <?php
                                 $q = "SELECT DISTINCT(`brand`) FROM `product`";
                                 $res = mysqli_query($con, $q);
@@ -58,7 +58,7 @@ if(isset($_GET['btn1'])){
                         <div class="col-lg-3">
                             <p class="fs-3">Categorie</p>
                             <select name="categories" class="form-control py-2 fs-4">
-                                <option value="all">All</option>
+                                <option value="">All</option>
                                 <option value="Gift">Gift Articals</option>
                                 <option value="Art">Art Articals</option>
                                 <option value="Hand Bags">Hand Bags</option>
@@ -69,7 +69,7 @@ if(isset($_GET['btn1'])){
                             </select>
                         </div>
                     </div>
-                    <div class="row justify-content-between mt-2">
+                    <div class="row justify-content-between mt-2 mx-0 px-0">
                         <div class="col-3">
                         <p class="fs-3">Quantity</p>
                             <input type="number" value="1" class="form-control py-2 fs-4" name="quantity">
@@ -113,66 +113,19 @@ if(isset($_GET['btn1'])){
                         }
                     }
                     if ($GLOBALS['select'] == "advancesearch") {
-                        if ($_GET['name2']!=null && $_GET['brand']=="all" && $_GET['categories']=="all" && $_GET['quantity']==1 && $_GET['price']==null) {
-                            $name = $_GET['name2'];
-                            $sql = "SELECT * FROM `product` WHERE `name` LIKE '%$name%'";
-                        }
-                    }
-                    if ($GLOBALS['select'] == "advancesearch") {
-                        if ($_GET['name2']!=null && $_GET['brand']!="all" && $_GET['categories']!="all" && $_GET['quantity']!=1 && $_GET['price']!=null) {
                             $name = $_GET['name2'];
                             $brand= $_GET['brand'];
                             $categories= $_GET['categories'];
                             $quantity= $_GET['quantity'];
-                            $price=$_GET['price'];
+                            if($_GET['price']==null){
+
+                                $price=0;
+                            } else{
+
+                                $price=$_GET['price'];
+                            }
                             $sql = "SELECT * FROM `product` WHERE `name` LIKE '%$name%' AND `brand` LIKE '%$brand%' AND `categories` LIKE '%$categories%' AND `stock`>=$quantity AND `price`>=$price";
                         }
-                    }
-                    if ($GLOBALS['select'] == "advancesearch") {
-                        if ($_GET['name2']!=null && $_GET['brand']=="all" && $_GET['categories']!="all" && $_GET['quantity']!=1 && $_GET['price']!=null) {
-                            $name = $_GET['name2'];
-                            $categories= $_GET['categories'];
-                            $quantity= $_GET['quantity'];
-                            $price=$_GET['price'];
-                            $sql = "SELECT * FROM `product` WHERE `name` LIKE '%$name%' AND `categories` LIKE '%$categories%' AND `stock`>=$quantity AND `price`>=$price";
-                        }
-                    }
-                    if ($GLOBALS['select'] == "advancesearch") {
-                        if ($_GET['name2']!=null && $_GET['brand']!="all" && $_GET['categories']=="all" && $_GET['quantity']!=1 && $_GET['price']!=null) {
-                            $name = $_GET['name2'];
-                            $brand= $_GET['brand'];
-                            $quantity= $_GET['quantity'];
-                            $price=$_GET['price'];
-                            $sql = "SELECT * FROM `product` WHERE `name` LIKE '%$name%' AND `brand` LIKE '%$brand%' AND `stock`>=$quantity AND `price`>=$price";
-                        }
-                    }
-                    if ($GLOBALS['select'] == "advancesearch") {
-                        if ($_GET['name2']!=null && $_GET['brand']!="all" && $_GET['categories']!="all" && $_GET['quantity']==1 && $_GET['price']!=null) {
-                            $name = $_GET['name2'];
-                            $brand= $_GET['brand'];
-                            $categories= $_GET['categories'];
-                            $price=$_GET['price'];
-                            $sql = "SELECT * FROM `product` WHERE `name` LIKE '%$name%' AND `brand` LIKE '%$brand%' AND `categories` LIKE '%$categories%' AND `price`>=$price";
-                        }
-                    }
-                    if ($GLOBALS['select'] == "advancesearch") {
-                        if ($_GET['name2']!=null && $_GET['brand']!="all" && $_GET['categories']!="all" && $_GET['quantity']!=1 && $_GET['price']==null) {
-                            $name = $_GET['name2'];
-                            $brand= $_GET['brand'];
-                            $categories= $_GET['categories'];
-                            $quantity= $_GET['quantity'];
-                            $sql = "SELECT * FROM `product` WHERE `name` LIKE '%$name%' AND `brand` LIKE '%$brand%' AND `categories` LIKE '%$categories%' AND `stock`>=$quantity";
-                        }
-                    }
-                    if ($GLOBALS['select'] == "advancesearch") {
-                        if ($_GET['name2']==null && $_GET['brand']!="all" && $_GET['categories']!="all" && $_GET['quantity']!=1 && $_GET['price']!=null) {
-                            $brand= $_GET['brand'];
-                            $categories= $_GET['categories'];
-                            $quantity= $_GET['quantity'];
-                            $price=$_GET['price'];
-                            $sql = "SELECT * FROM `product` WHERE `brand` LIKE '%$brand%' AND `categories` LIKE '%$categories%' AND `stock`>=$quantity AND `price`>=$price";
-                        }
-                    }
                     $res = mysqli_query($con, $sql);
                     if ($res) {
                         foreach ($res as $value) {
@@ -258,7 +211,7 @@ if(isset($_GET['btn1'])){
                                     <div class="product__items--content text-center">
                                         <span class="product__items--content__subtitle"><?= $value['name'] ?></span>
                                         <h3 class="product__items--content__title h4"><a href="product-details.html">
-                                                <p style="white-space: nowrap;width:200px !important;text-overflow: ellipsis;overflow: hidden;"><?= $value['desc'] ?></p>
+                                                <p style="white-space: nowrap;width:100px !important;text-overflow: ellipsis;overflow: hidden;"><?= $value['desc'] ?></p>
                                             </a></h3>
                                         <div class="product__items--price">
                                             <span class="current__price"><?= $value['price'] ?> Rs</span>

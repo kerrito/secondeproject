@@ -3,18 +3,18 @@
         <div class="header__topbar bg__secondary">
             <div class="container-fluid">
                 <div class="header__topbar--inner d-flex align-items-center justify-content-between">
-                    <div class="header__shipping">
+                    <div class="header__shipping d-none d-lg-block">
                         <p class="header__shipping--text text-white">Free shipping for orders over $59 !</p>
                     </div>
-                    <div class="language__currency d-none d-lg-block">
+                    <div class="language__currency ">
                         <ul class="d-flex align-items-center">
                             <li class="header__shipping--text text-white"><img class="header__shipping--text__icon" src="assets/img/icon/bus.png" alt="bus-icon"> Track Your Order</li>
-                            <li class="language__currency--list">
+                            <li class="language__currency--list d-none d-md-block">
                                 <a class="language__switcher text-white" href="#">
                                     <img class="language__switcher--icon__img" src="assets/img/icon/language-icon.png" alt="currency">
                                     <span>English</span></a>
                             </li>
-                            <li class="language__currency--list">
+                            <li class="language__currency--list d-none d-md-block">
                                 <a class="account__currency--link text-white" href="#">
                                     <img src="assets/img/icon/usd-icon.png" alt="currency">
                                     <span>$ US Dollar</span></a>
