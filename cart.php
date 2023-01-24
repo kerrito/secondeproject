@@ -125,6 +125,7 @@ if (isset($_GET['orderbtn'])) {
                                                         }
                                             ?>
                                                         <tr class="cart__table--body__items">
+                                                            <h4 class="text-center text-danger" id="showerror"></h4>
                                                             <td class="cart__table--body__list">
                                                                 <div class="cart__product d-flex align-items-center">
                                                                     <button class="cart__remove--btn" aria-label="search button" type="button" onclick="deletecard(<?= $resu['id'] ?>)">
@@ -151,7 +152,7 @@ if (isset($_GET['orderbtn'])) {
                                                                 <div class="quantity__box">
                                                                     <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" onclick="calculatesub(<?= $resu['id'] ?>,<?= $finalresult['price'] ?>)" value="Decrease Value">-</button>
                                                                     <label>
-                                                                        <input type="number" class="quantity__number quickview__value--number" id="total<?= $resu['id'] ?>" value="<?= $resu['quantity'] ?>" data-counter />
+                                                                        <input type="number" class="quantity__number quickview__value--number" id="total<?= $resu['id'] ?>" value="<?= $resu['quantity'] ?>" data-counter readonly />
                                                                     </label>
                                                                     <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value" onclick="calculateadd(<?= $resu['id'] ?>,<?= $finalresult['price'] ?>)">+</button>
                                                                 </div>
@@ -603,8 +604,14 @@ if (isset($_GET['orderbtn'])) {
 </body>
 <script>
     function calculateadd(id, price) {
+        document.getElementById("showerror").innerHTML=""
         var quant = document.getElementById("total" + id).value
         var quantity = parseInt(quant) + 1
+        if(quantity>=6){
+            document.getElementById("total" + id).value="4";
+            document.getElementById("showerror").innerHTML="Cann't Be More Than 5 Item"
+        }
+        if(quantity<=5){
         var total = quantity * price;
         document.getElementById("totalamount" + id).innerHTML = total
         var subtotal = document.getElementById("subtotal").innerHTML
@@ -621,15 +628,23 @@ if (isset($_GET['orderbtn'])) {
             success: function(load) {
                 if (load == 1) {
                     console.log("ok")
+                }else if(load==2){
+                    document.getElementById("showerror").innerHTML="No More Items In Stock";
                 }
             }
         })
     }
+}
 
     function calculatesub(id, price) {
+        document.getElementById("showerror").innerHTML=""
         var quant = document.getElementById("total" + id).value
         var quantity = quant - 1
-        if (quantity > -1) {
+        if(quantity==0){
+            document.getElementById("total" + id).value="2";
+            document.getElementById("showerror").innerHTML="Cann't Be Less Than 1 Item"
+        }
+        if (quantity > 0) {
             var total = price * quantity;
             document.getElementById("totalamount" + id).innerHTML = total
             var subtotal = document.getElementById("subtotal").innerHTML

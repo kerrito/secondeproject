@@ -54,7 +54,7 @@ if ($add != 1) {
     $res = mysqli_query($con, $sql);
     if (mysqli_num_rows($res) > 0) {
         $result = mysqli_fetch_assoc($res);
-        $quan = $result['quantity'] + 1;
+        $quan = $result['quantity'] - 1;
         $product_id = $result['product_id'];
 
         // updating stock value in product table
