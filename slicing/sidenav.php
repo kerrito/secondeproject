@@ -178,7 +178,7 @@
         <?php
         $total=0;
         $email = $_SESSION['email'];
-        $sql = "SELECT * FROM `addtocart` WHERE `user_email`='$email'";
+        $sql = "SELECT * FROM `addtocart` WHERE `user_email`='$email' AND `state`='pending'";
         $res = mysqli_query($con, $sql);
         if (mysqli_num_rows($res) > 0) {
             foreach ($res as $resu) {
@@ -247,11 +247,11 @@
     <div class="minicart__amount">
         <div class="minicart__amount_list d-flex justify-content-between">
             <span>Sub Total:</span>
-            <span><b><?=$GLOBALS['total']?> Rs</b></span>
+            <span><b><?=$GLOBALS['total']?>.00 Rs</b></span>
         </div>
         <div class="minicart__amount_list d-flex justify-content-between">
             <span>Total:</span>
-            <span><b><?=$GLOBALS['total']?> Rs</b></span>
+            <span><b><?=$GLOBALS['total']?>.00 Rs</b></span>
         </div>
     </div>
     <div class="minicart__conditions text-center">

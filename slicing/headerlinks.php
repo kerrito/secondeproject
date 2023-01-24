@@ -42,6 +42,7 @@ include_once "config.php";
   }
   .an_button:hover{
         background-color:#061738 !important;
+        color: white !important;
         padding: 6px 7px;
 
     }

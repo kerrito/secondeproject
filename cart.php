@@ -1,6 +1,66 @@
 <?php
 include_once "slicing/headerlinks.php";
-$page="";
+$page = "";
+if (isset($_GET['orderbtn'])) {
+    $name = $_GET['name'];
+    $ema = $_GET['email'];
+    $number = $_GET['number'];
+    $city = $_GET['city'];
+    $country = $_GET['country'];
+    $address = $_GET['address'];
+    $cardname = $_GET['cardname'];
+    $cardnumber = $_GET['cardnum'] != null ?: 0;
+    $cardcvv = $_GET['cardcvv'] != null ?: 0;
+    $cardexp = $_GET['expdate'] != null ?: 0;
+    if (isset($_GET['online'])) {
+        $email = $_SESSION['email'];
+        $ls = "SELECT * FROM `addtocart` WHERE `user_email`='$email' AND `state`='pending'";
+        $r = mysqli_query($con, $ls);
+        if (mysqli_num_rows($r) > 0) {
+            foreach ($r as $value) {
+                $idd = $value['product_id'];
+                $quantity = $value['quantity'];
+                $a = "SELECT * FROM `product` WHERE `id`=$idd";
+                $as = mysqli_query($con, $a);
+                if (mysqli_num_rows($as) > 0) {
+                    $ans = mysqli_fetch_assoc($as);
+                    $price = $ans['price'] * $quantity;
+                    $s = "INSERT INTO `order` SET `name`='$name',`email`='$ema',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`=1,`quantity`=$quantity,`product_id`=$idd,`card_name`='$cardname',`card_number`=$cardnumber,`card_cvv`=$cardcvv,`card_exp`='$cardexp',`price`=$price";
+                    if (mysqli_query($con, $s)) {
+                        $t = "UPDATE `addtocart` SET `state`='done' WHERE `user_email`='$email'";
+                        if (mysqli_query($con, $t)) {
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (isset($_GET['ondelivery'])) {
+        $email = $_SESSION['email'];
+        $ls = "SELECT * FROM `addtocart` WHERE `user_email`='$email' AND `state`='pending'";
+        $r = mysqli_query($con, $ls);
+        if (mysqli_num_rows($r) > 0) {
+            foreach ($r as $value) {
+                $idd = $value['product_id'];
+                $quantity = $value['quantity'];
+
+                $a = "SELECT * FROM `product` WHERE `id`=$idd";
+                $as = mysqli_query($con, $a);
+                if (mysqli_num_rows($as) > 0) {
+                    $ans = mysqli_fetch_assoc($as);
+                    $price = $ans['price'] * $quantity;
+                    $s = "INSERT INTO `order` SET `name`='$name',`email`='$ema',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`=0,`quantity`=$quantity,`product_id`=$idd,`card_name`='$cardname',`card_number`=$cardnumber,`card_cvv`=$cardexp,`card_exp`='$cardexp' ,`price`=$price";
+                    if (mysqli_query($con, $s)) {
+                        $t = "UPDATE `addtocart` SET `state`='done' WHERE `user_email`='$email'";
+                        if (mysqli_query($con, $t)) {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 ?>
 
 <body>
@@ -49,9 +109,9 @@ $page="";
                                         </thead>
                                         <tbody class="cart__table--body">
                                             <?php
-
+                                            $total = 0;
                                             $email = $_SESSION['email'];
-                                            $sql = "SELECT * FROM `addtocart` WHERE `user_email`='$email'";
+                                            $sql = "SELECT * FROM `addtocart` WHERE `user_email`='$email' AND `state`='pending'";
                                             $res = mysqli_query($con, $sql);
                                             if (mysqli_num_rows($res) > 0) {
                                                 foreach ($res as $resu) {
@@ -60,39 +120,44 @@ $page="";
                                                     $result = mysqli_query($con, $ql);
                                                     if (mysqli_num_rows($result) > 0) {
                                                         $finalresult = mysqli_fetch_assoc($result);
+                                                        for ($x = 0; $x < $resu['quantity']; $x++) {
+                                                            $GLOBALS['total'] += $finalresult['price'];
+                                                        }
                                             ?>
                                                         <tr class="cart__table--body__items">
                                                             <td class="cart__table--body__list">
                                                                 <div class="cart__product d-flex align-items-center">
-                                                                    <button class="cart__remove--btn" aria-label="search button" type="button">
+                                                                    <button class="cart__remove--btn" aria-label="search button" type="button" onclick="deletecard(<?= $resu['id'] ?>)">
                                                                         <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16px" height="16px">
                                                                             <path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />
                                                                         </svg>
                                                                     </button>
                                                                     <div class="cart__thumbnail">
-                                                                        <a href="product-details.html"><img class="border-radius-5" src="uploads/img/<?=$finalresult['img']?>" alt="cart-product"></a>
+                                                                        <a href="product-details.html"><img class="border-radius-5" src="uploads/img/<?= $finalresult['img'] ?>" alt="cart-product"></a>
                                                                     </div>
                                                                     <div class="cart__content">
-                                                                        <h4 class="cart__content--title"><a href="product-details.html"><?=$finalresult['name']?></a></h4>
-                                                                        <span class="cart__content--variant"><p style="white-space: nowrap;width:200px !important;text-overflow: ellipsis;overflow: hidden;"><?= $finalresult['desc'] ?></p></span>
-                                                                        <span class="cart__content--variant"><?=$finalresult['brand']?></span>
+                                                                        <h4 class="cart__content--title"><a href="product-details.html"><?= $finalresult['name'] ?></a></h4>
+                                                                        <span class="cart__content--variant">
+                                                                            <p style="white-space: nowrap;width:200px !important;text-overflow: ellipsis;overflow: hidden;"><?= $finalresult['desc'] ?></p>
+                                                                        </span>
+                                                                        <span class="cart__content--variant"><?= $finalresult['brand'] ?></span>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td class="cart__table--body__list">
-                                                                <span class="cart__price" ><span id="amount<?=$resu['id']?>"><?=$finalresult['price']?></span> Rs</span>
+                                                                <span class="cart__price"><span id="amount<?= $resu['id'] ?>"><?= $finalresult['price'] ?></span>.00 Rs</span>
                                                             </td>
                                                             <td class="cart__table--body__list">
                                                                 <div class="quantity__box">
-                                                                    <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" onclick="calculatesub(<?=$resu['id']?>)" value="Decrease Value">-</button>
+                                                                    <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" onclick="calculatesub(<?= $resu['id'] ?>,<?= $finalresult['price'] ?>)" value="Decrease Value">-</button>
                                                                     <label>
-                                                                        <input type="number" class="quantity__number quickview__value--number" id="total<?=$resu['id']?>" value="1" data-counter />
+                                                                        <input type="number" class="quantity__number quickview__value--number" id="total<?= $resu['id'] ?>" value="<?= $resu['quantity'] ?>" data-counter />
                                                                     </label>
-                                                                    <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value" onclick="calculateadd(<?=$resu['id']?>)">+</button>
+                                                                    <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value" onclick="calculateadd(<?= $resu['id'] ?>,<?= $finalresult['price'] ?>)">+</button>
                                                                 </div>
                                                             </td>
                                                             <td class="cart__table--body__list">
-                                                                <span class="cart__price end"><span id="totalamount<?=$resu['id']?>"><?=$finalresult['price']?></span> Rs</span>
+                                                                <span class="cart__price end"><span id="totalamount<?= $resu['id'] ?>"><?= $finalresult['price'] * $resu['quantity'] ?></span>.00 Rs</span>
                                                             </td>
                                                         </tr>
                                             <?php
@@ -100,108 +165,6 @@ $page="";
                                                 }
                                             }
                                             ?>
-                                            <!-- <tr class="cart__table--body__items">
-                                                <td class="cart__table--body__list">
-                                                    <div class="cart__product d-flex align-items-center">
-                                                        <button class="cart__remove--btn" aria-label="search button" type="button">
-                                                            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16px" height="16px">
-                                                                <path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />
-                                                            </svg>
-                                                        </button>
-                                                        <div class="cart__thumbnail">
-                                                            <a href="product-details.html"><img class="border-radius-5" src="assets/img/product/product2.png" alt="cart-product"></a>
-                                                        </div>
-                                                        <div class="cart__content">
-                                                            <h4 class="cart__content--title"><a href="product-details.html">Vegetable-healthy</a></h4>
-                                                            <span class="cart__content--variant">COLOR: Blue</span>
-                                                            <span class="cart__content--variant">WEIGHT: 2 Kg</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                    <span class="cart__price">£65.00</span>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                    <div class="quantity__box">
-                                                        <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
-                                                        <label>
-                                                            <input type="number" class="quantity__number quickview__value--number" value="1" data-counter />
-                                                        </label>
-                                                        <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                    <span class="cart__price end">£130.00</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="cart__table--body__items">
-                                                <td class="cart__table--body__list">
-                                                    <div class="cart__product d-flex align-items-center">
-                                                        <button class="cart__remove--btn" aria-label="search button" type="button">
-                                                            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16px" height="16px">
-                                                                <path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />
-                                                            </svg>
-                                                        </button>
-                                                        <div class="cart__thumbnail">
-                                                            <a href="product-details.html"><img class="border-radius-5" src="assets/img/product/product3.png" alt="cart-product"></a>
-                                                        </div>
-                                                        <div class="cart__content">
-                                                            <h4 class="cart__content--title"><a href="product-details.html">Raw-onions-surface</a></h4>
-                                                            <span class="cart__content--variant">COLOR: Blue</span>
-                                                            <span class="cart__content--variant">WEIGHT: 2 Kg</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                    <span class="cart__price">£65.00</span>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                    <div class="quantity__box">
-                                                        <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
-                                                        <label>
-                                                            <input type="number" class="quantity__number quickview__value--number" value="1" data-counter />
-                                                        </label>
-                                                        <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                    <span class="cart__price end">£130.00</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="cart__table--body__items">
-                                                <td class="cart__table--body__list">
-                                                    <div class="cart__product d-flex align-items-center">
-                                                        <button class="cart__remove--btn" aria-label="search button" type="button">
-                                                            <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16px" height="16px">
-                                                                <path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" />
-                                                            </svg>
-                                                        </button>
-                                                        <div class="cart__thumbnail">
-                                                            <a href="product-details.html"><img class="border-radius-5" src="assets/img/product/product4.png" alt="cart-product"></a>
-                                                        </div>
-                                                        <div class="cart__content">
-                                                            <h4 class="cart__content--title"><a href="product-details.html">Oversize Cotton Dress</a></h4>
-                                                            <span class="cart__content--variant">COLOR: Blue</span>
-                                                            <span class="cart__content--variant">WEIGHT: 2 Kg</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                    <span class="cart__price">£65.00</span>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                    <div class="quantity__box">
-                                                        <button type="button" class="quantity__value quickview__value--quantity decrease" aria-label="quantity value" value="Decrease Value">-</button>
-                                                        <label>
-                                                            <input type="number" class="quantity__number quickview__value--number" value="1" data-counter />
-                                                        </label>
-                                                        <button type="button" class="quantity__value quickview__value--quantity increase" aria-label="quantity value" value="Increase Value">+</button>
-                                                    </div>
-                                                </td>
-                                                <td class="cart__table--body__list">
-                                                    <span class="cart__price end">£130.00</span>
-                                                </td>
-                                            </tr> -->
                                         </tbody>
                                     </table>
                                     <div class="continue__shopping d-flex justify-content-between">
@@ -232,11 +195,11 @@ $page="";
                                             <tbody>
                                                 <tr class="cart__summary--total__list">
                                                     <td class="cart__summary--total__title text-left">SUBTOTAL</td>
-                                                    <td class="cart__summary--amount text-right">$860.00</td>
+                                                    <td class="cart__summary--amount text-right"><span id="subtotal"><?= $GLOBALS['total'] ?></span>.00 Rs</td>
                                                 </tr>
                                                 <tr class="cart__summary--total__list">
                                                     <td class="cart__summary--total__title text-left">GRAND TOTAL</td>
-                                                    <td class="cart__summary--amount text-right">$860.00</td>
+                                                    <td class="cart__summary--amount text-right"><span id="grandtotal"><?= $GLOBALS['total'] ?></span>.00 Rs</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -245,7 +208,7 @@ $page="";
                                         <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
                                         <ul class="d-flex justify-content-between">
                                             <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update Cart</button></li>
-                                            <li><a class="cart__summary--footer__btn primary__btn checkout" href="checkout.html">Check Out</a></li>
+                                            <li><a class="cart__summary--footer__btn primary__btn checkout" id="checkoutbtn">Check Out</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -256,6 +219,99 @@ $page="";
             </div>
         </section>
         <!-- cart section end -->
+        <!-- order data section -->
+        <div class="row justify-content-center m-0 p-0 d-none" id="order_info">
+            <div class="col-md-6">
+                <section class="product__section section--padding color-scheme-2 pt-0">
+                    <div class="section__heading text-center mb-35">
+                        <h2 class="section__heading--maintitle style2">Shipment Details</h2>
+                    </div>
+                    <form action="" class="row">
+                        <?php
+                        if ($_SESSION['login'] == "true") {
+                            $email = $_SESSION['email'];
+                            $pass = $_SESSION['pass'];
+                            $sql = "SELECT * FROM `signup` WHERE `email`='$email' AND `pass`='$pass'";
+                            $res = mysqli_query($con, $sql);
+                            if ($res) {
+                                $result = mysqli_fetch_assoc($res);
+                        ?>
+                                <div class="col-md-6 mb-3">
+                                    <p class="fs-3">Name</p>
+                                    <input type="text" value="<?= $result['name'] ?>" class="form-control py-3 fs-4" name="name" placeholder="Enter Your Name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <p class="fs-3">Email</p>
+                                    <input type="text" value="<?= $result['email'] ?>" class="form-control py-3 fs-4" name="email" placeholder="Enter Your Email">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <p class="fs-3">Number</p>
+                                    <input type="number" value="<?= $result['number'] ?>" class="form-control py-3 fs-4" name="number" placeholder="Enter Your Number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <p class="fs-3">City</p>
+                                    <input type="text" class="form-control py-3 fs-4" name="city" placeholder="Enter Your City">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <p class="fs-3">Country</p>
+                                    <input type="text" class="form-control py-3 fs-4" name="country" placeholder="Enter Your Country">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <p class="fs-3">Payment Method</p>
+                                    <div class="d-flex flex-row justify-content-between">
+                                        <div>
+                                            <input type="checkbox" name="online" placeholder="" id="payment_card" required><span class="fs-4"> Pay With Card</span>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" name="ondelivery" placeholder="" id="payment_delivery" required><span class="fs-4"> Cash On Delivery</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <p class="fs-3">Address</p>
+                                    <textarea type="text" class="form-control py-3 fs-4" name="address" placeholder="Address"><?= $result['address'] ?></textarea>
+                                </div>
+                                <div class="col-12 mb-3 d-none" id="carddetail">
+                                    <div class="row">
+                                        <div class="section__heading text-center mb-35">
+                                            <h2 class="section__heading--maintitle style2">Credit Card Details</h2>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="fs-3">Card Holder</p>
+                                            <input type="text" class="form-control py-3 fs-4" name="cardname" placeholder="Enter Card Holder Name">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="fs-3">Credit Card Number</p>
+                                            <input type="text" class="form-control py-3 fs-4" name="cardnum" placeholder="Enter Credit Card Number">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="fs-3">Card Exp Date</p>
+                                            <input type="text" class="form-control py-3 fs-4" name="expdate" placeholder="Enter Exp Date Of Credit Card">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="fs-3">CVV</p>
+                                            <input type="password" class="form-control py-3 fs-4" name="cardcvv" placeholder="Enter CVV Code Of Credit Card">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <div class="row justify-content-center">
+                                        <div class="col-8">
+                                            <button class="form-control py-3 an_button fs-4" name="orderbtn">Place Your Order</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </form>
+                </section>
+
+            </div>
+
+        </div>
+
 
     </main>
 
@@ -546,21 +602,122 @@ $page="";
 
 </body>
 <script>
-    function calculateadd(id){
-        var amount=document.getElementById("amount"+id).innerHTML
-        var quant=document.getElementById("total"+id).value
-        var quantity=quant+1
-        var total=amount*quantity;
-        document.getElementById("totalamount"+id).innerHTML=total
+    function calculateadd(id, price) {
+        var quant = document.getElementById("total" + id).value
+        var quantity = parseInt(quant) + 1
+        var total = quantity * price;
+        document.getElementById("totalamount" + id).innerHTML = total
+        var subtotal = document.getElementById("subtotal").innerHTML
+        var sub = parseInt(price) + parseInt(subtotal)
+        document.getElementById("subtotal").innerHTML = sub
+        document.getElementById("grandtotal").innerHTML = sub
+        $.ajax({
+            url: "updatequantity.php",
+            type: "POST",
+            data: {
+                "id": id,
+                "add": 1
+            },
+            success: function(load) {
+                if (load == 1) {
+                    console.log("ok")
+                }
+            }
+        })
     }
-    
-    function calculatesub(id){
-        var amount=document.getElementById("amount"+id).innerHTML
-        var quant=document.getElementById("total"+id).value
-        var quantity=quant-1
-        var total=amount*quantity;
-        document.getElementById("totalamount"+id).innerHTML=total
+
+    function calculatesub(id, price) {
+        var quant = document.getElementById("total" + id).value
+        var quantity = quant - 1
+        if (quantity > -1) {
+            var total = price * quantity;
+            document.getElementById("totalamount" + id).innerHTML = total
+            var subtotal = document.getElementById("subtotal").innerHTML
+            var sub = parseInt(subtotal) - parseInt(price);
+            document.getElementById("subtotal").innerHTML = sub
+            document.getElementById("grandtotal").innerHTML = sub
+            $.ajax({
+                url: "updatequantity.php",
+                type: "POST",
+                data: {
+                    "id": id,
+                    "add": 2
+                },
+                success: function(load) {
+                    if (load == 1) {
+                        console.log("ok min")
+                    }
+                }
+            })
+        }
     }
+
+    function deletecard(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete it from your Cart",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#B79E8C',
+            cancelButtonColor: '#061738',
+            confirmButtonText: 'Yes, Delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted',
+                    'Your file has been Deleted.',
+                    'success'
+                )
+                $.ajax({
+                    url: "deletecartpost.php",
+                    type: "POST",
+                    data: {
+                        "id": id
+                    },
+                    success: function(load) {
+                        if (load == 1) {
+                            location.reload();
+                        }
+                    }
+
+
+                })
+            }
+        })
+    }
+    var i = 1
+    var x = 1
+    $(document).ready(function() {
+        $("#payment_card").click(function() {
+            $("#payment_delivery").prop('checked', false);
+            if (i == 1) {
+                $("#carddetail").removeClass("d-none");
+                $("#payment_delivery").prop('required', false);
+                i = 2;
+            } else {
+                $("#carddetail").addClass("d-none");
+                $("#payment_delivery").prop('required', true);
+                i = 1
+            }
+        });
+        $("#payment_delivery").click(function() {
+            $("#payment_card").prop('checked', false);
+            $("#carddetail").addClass("d-none");
+            i = 1
+            if (x == 1) {
+
+                $("#payment_card").prop('required', false);
+                x = 2
+            } else {
+
+                $("#payment_card").prop('required', true);
+                x = 1
+            }
+        });
+        $("#checkoutbtn").click(function() {
+            $("#order_info").removeClass("d-none");
+        });
+    });
 </script>
 
 </html>

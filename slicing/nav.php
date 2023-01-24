@@ -143,7 +143,7 @@
                                     </svg>
                                     <?php 
                                     $email=$_SESSION['email'];
-                                    $ql="SELECT COUNT(user_email) FROM `addtocart` WHERE `user_email`='$email'";
+                                    $ql="SELECT COUNT(user_email) FROM `addtocart` WHERE `user_email`='$email' AND `state`='pending'";
                                     $re=mysqli_query($con,$ql);
                                     if($re){
                                         $resul=mysqli_fetch_assoc($re);
