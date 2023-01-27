@@ -25,7 +25,7 @@ if (isset($_GET['orderbtn'])) {
                 if (mysqli_num_rows($as) > 0) {
                     $ans = mysqli_fetch_assoc($as);
                     $price = $ans['price'] * $quantity;
-                    $s = "INSERT INTO `order` SET `name`='$name',`email`='$ema',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`=1,`quantity`=$quantity,`product_id`=$idd,`card_name`='$cardname',`card_number`=$cardnumber,`card_cvv`=$cardcvv,`card_exp`='$cardexp',`price`=$price";
+                    $s = "INSERT INTO `order` SET `name`='$name',`email`='$ema',`user_email`='$email',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`='1',`quantity`=$quantity,`product_id`=$idd,`card_name`='$cardname',`card_number`=$cardnumber,`card_cvv`=$cardcvv,`card_exp`='$cardexp',`price`=$price";
                     if (mysqli_query($con, $s)) {
                         $t = "UPDATE `addtocart` SET `state`='done' WHERE `user_email`='$email'";
                         if (mysqli_query($con, $t)) {
@@ -49,7 +49,7 @@ if (isset($_GET['orderbtn'])) {
                 if (mysqli_num_rows($as) > 0) {
                     $ans = mysqli_fetch_assoc($as);
                     $price = $ans['price'] * $quantity;
-                    $s = "INSERT INTO `order` SET `name`='$name',`email`='$ema',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`=0,`quantity`=$quantity,`product_id`=$idd,`card_name`='$cardname',`card_number`=$cardnumber,`card_cvv`=$cardexp,`card_exp`='$cardexp' ,`price`=$price";
+                    $s = "INSERT INTO `order` SET `name`='$name',`email`='$ema',`user_email`='$email',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`='0',`quantity`=$quantity,`product_id`=$idd,`card_name`='$cardname',`card_number`=$cardnumber,`card_cvv`=$cardexp,`card_exp`='$cardexp' ,`price`=$price";
                     if (mysqli_query($con, $s)) {
                         $t = "UPDATE `addtocart` SET `state`='done' WHERE `user_email`='$email'";
                         if (mysqli_query($con, $t)) {

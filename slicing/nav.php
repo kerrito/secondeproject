@@ -8,7 +8,7 @@
                     </div>
                     <div class="language__currency ">
                         <ul class="d-flex align-items-center">
-                            <li class="header__shipping--text text-white"><img class="header__shipping--text__icon" src="assets/img/icon/bus.png" alt="bus-icon"> Track Your Order</li>
+                            <li class="header__shipping--text text-white"><a href="tracking.php"><img class="header__shipping--text__icon" src="assets/img/icon/bus.png" alt="bus-icon"> Track Your Order</a></li>
                             <li class="language__currency--list d-none d-md-block">
                                 <a class="language__switcher text-white" href="#">
                                     <img class="language__switcher--icon__img" src="assets/img/icon/language-icon.png" alt="currency">

@@ -32,6 +32,22 @@ include_once "slicing/headerlinks.php";
                                             <div class="d-flex flex-row align-items-center justify-content-between">
                                                 <h1>Contact List</h1>
                                             </div>
+                                            <?php 
+                                                if($_SESSION['error']==20){
+                                                    ?>
+                                                    <marquee class="text-success mb-3" loop="1">Message has been deleted successfully</marquee>
+                                                    <?php
+                                                    $_SESSION['error']="";
+                                                }
+ 
+                                                if($_SESSION['error']==11){
+                                                    ?>
+                                                    <marquee class="text-success mb-3" loop="1">Message has been Updated successfully</marquee>
+                                                    <?php
+                                                    $_SESSION['error']="";
+                                                }
+
+                                                ?>
                                             <table class="table ">
                                                 <thead>
                                                     <tr role="row">
@@ -57,7 +73,7 @@ include_once "slicing/headerlinks.php";
                                                             <td><?= $value['number'] ?></td>
                                                             <td><p style="white-space: nowrap;width:300px !important;text-overflow: ellipsis;overflow: hidden;"><?= $value['msg'] ?></p></td>
                                                             <td><span class="badge <?= $value['status'] == 1 ? "badge-success" : "badge-warning" ?>"><?= $value['status'] == 1 ? "Read" : "Not Read" ?></span></td>
-                                                            <td><a class="text-success mr-2" href="contactupdate.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="contactdelete.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                                            <td><a class="text-success mr-2" href="updatecontact.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" onclick="deleteuser(<?= $value['id'] ?>)"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -72,6 +88,9 @@ include_once "slicing/headerlinks.php";
                     </div>
                 </div>
             </div>
+            <?php
+                include_once "slicing/dashfooter.php";
+                ?>
         </div>
     </div>
 
@@ -97,13 +116,45 @@ include_once "slicing/headerlinks.php";
 
 
 
-
-
-
-<?php
-        include_once "slicing/dashjslinks.php";
-        ?>
-
+    <?php
+    include_once "slicing/dashjslinks.php";
+    ?>
 </body>
+<script>
+    function deleteuser(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to Banned This User",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#B79E8C',
+                cancelButtonColor: '#061738',
+                confirmButtonText: 'Yes, Add it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Added',
+                        'User Has Been Banned',
+                        'success'
+                    )
+                    $.ajax({
+                        url: "contactdelete.php",
+                        type: "POST",
+                        data: {
+                            "id": id
+                        },
+                        success: function(load) {
+                            if (load == 1) {
+                     
+                        location.reload();
 
+                            }
+                        }
+
+
+                    })
+                }
+            })
+        }
+</script>
 </html>

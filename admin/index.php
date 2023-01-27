@@ -101,22 +101,23 @@ include_once "slicing/headerlinks.php";
                                             <div class="col-sm-12">
                                             <div class="d-flex flex-row align-items-center justify-content-between">
                                                 <h1>Users List</h1>
-                                                <a href="adduser.php" class="btn btn-primary">Add User</a>
+                                                <?php 
+                                                $email=$_SESSION['email'];
+                                                $pass=$_SESSION['pass'];
+                                                $ls="SELECT * FROM `signup` WHERE `email`='$email' AND `pass`='$pass'";
+                                                $or=mysqli_query($con,$ls);
+                                                if(mysqli_num_rows($or)>0){
+                                                    $ors=mysqli_fetch_assoc($or);
+                                                    if($ors['user_rol']==2){
+                                                        ?>
+                                                <a href="adduser.php" class="btn btn-primary">Add User</a>      
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
                                                 </div>
                                                 <table class="table ">
                                                     <?php 
-                                                    if($_SESSION['error']==4){
-                                                    ?>
-                                                    <marquee loop="1" class="text-success my-2">Action Successed .User Account Has Been Deleted</marquee>
-                                                    <?php 
-                                                    $_SESSION['error']="0";
-                                                    } 
-                                                    if($_SESSION['error']==5){
-                                                    ?>
-                                                    <marquee loop="1" class="text-danger my-2">Action Failed .Unable to delete user Account</marquee>
-                                                    <?php 
-                                                    $_SESSION['error']="0";
-                                                    }
                                                     if($_SESSION['error']==6){
                                                     ?>
                                                     <marquee loop="1" class="text-success my-2">Action Successed .User Account Has Been Updated</marquee>
@@ -152,7 +153,7 @@ include_once "slicing/headerlinks.php";
                                                             <td><?=$value['email']?></td>
                                                             <td><?=$value['number']?></td>
                                                             <td><span class="badge <?=$value['status']==1?"badge-success":"badge-warning"?>"><?=$value['status']==1?"Active":"Not Active"?></span></td>
-                                                            <td><a class="text-success mr-2" href="updateuser.php?id=<?=$value['id']?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="deleteuser.php?id=<?=$value['id']?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                                            <td><a class="text-success mr-2" href="updateuser.php?id=<?=$value['id']?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" onclick="deleteuser(<?=$value['id']?>)"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                                         </tr>
                                                         <?php 
                                                         }
@@ -307,5 +308,42 @@ include_once "slicing/headerlinks.php";
         ?>
 
 </body>
+<script>
+    function deleteuser(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to Banned This User",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#B79E8C',
+                cancelButtonColor: '#061738',
+                confirmButtonText: 'Yes, Add it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Added',
+                        'User Has Been Banned',
+                        'success'
+                    )
+                    $.ajax({
+                        url: "deleteuser.php",
+                        type: "POST",
+                        data: {
+                            "id": id
+                        },
+                        success: function(load) {
+                            if (load == 1) {
+                     
+                        location.reload();
+
+                            }
+                        }
+
+
+                    })
+                }
+            })
+        }
+</script>
 
 </html>

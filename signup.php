@@ -7,7 +7,9 @@ if (isset($_POST['btn'])) {
     $number = $_POST['number'];
     $address=$_POST['address'];
     $pass = md5($_POST['pass']);
-
+    $qu="SELECT * FROM `banuser` WHERE email='$email' AND `pass`='$pass'";
+    $r=mysqli_query($con,$r);
+    if(mysqli_num_rows($r)==0){
     $sql = "INSERT INTO `signup` SET  `name`='$name',`email`='$email',`number`=$number,`address`='$address',`pass`='$pass',`status`=1";
     if (mysqli_query($con, $sql)) {
         $_SESSION['login'] = "true";
@@ -26,7 +28,10 @@ if (isset($_POST['btn'])) {
                 }
             }
         }
+    }else{
+        $_SESSION['msg']="You Have Been Banned By Admin For Further Information Contact The Admin on Email : Admin@gmail.com Or Call : 12345"; 
     }
+}
 ?>
 
 <body>
@@ -96,6 +101,14 @@ if (isset($_POST['btn'])) {
                             <div class="col">
                                 <div class="account__login register">
                                     <div class="account__login--header mb-25">
+                                    <?php 
+                                        if($_SESSION['msg']!=null){
+                                            ?>
+                                            <p class="account__login--header__desc text-danger text-center"><?=$_SESSION['msg']?></p>
+                                            <?php
+                                            $_SESSION['msg']="";
+                                        }
+                                        ?>
                                         <h2 class="account__login--header__title h3 mb-10">Create an Account</h2>
                                         <p class="account__login--header__desc">Register here if you are a new customer</p>
                                     </div>

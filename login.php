@@ -2,7 +2,7 @@
 include_once "slicing/headerlinks.php";
 $page="";
 if (isset($_POST['btnn1'])) {
-    $email = $_POST['logemail'];
+    $email =mysqli_real_escape_string($con,$_POST['logemail']);
     $pass = md5($_POST['logpass']);
     $s = "SELECT * FROM `signup` WHERE `email`='$email' AND `pass`='$pass'";
     $res = mysqli_query($con, $s);
@@ -20,6 +20,14 @@ if (isset($_POST['btnn1'])) {
                 header("location:index.php");
                 exit;
             }
+        }
+    }else{
+        $qu="SELECT * FROM `banuser` WHERE `email`='$email' AND `pass`='$pass'";
+        $or=mysqli_query($con,$qu);
+        if(mysqli_num_rows($or)>0){
+            $_SESSION['msg']="You Have Been Banned By Admin For Further Information Contact The Admin on Email : Admin@gmail.com Or Call : 12345"; 
+        }else{
+            $_SESSION['msg']="Incorrect Email Or Password";
         }
     }
 }

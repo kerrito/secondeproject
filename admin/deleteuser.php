@@ -1,6 +1,6 @@
 <?php 
 include_once "../config.php";
-$id=$_GET['id'];
+$id=$_POST['id'];
 $l="SELECT * FROM `signup` WHERE `id`=$id";
 $res=mysqli_query($con,$l);
 if(mysqli_num_rows($res)>0){
@@ -13,17 +13,7 @@ if(mysqli_num_rows($res)>0){
 $sql="DELETE FROM `signup` WHERE id=$id";
 if(mysqli_query($con,$sql)){
     if(mysqli_query($con,$s)){
-    $_SESSION['error']=2;
-    header("location:index.php");
-    exit;
-    }else{
-        $_SESSION['error']=4;
-        header("location:index.php");
-        exit;    
+    echo 1;
     }
-}else{
-    $_SESSION['error']=3;
-    header("location:index.php");
-    exit;
 }
 }
