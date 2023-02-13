@@ -1,5 +1,25 @@
 <?php
 include_once "slicing/headerlinks.php";
+if($_SESSION['login']!="true"){
+    header("location:../index.php");
+    exit;
+}
+$email=$_SESSION['email'];
+$chkid="SELECT * FROM `signup` WHERE `email`='$email'";
+$chkres=mysqli_query($con,$chkid);
+if(mysqli_num_rows($chkres)>0){
+    $chkresult=mysqli_fetch_assoc($chkres);
+    $userrol=$chkresult['user_rol'];
+    if($userrol==2){
+
+    }else if( $userrol==3){
+        header("location:order.php");
+        exit;
+    }else{
+        header("location:../index.php");
+        exit;
+    }
+}
 
 ?>
 
@@ -57,7 +77,23 @@ include_once "slicing/headerlinks.php";
                                 <div class="card card-icon mb-4">
                                     <div class="card-body text-center"><i class="i-Money-2"></i>
                                         <p class="text-muted mt-2 mb-2">Total sales</p>
-                                        <p class="text-primary text-24 line-height-1 m-0">4021</p>
+                                        <?php 
+                                    $totalsale=0;
+                                        $d="SELECT * FROM `order` WHERE `state`='delivered' OR `state`='Recieved'";
+                                        $sale=mysqli_query($con,$d);
+                                        if(mysqli_num_rows($sale)>0){
+                                        foreach($sale as $value){
+                                            $GLOBALS['totalsale']+=$value['price'];
+                                        }
+                                        ?>
+                                        <p class="text-primary text-24 line-height-1 m-0"><?=$GLOBALS['totalsale']?> Rs</p>
+                                        <?php 
+                                        }else{
+                                            ?>
+                                        <p class="text-primary text-24 line-height-1 m-0">0</p>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +101,20 @@ include_once "slicing/headerlinks.php";
                                 <div class="card card-icon-big mb-4">
                                     <div class="card-body text-center"><i class="i-Money-2"></i>
                                     <p class="text-muted mt-2 mb-2">Total order</p>
-                                        <p class="line-height-1 text-title text-18 mt-2 mb-0">4021</p>
+                                    <?php 
+                                        $p="SELECT COUNT(`id`) FROM `order`";
+                                        $order=mysqli_query($con,$p);
+                                        if(mysqli_num_rows($order)>0){
+                                        $ordercount=mysqli_fetch_assoc($order);
+                                        ?>
+                                        <p class="text-primary text-24 line-height-1 m-0"><?=$ordercount['COUNT(`id`)']?></p>
+                                        <?php 
+                                        }else{
+                                            ?>
+                                        <p class="text-primary text-24 line-height-1 m-0">0</p>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -73,8 +122,21 @@ include_once "slicing/headerlinks.php";
                                 <div class="card card-icon-big mb-4">
                                     <div class="card-body text-center"><i class="i-Gear"></i>
                                     <p class="text-muted mt-2 mb-2">Order Delievered</p>
-                                        <p class="line-height-1 text-title text-18 mt-2 mb-0">2309</p>
-                                    </div>
+                                    <?php 
+                                        $p="SELECT COUNT(`id`) FROM `order` WHERE `state`='delivered' OR `state`='Recieved'";
+                                        $drorder=mysqli_query($con,$p);
+                                        if(mysqli_num_rows($order)>0){
+                                        $drordercount=mysqli_fetch_assoc($drorder);
+                                        ?>
+                                        <p class="text-primary text-24 line-height-1 m-0"><?=$drordercount['COUNT(`id`)']?></p>
+                                        <?php 
+                                        }else{
+                                            ?>
+                                        <p class="text-primary text-24 line-height-1 m-0">0</p>
+                                            <?php
+                                        }
+                                        ?>
+                                        </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
@@ -86,7 +148,7 @@ include_once "slicing/headerlinks.php";
                                     $msg=mysqli_query($con,$l);
                                     $msgcount=mysqli_fetch_assoc($msg);
                                     ?>
-                                        <p class="line-height-1 text-title text-18 mt-2 mb-0"><?=$msgcount['COUNT(id)'];?></p>
+                                        <p class="text-primary text-24 line-height-1 m-0"><?=$msgcount['COUNT(id)'];?></p>
                                     </div>
                                 </div>
                             </div>
@@ -111,12 +173,8 @@ include_once "slicing/headerlinks.php";
                                                     if($ors['user_rol']==2){
                                                         ?>
                                                 <a href="adduser.php" class="btn btn-primary">Add User</a>      
-                                                        <?php
-                                                    }
-                                                }
-                                                ?>
                                                 </div>
-                                                <table class="table ">
+                                                <table class="table " id="table_id">
                                                     <?php 
                                                     if($_SESSION['error']==6){
                                                     ?>
@@ -143,7 +201,7 @@ include_once "slicing/headerlinks.php";
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                       $sql="SELECT * FROM `signup` where email!='admin@gmail.com'";
+                                                       $sql="SELECT * FROM `signup` where `user_rol`!=2";
                                                        $res=mysqli_query($con,$sql);
                                                        foreach($res as $value){ 
                                                         ?>
@@ -160,6 +218,10 @@ include_once "slicing/headerlinks.php";
                                                         ?>
                                                     </tbody>
                                                 </table>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -174,7 +236,7 @@ include_once "slicing/headerlinks.php";
                 ?>
             </div>
         </div><!-- ============ Search UI Start ============= -->
-        <div class="search-ui">
+        <!-- <div class="search-ui">
             <div class="search-header">
                 <img src="../../dist-assets/images/logo.png" alt="" class="logo">
                 <button class="search-close btn btn-icon bg-transparent float-right mt-2">
@@ -301,7 +363,7 @@ include_once "slicing/headerlinks.php";
                     </ul>
                 </nav>
             </div>
-        </div>
+        </div> -->
         <!-- ============ Search UI End ============= -->
         <?php
         include_once "slicing/dashjslinks.php";

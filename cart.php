@@ -1,22 +1,23 @@
 <?php
 include_once "slicing/headerlinks.php";
-$page = "";
+$page = "Shopping Cart";
 if (isset($_GET['orderbtn'])) {
-    $name = $_GET['name'];
-    $ema = $_GET['email'];
+    $name = mysqli_real_escape_string($con, $_GET['name']);
+    $ema = mysqli_real_escape_string($con, $_GET['email']);
     $number = $_GET['number'];
-    $city = $_GET['city'];
-    $country = $_GET['country'];
-    $address = $_GET['address'];
-    $cardname = $_GET['cardname'];
+    $city = mysqli_real_escape_string($con, $_GET['city']);
+    $country = mysqli_real_escape_string($con, $_GET['country']);
+    $address = mysqli_real_escape_string($con, $_GET['address']);
+    $cardname = mysqli_real_escape_string($con, $_GET['cardname']);
     $cardnumber = $_GET['cardnum'] != null ?: 0;
     $cardcvv = $_GET['cardcvv'] != null ?: 0;
-    $cardexp = $_GET['expdate'] != null ?: 0;
+    $cardexp = mysqli_real_escape_string($con, $_GET['expdate'] != null ?: 0);
     if (isset($_GET['online'])) {
         $email = $_SESSION['email'];
         $ls = "SELECT * FROM `addtocart` WHERE `user_email`='$email' AND `state`='pending'";
         $r = mysqli_query($con, $ls);
         if (mysqli_num_rows($r) > 0) {
+            $cart_id = date("hisa") . time();
             foreach ($r as $value) {
                 $idd = $value['product_id'];
                 $quantity = $value['quantity'];
@@ -25,10 +26,13 @@ if (isset($_GET['orderbtn'])) {
                 if (mysqli_num_rows($as) > 0) {
                     $ans = mysqli_fetch_assoc($as);
                     $price = $ans['price'] * $quantity;
-                    $s = "INSERT INTO `order` SET `name`='$name',`email`='$ema',`user_email`='$email',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`='1',`quantity`=$quantity,`product_id`=$idd,`card_name`='$cardname',`card_number`=$cardnumber,`card_cvv`=$cardcvv,`card_exp`='$cardexp',`price`=$price";
+                    $s = "INSERT INTO `order` SET `id`=$cart_id, `name`='$name',`email`='$ema',`user_email`='$email',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`='1',`quantity`=$quantity,`product_id`=$idd,`card_name`='$cardname',`card_number`=$cardnumber,`card_cvv`=$cardcvv,`card_exp`='$cardexp',`price`=$price";
                     if (mysqli_query($con, $s)) {
                         $t = "UPDATE `addtocart` SET `state`='done' WHERE `user_email`='$email'";
                         if (mysqli_query($con, $t)) {
+                            $_SESSION['error'] = $cart_id;
+                            header("location:index");
+                            exit;
                         }
                     }
                 }
@@ -40,16 +44,16 @@ if (isset($_GET['orderbtn'])) {
         $ls = "SELECT * FROM `addtocart` WHERE `user_email`='$email' AND `state`='pending'";
         $r = mysqli_query($con, $ls);
         if (mysqli_num_rows($r) > 0) {
+            $cart_id = "OA" . date("md") . time();
             foreach ($r as $value) {
                 $idd = $value['product_id'];
                 $quantity = $value['quantity'];
-
                 $a = "SELECT * FROM `product` WHERE `id`=$idd";
                 $as = mysqli_query($con, $a);
                 if (mysqli_num_rows($as) > 0) {
                     $ans = mysqli_fetch_assoc($as);
                     $price = $ans['price'] * $quantity;
-                    $s = "INSERT INTO `order` SET `name`='$name',`email`='$ema',`user_email`='$email',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`='0',`quantity`=$quantity,`product_id`=$idd,`card_name`='$cardname',`card_number`=$cardnumber,`card_cvv`=$cardexp,`card_exp`='$cardexp' ,`price`=$price";
+                    $s = "INSERT INTO `order` SET `tracking_id`='$cart_id', `name`='$name',`email`='$ema',`user_email`='$email',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`='0',`quantity`=$quantity,`product_id`=$idd,`card_name`='$cardname',`card_number`=$cardnumber,`card_cvv`=$cardexp,`card_exp`='$cardexp' ,`price`=$price";
                     if (mysqli_query($con, $s)) {
                         $t = "UPDATE `addtocart` SET `state`='done' WHERE `user_email`='$email'";
                         if (mysqli_query($con, $t)) {
@@ -57,36 +61,31 @@ if (isset($_GET['orderbtn'])) {
                     }
                 }
             }
+            $_SESSION['tracking_id'] = $cart_id;
+            header("location:order-complete.php");
+            exit;
         }
     }
 }
-
 ?>
 
 <body>
     <?php
+    // starting Navbar section
     include_once "slicing/nav.php";
+    // Ending Navbar section
+
+    // Starting Side Navbar section
     include_once "slicing/sidenav.php";
+    // Ending side Navbar section
     ?>
 
     <main class="main__content_wrapper">
 
         <!-- Start breadcrumb section -->
-        <section class="breadcrumb__section breadcrumb__bg">
-            <div class="container">
-                <div class="row row-cols-1">
-                    <div class="col">
-                        <div class="breadcrumb__content text-center">
-                            <h1 class="breadcrumb__content--title text-white mb-25">Shopping Cart</h1>
-                            <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a class="text-white" href="index.html">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span class="text-white">Shopping Cart</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <?php
+        include_once "slicing/breadcrum.php";
+        ?>
         <!-- End breadcrumb section -->
 
         <!-- cart section start -->
@@ -175,24 +174,13 @@ if (isset($_GET['orderbtn'])) {
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <div class="cart__summary border-radius-10">
+                                <div class="cart__summary border-radius-10 mt-5 pt-5 mb-5 pb-5">
                                     <div class="coupon__code mb-30">
-                                        <h3 class="coupon__code--title">Coupon</h3>
-                                        <p class="coupon__code--desc">Enter your coupon code if you have one.</p>
-                                        <div class="coupon__code--field d-flex">
-                                            <label>
-                                                <input class="coupon__code--field__input border-radius-5" placeholder="Coupon code" type="text">
-                                            </label>
-                                            <button class="coupon__code--field__btn primary__btn" type="submit">Apply Coupon</button>
-                                        </div>
+                                        <h3 class="coupon__code--title mt-2">CHECK OUT</h3>
+                                        <p class="coupon__code--desc mt-2 mb-5 pb-5">Please Cheack the amount below before checkout</p>
                                     </div>
-                                    <div class="cart__note mb-20">
-                                        <h3 class="cart__note--title">Note</h3>
-                                        <p class="cart__note--desc">Add special instructions for your seller...</p>
-                                        <textarea class="cart__note--textarea border-radius-5"></textarea>
-                                    </div>
-                                    <div class="cart__summary--total mb-20">
-                                        <table class="cart__summary--total__table">
+                                    <div class="cart__summary--total mb-20 mt-5 pt-5">
+                                        <table class="cart__summary--total__table mt-5">
                                             <tbody>
                                                 <tr class="cart__summary--total__list">
                                                     <td class="cart__summary--total__title text-left">SUBTOTAL</td>
@@ -206,10 +194,29 @@ if (isset($_GET['orderbtn'])) {
                                         </table>
                                     </div>
                                     <div class="cart__summary--footer">
-                                        <p class="cart__summary--footer__desc">Shipping & taxes calculated at checkout</p>
+                                        <p class="cart__summary--footer__desc">Shipping & taxes is not included in Prices Of Product</p>
                                         <ul class="d-flex justify-content-between">
-                                            <li><button class="cart__summary--footer__btn primary__btn cart" type="submit">Update Cart</button></li>
-                                            <li><a class="cart__summary--footer__btn primary__btn checkout" id="checkoutbtn">Check Out</a></li>
+                                            <?php 
+                                            if($_SESSION['login']=="true"){                              
+                                                $email = $_SESSION['email'];
+                                                $pass = $_SESSION['pass'];
+                                                $catcart="SELECT * FROM `addtocart` WHERE `user_email`='$email' AND `state`='pending'";
+                                                $catcartres=mysqli_query($con,$catcart);
+                                                if(mysqli_num_rows($catcartres)>0){
+                                                    ?>
+                                            <li><a class="cart__summary--footer__btn primary__btn checkout" href="#order_info" id="checkoutbtn">Check Out</a></li>
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                            <li><a class="cart__summary--footer__btn primary__btn checkout" onclick="psel()">Check Out</a></li>
+                                                    <?php
+                                                }
+                                            }else{
+                                                ?>
+                                            <li><a class="cart__summary--footer__btn primary__btn checkout" onclick="login()">Check Out</a></li>
+                                                <?php
+                                            }
+                                            ?>
                                         </ul>
                                     </div>
                                 </div>
@@ -222,40 +229,43 @@ if (isset($_GET['orderbtn'])) {
         <!-- cart section end -->
         <!-- order data section -->
         <div class="row justify-content-center m-0 p-0 d-none" id="order_info">
-            <div class="col-md-6">
-                <section class="product__section section--padding color-scheme-2 pt-0">
-                    <div class="section__heading text-center mb-35">
-                        <h2 class="section__heading--maintitle style2">Shipment Details</h2>
-                    </div>
-                    <form action="" class="row">
-                        <?php
-                        if ($_SESSION['login'] == "true") {
-                            $email = $_SESSION['email'];
-                            $pass = $_SESSION['pass'];
-                            $sql = "SELECT * FROM `signup` WHERE `email`='$email' AND `pass`='$pass'";
-                            $res = mysqli_query($con, $sql);
-                            if ($res) {
-                                $result = mysqli_fetch_assoc($res);
-                        ?>
+            <?php
+            if ($_SESSION['login'] == "true") {
+                $email = $_SESSION['email'];
+                $pass = $_SESSION['pass'];
+                $catcart="SELECT * FROM `addtocart` WHERE `user_email`='$email' AND `state`='pending'";
+                $catcartres=mysqli_query($con,$catcart);
+                if(mysqli_num_rows($catcartres)>0){
+                $sql = "SELECT * FROM `signup` WHERE `email`='$email' AND `pass`='$pass'";
+                $res = mysqli_query($con, $sql);
+                if ($res) {
+                    $result = mysqli_fetch_assoc($res);
+            ?>
+                    <div class="col-md-6">
+                        <section class="product__section section--padding color-scheme-2 pt-0">
+                            <div class="section__heading text-center mb-35">
+                                <h2 class="section__heading--maintitle style2">Shipment Details</h2>
+                            </div>
+                            <form action="" class="row">
                                 <div class="col-md-6 mb-3">
                                     <p class="fs-3">Name</p>
-                                    <input type="text" value="<?= $result['name'] ?>" class="form-control py-3 fs-4" name="name" placeholder="Enter Your Name">
+                                    <input type="text" value="<?= $result['name'] ?>" class="form-control py-3 fs-4" name="name" placeholder="Enter Your Name" pattern="[A-za-z ]{3,16}" title="Name must contain 3 to 16 character no special character allowed" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <p class="fs-3">Email</p>
-                                    <input type="text" value="<?= $result['email'] ?>" class="form-control py-3 fs-4" name="email" placeholder="Enter Your Email">
+                                    <input type="text" value="<?= $result['email'] ?>" class="form-control py-3 fs-4" name="email" placeholder="Enter Your Email" pattern="[a-zA-z]+[a-zA-z]+[a-zA-z]+[a-zA-Z0-9-_.]+@[a-zA-Z]+\.[a-zA-Z]{2,5}$" title="Please enter valid email" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <p class="fs-3">Number</p>
-                                    <input type="number" value="<?= $result['number'] ?>" class="form-control py-3 fs-4" name="number" placeholder="Enter Your Number">
+                                    <input type="number" value="<?= $result['number'] ?>" class="form-control py-3 fs-4" name="number" placeholder="Enter Your Number" pattern="[0-9]{11}" title="number must contain 11 numbers" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <p class="fs-3">City</p>
-                                    <input type="text" class="form-control py-3 fs-4" name="city" placeholder="Enter Your City">
+                                    <input type="text" class="form-control py-3 fs-4" name="city" placeholder="Enter Your City" pattern="[A-za-z ]{3,16}" title="City Name must contain 3 to 16 character no special character allowed" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <p class="fs-3">Country</p>
-                                    <input type="text" class="form-control py-3 fs-4" name="country" placeholder="Enter Your Country">
+                                    <input type="text" class="form-control py-3 fs-4" name="country" placeholder="Enter Your Country" pattern="[A-za-z ]{3,16}" title="Country Name must contain 3 to 16 character no special character allowed" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <p class="fs-3">Payment Method</p>
@@ -270,7 +280,7 @@ if (isset($_GET['orderbtn'])) {
                                 </div>
                                 <div class="col-12 mb-3">
                                     <p class="fs-3">Address</p>
-                                    <textarea type="text" class="form-control py-3 fs-4" name="address" placeholder="Address"><?= $result['address'] ?></textarea>
+                                    <input type="text" class="form-control py-3 fs-4" name="address" placeholder="Address" value="<?= $result['address'] ?>" pattern="[A-Za-z0-9,/-_ ]{15,100}" title="Address must conyain 15 to 200 character" required>
                                 </div>
                                 <div class="col-12 mb-3 d-none" id="carddetail">
                                     <div class="row">
@@ -279,19 +289,19 @@ if (isset($_GET['orderbtn'])) {
                                         </div>
                                         <div class="col-md-6">
                                             <p class="fs-3">Card Holder</p>
-                                            <input type="text" class="form-control py-3 fs-4" name="cardname" placeholder="Enter Card Holder Name">
+                                            <input type="text" class="form-control py-3 fs-4" name="cardname" id="cd1" placeholder="Enter Card Holder Name" pattern="[A-za-z ]{3,16}" title="Card Holder Name must contain 3 to 16 character no special character allowed" required>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="fs-3">Credit Card Number</p>
-                                            <input type="text" class="form-control py-3 fs-4" name="cardnum" placeholder="Enter Credit Card Number">
+                                            <input type="text" class="form-control py-3 fs-4" name="cardnum" id="cd2" placeholder="Enter Credit Card Number" pattern="[0-9]{16}" title="Card Number must contain 16 no white spaces allowed numbers" required>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="fs-3">Card Exp Date</p>
-                                            <input type="text" class="form-control py-3 fs-4" name="expdate" placeholder="Enter Exp Date Of Credit Card">
+                                            <input type="text" class="form-control py-3 fs-4" name="expdate" id="cd3" placeholder="Enter Exp Date Of Credit Card" pattern="[0-9]{4}" title="Exp number must contain 4 numbers" required>
                                         </div>
                                         <div class="col-md-6">
                                             <p class="fs-3">CVV</p>
-                                            <input type="password" class="form-control py-3 fs-4" name="cardcvv" placeholder="Enter CVV Code Of Credit Card">
+                                            <input type="password" class="form-control py-3 fs-4" name="cardcvv" id="cd4" placeholder="Enter CVV Code Of Credit Card" pattern="[0-9]{3}" title="CVV number must contain 3 numbers" required>
                                         </div>
                                     </div>
                                 </div>
@@ -302,14 +312,16 @@ if (isset($_GET['orderbtn'])) {
                                         </div>
                                     </div>
                                 </div>
-                        <?php
-                            }
-                        }
-                        ?>
-                    </form>
-                </section>
 
-            </div>
+                            </form>
+                        </section>
+
+                    </div>
+            <?php
+                }
+            }
+        }
+            ?>
 
         </div>
 
@@ -604,45 +616,46 @@ if (isset($_GET['orderbtn'])) {
 </body>
 <script>
     function calculateadd(id, price) {
-        document.getElementById("showerror").innerHTML=""
+        document.getElementById("showerror").innerHTML = ""
         var quant = document.getElementById("total" + id).value
         var quantity = parseInt(quant) + 1
-        if(quantity>=6){
-            document.getElementById("total" + id).value="4";
-            document.getElementById("showerror").innerHTML="Cann't Be More Than 5 Item"
+        if (quantity >= 6) {
+            document.getElementById("total" + id).value = "4";
+            document.getElementById("showerror").innerHTML = "Cann't Be More Than 5 Item"
         }
-        if(quantity<=5){
-        var total = quantity * price;
-        document.getElementById("totalamount" + id).innerHTML = total
-        var subtotal = document.getElementById("subtotal").innerHTML
-        var sub = parseInt(price) + parseInt(subtotal)
-        document.getElementById("subtotal").innerHTML = sub
-        document.getElementById("grandtotal").innerHTML = sub
-        $.ajax({
-            url: "updatequantity.php",
-            type: "POST",
-            data: {
-                "id": id,
-                "add": 1
-            },
-            success: function(load) {
-                if (load == 1) {
-                    console.log("ok")
-                }else if(load==2){
-                    document.getElementById("showerror").innerHTML="No More Items In Stock";
+        if (quantity <= 5) {
+            var total = quantity * price;
+            document.getElementById("totalamount" + id).innerHTML = total
+            var subtotal = document.getElementById("subtotal").innerHTML
+            var sub = parseInt(price) + parseInt(subtotal)
+            document.getElementById("subtotal").innerHTML = sub
+            document.getElementById("grandtotal").innerHTML = sub
+            $.ajax({
+                url: "updatequantity.php",
+                type: "POST",
+                data: {
+                    "id": id,
+                    "add": 1
+                },
+                success: function(load) {
+                    if (load == 1) {
+                        console.log("ok")
+                    } else if (load == 2) {
+                        document.getElementById("total" + id).value = quant;
+                        document.getElementById("showerror").innerHTML = "No More Items In Stock";
+                    }
                 }
-            }
-        })
+            })
+        }
     }
-}
 
     function calculatesub(id, price) {
-        document.getElementById("showerror").innerHTML=""
+        document.getElementById("showerror").innerHTML = ""
         var quant = document.getElementById("total" + id).value
         var quantity = quant - 1
-        if(quantity==0){
-            document.getElementById("total" + id).value="2";
-            document.getElementById("showerror").innerHTML="Cann't Be Less Than 1 Item"
+        if (quantity == 0) {
+            document.getElementById("total" + id).value = "2";
+            document.getElementById("showerror").innerHTML = "Cann't Be Less Than 1 Item"
         }
         if (quantity > 0) {
             var total = price * quantity;
@@ -708,10 +721,18 @@ if (isset($_GET['orderbtn'])) {
             if (i == 1) {
                 $("#carddetail").removeClass("d-none");
                 $("#payment_delivery").prop('required', false);
+                $("#cd1").prop('required', true);
+                $("#cd2").prop('required', true);
+                $("#cd3").prop('required', true);
+                $("#cd4").prop('required', true);
                 i = 2;
             } else {
                 $("#carddetail").addClass("d-none");
                 $("#payment_delivery").prop('required', true);
+                $("#cd1").prop('required', false);
+                $("#cd2").prop('required', false);
+                $("#cd3").prop('required', false);
+                $("#cd4").prop('required', false);
                 i = 1
             }
         });
@@ -722,10 +743,18 @@ if (isset($_GET['orderbtn'])) {
             if (x == 1) {
 
                 $("#payment_card").prop('required', false);
+                $("#cd1").prop('required', false);
+                $("#cd2").prop('required', false);
+                $("#cd3").prop('required', false);
+                $("#cd4").prop('required', false);
                 x = 2
             } else {
 
                 $("#payment_card").prop('required', true);
+                $("#cd1").prop('required', true);
+                $("#cd2").prop('required', true);
+                $("#cd3").prop('required', true);
+                $("#cd4").prop('required', true);
                 x = 1
             }
         });
@@ -733,6 +762,22 @@ if (isset($_GET['orderbtn'])) {
             $("#order_info").removeClass("d-none");
         });
     });
+
+    function psel(){
+        Swal.fire({
+            title: 'No Product In Cart?',
+            text: "You need to select product first",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#B79E8C',
+            cancelButtonColor: '#061738',
+            confirmButtonText: 'Products'
+        }).then((result) => {
+            if (result.isConfirmed) {
+               location.href="product.php"
+            }
+        })  
+    }
 </script>
 
 </html>

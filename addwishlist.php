@@ -1,5 +1,9 @@
 <?php 
 include_once "config.php";
+if($_SESSION['login']!="true"){
+    header("location:index.php");
+    exit;
+}
 $product_id=$_POST['id'];
 $email=$_SESSION['email'];
 $pass=$_SESSION['pass'];

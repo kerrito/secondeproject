@@ -1,6 +1,6 @@
 <?php
 include_once "slicing/headerlinks.php";
-$page = "";
+$page = "Search Page";
 $select = "";
 if (isset($_GET['btn'])) {
     $GLOBALS['select'] = "search";
@@ -9,13 +9,23 @@ if(isset($_GET['btn1'])){
     $GLOBALS['select'] = "advancesearch";
 }
 ?>
-
-
 <body>
     <?php
-    include_once "slicing/nav.php";
-    include_once "slicing/sidenav.php";
+     // Starting Navbar section
+     include_once "slicing/nav.php";
+     // Ending Navbar section
+ 
+     // Starting Side Navbar section
+     include_once "slicing/sidenav.php";
+     // Ending Side Navbar section 
     ?>
+        <!-- Starting breadcrum section  -->
+        <?php
+        include_once "slicing/breadcrum.php";
+        ?>
+        <!-- End breadcrumb section -->
+
+    <!-- Starting search option section -->
     <div class="row justify-content-center mb-4 p-0 m-0" id="toggleclose">
         <div class="col-lg-3 col-md-6">
             <form action="" class="d-flex justify-content-center mt-5">
@@ -25,7 +35,10 @@ if(isset($_GET['btn1'])){
             <button class="form-control mt-4 py-2 fs-4 an_button" id="togglebtn" type="button">Advance Search</button>
         </div>
     </div>
-    <div class="row justify-content-center m-0 p-0 d-none" id="toggleopen">
+    <!-- ending search option section-->
+
+    <!-- Starting advance search option section -->
+    <div class="row justify-content-center m-0 p-0 d-none mt-5" id="toggleopen">
         <div class="col-md-8">
             <section class="product__section section--padding color-scheme-2 pt-0">
                 <div class="section__heading text-center mb-35">
@@ -89,7 +102,7 @@ if(isset($_GET['btn1'])){
         </div>
 
     </div>
-
+    <!-- ending advance search option section -->
 
     <!-- Start product section -->
     <section class="product__section section--padding color-scheme-2 pt-0">
@@ -270,23 +283,19 @@ if(isset($_GET['btn1'])){
     </section>
     <!-- End product section -->
 
-
-
-
-
-
-
-
-
+    <!-- Starting footer section -->
     <?php
     include_once "slicing/footer.php";
     ?>
+    <!-- ending footer section -->
 
     <!-- Scroll top bar -->
     <button id="scroll__top"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 244l144-144 144 144M256 120v292" />
         </svg></button>
 
+    
+    
     <?php
     include_once "slicing/jslinks.php";
     ?>

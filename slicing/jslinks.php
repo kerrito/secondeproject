@@ -3,7 +3,7 @@
     <script src="assets/js/vendor/popper.js" defer="defer"></script>
     <script src="assets/js/vendor/bootstrap.min.js" defer="defer"></script>
     <?php 
-    if($page!="productdeatil"){
+    if($page!="product Details"){
         ?>
     <script src="assets/js/plugins/swiper-bundle.min.js"></script>
         <?php

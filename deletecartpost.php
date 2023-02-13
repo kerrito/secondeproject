@@ -1,5 +1,9 @@
 <?php 
 include "config.php";
+if($_SESSION['login']!="true"){
+    header("location:index.php");
+    exit;
+}
 $id=$_POST['id'];
 $ql="SELECT * FROM `addtocart` WHERE `id`=$id";
 $res=mysqli_query($con,$ql);

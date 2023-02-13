@@ -46,5 +46,11 @@ include_once "config.php";
         padding: 6px 7px;
 
     }
+    .an-primary{
+      color: #b79e8c;
+    }
+    .an_obj_fit{
+      object-fit: cover !important;
+    }
 </style>
 </head>

@@ -1,8 +1,26 @@
 <?php
 include_once "slicing/headerlinks.php";
-
+if ($_SESSION['login'] != "true") {
+    header("location:../index.php");
+    exit;
+}
+$email = $_SESSION['email'];
+$chkid = "SELECT * FROM `signup` WHERE `email`='$email'";
+$chkres = mysqli_query($con, $chkid);
+if (mysqli_num_rows($chkres) > 0) {
+    $chkresult = mysqli_fetch_assoc($chkres);
+    $userrol = $chkresult['user_rol'];
+    if ($userrol == 2) {
+    } else if ($userrol == 3) {
+        header("location:order.php");
+        exit;
+    } else {
+        header("location:../index.php");
+        exit;
+    }
+}
 if (isset($_POST['btn'])) {
-    $is=$_GET['id'];
+    $is = $_GET['id'];
     if ($_FILES['image']['name'] != null) {
         $name = mysqli_real_escape_string($con, $_POST['name']);
         $price = $_POST['price'];
@@ -17,11 +35,22 @@ if (isset($_POST['btn'])) {
             $tmp = $_FILES['image']['tmp_name'];
             $newpath = time() . "PNG";
             if (move_uploaded_file($tmp, "../uploads/img/" . $newpath)) {
-                $sql = "UPDATE `product` SET `name`='$name',`price`=$price,`brand`='$brand',`categories`='$categories',`desc`='$desc',`img`='$newpath',`stock`=$stock WHERE `id`=$is";
-                if (mysqli_query($con, $sql)) {
-                    $_SESSION['error'] = 1;
-                    header("location:product.php");
-                    exit;
+                if ($stock > 0) {
+                    $sql = "UPDATE `product` SET `name`='$name',`price`=$price,`brand`='$brand',`categories`='$categories',`desc`='$desc',`img`='$newpath',`stock`=$stock,`status`=1 WHERE `id`=$is";
+                    if (mysqli_query($con, $sql)) {
+                        $_SESSION['error'] = 1;
+                        header("location:product.php");
+                        exit;
+                    }
+                }
+                if($stock == 0){
+                    $sql = "UPDATE `product` SET `name`='$name',`price`=$price,`brand`='$brand',`categories`='$categories',`desc`='$desc',`img`='$newpath',`stock`=$stock,`status`=0 WHERE `id`=$is";
+                    if (mysqli_query($con, $sql)) {
+                        $_SESSION['error'] = 1;
+                        header("location:product.php");
+                        exit;
+                    }
+                    
                 }
             }
         }
@@ -33,11 +62,21 @@ if (isset($_POST['btn'])) {
         $categories = mysqli_real_escape_string($con, $_POST['categories']);
         $desc = mysqli_real_escape_string($con, $_POST['desc']);
         $stock = $_POST['stock'];
-        $sql = "UPDATE `product` SET `name`='$name',`price`=$price,`brand`='$brand',`categories`='$categories',`desc`='$desc',`stock`=$stock WHERE `id`=$is";
-        if (mysqli_query($con, $sql)) {
-            $_SESSION['error'] = 1;
-            header("location:product.php");
-            exit;
+        if($stock>0){
+            $sql = "UPDATE `product` SET `name`='$name',`price`=$price,`brand`='$brand',`categories`='$categories',`desc`='$desc',`stock`=$stock,`status`=1 WHERE `id`=$is";
+            if (mysqli_query($con, $sql)) {
+                $_SESSION['error'] = 1;
+                header("location:product.php");
+                exit;
+            }
+        }
+        if($stock==0){
+            $sql = "UPDATE `product` SET `name`='$name',`price`=$price,`brand`='$brand',`categories`='$categories',`desc`='$desc',`stock`=$stock,`status`=0 WHERE `id`=$is";
+            if (mysqli_query($con, $sql)) {
+                $_SESSION['error'] = 1;
+                header("location:product.php");
+                exit;
+            }
         }
     }
 }
@@ -113,8 +152,8 @@ if (isset($_POST['btn'])) {
                                             <input class="mb-0 form-control" type="file" name="image">
                                         </div>
                                         <div class="col-md-12 mb-3 d-flex flex-column">
-                                        <label for="name">Description</label>
-                                        <textarea name="desc" id="" cols="30" rows="3" class="form-control" placeholder="Enter Description Here"><?= $result['desc'] ?></textarea>
+                                            <label for="name">Description</label>
+                                            <textarea name="desc" id="" cols="30" rows="3" class="form-control" placeholder="Enter Description Here"><?= $result['desc'] ?></textarea>
                                         </div>
                                         <div class="col-md-12 text-center">
                                             <button class="btn btn-primary" name="btn">Edit Product</button>

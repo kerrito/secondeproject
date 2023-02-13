@@ -1,21 +1,21 @@
 <div class="main-header">
-    <div class="logo mr-1">
-        <a href="../index.php"><img src="../assets/img/logo/nav-log2.png" class="w-100" alt=""></a>
+    <div class="logo ml-md-5 mr-2 px-0 ">
+        <a href="../index.php" class=""><img src="../assets/img/logo/nav-log.png" class="w-100" alt=""></a>
     </div>
-    <!-- <div class="menu-toggle">
+    <div class="menu-toggle">
         <div></div>
         <div></div>
         <div></div>
-    </div> -->
+    </div>
         
     
         <!-- / Mega menu -->
     <div style="margin: auto"></div>
     <div class="header-part-right">
         <!-- Full screen toggle -->
-        <i class="i-Full-Screen header-icon d-none d-sm-inline-block" data-fullscreen=""></i>
+        <i class="i-Full-Screen header-icon d-none d-sm-inline-block mr-5" data-fullscreen=""></i>
         <!-- Grid menu Dropdown -->
-        <div class="dropdown">
+        <!-- <div class="dropdown">
             <i class="i-Safe-Box text-muted header-icon" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <div class="menu-icon-grid">
@@ -27,9 +27,9 @@
                     <a href="#"><i class="i-Ambulance"></i> Support</a>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Notificaiton -->
-        <div class="dropdown">
+        <div class="dropdown d-none">
             <div class="badge-top-container" role="button" id="dropdownNotification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="badge badge-primary">3</span>
                 <i class="i-Bell text-muted header-icon"></i>
@@ -103,17 +103,17 @@
         <!-- Notificaiton End -->
         <!-- User avatar dropdown -->
         <div class="dropdown">
-            <div class="user col align-self-end">
-                <img src="../../dist-assets/images/faces/1.jpg" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!-- <div class="user col align-self-end">
+                <img src="dist-assets/images/faces/1.jpg" id="userDropdown" alt="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <div class="dropdown-header">
                         <i class="i-Lock-User mr-1"></i> Timothy Carlson
                     </div>
                     <a class="dropdown-item">Account settings</a>
                     <a class="dropdown-item">Billing history</a>
-                    <a class="dropdown-item" href="signin.html">Sign out</a>
+                    <a class="dropdown-item" href="../logout.php">Sign out</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

@@ -1,6 +1,25 @@
 <?php
 include_once "slicing/headerlinks.php";
+if($_SESSION['login']!="true"){
+    header("location:../index.php");
+    exit;
+}
+$email=$_SESSION['email'];
+$chkid="SELECT * FROM `signup` WHERE `email`='$email'";
+$chkres=mysqli_query($con,$chkid);
+if(mysqli_num_rows($chkres)>0){
+    $chkresult=mysqli_fetch_assoc($chkres);
+    $userrol=$chkresult['user_rol'];
+    if($userrol==2){
 
+    }else if( $userrol==3){
+        header("location:order.php");
+        exit;
+    }else{
+        header("location:../index.php");
+        exit;
+    }
+}
 ?>
 
 <body class="text-left">
@@ -33,7 +52,7 @@ include_once "slicing/headerlinks.php";
                                                 <h1>Product List</h1>
                                                 <a href="addproduct.php" class="btn btn-primary">Add product</a>
                                             </div>
-                                            <table class="table ">
+                                            <table class="table " id="table_id">
                                                 <thead>
                                                     <tr role="row">
                                                         <th scope="col" class="sorting_asc" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 18.8125px;">#</th>
@@ -49,7 +68,7 @@ include_once "slicing/headerlinks.php";
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $sql = "SELECT * FROM `product` WHERE status!=0";
+                                                    $sql = "SELECT * FROM `product` ";
                                                     $res = mysqli_query($con, $sql);
                                                     foreach ($res as $value) {
                                                     ?>

@@ -4,37 +4,51 @@
             <li class="nav-item" ><a class="nav-item-hold" href="index.php"><i class="nav-icon i-Bar-Chart"></i><span class="nav-text">Dashboard</span></a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item"><a class="nav-item-hold" href="product.php"><i class="nav-icon i-Library"></i><span class="nav-text">Products</span></a>
+            <li class="nav-item"><a class="nav-item-hold" href="product.php"><i class="nav-icon i-Library"><sup class="text-primary"><?php 
+            $sql="SELECT COUNT(`name`) FROM `product` WHERE `status`=0";
+            $res=mysqli_query($con,$sql);
+            if(mysqli_num_rows($res)>0){
+                $result=mysqli_fetch_assoc($res);
+                echo $result['COUNT(`name`)'];
+            }
+
+            ?></sup></i><span class="nav-text">Products</span></a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item"><a class="nav-item-hold" href="contact.php"><i class="nav-icon i-Suitcase"></i><span class="nav-text">Messages</span></a>
+            <li class="nav-item"><a class="nav-item-hold" href="contact.php"><i class="nav-icon i-Suitcase"><sup class="text-primary"><?php
+            $s="SELECT COUNT(`name`) FROM `contact` WHERE `status`=0";
+            $cres=mysqli_query($con,$s);
+            if(mysqli_num_rows($cres)>0){
+                $cresult=mysqli_fetch_assoc($cres);
+                echo $cresult['COUNT(`name`)'];
+            }
+            ?></sup></i><span class="nav-text">Messages</span></a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item"><a class="nav-item-hold" href="order.php"><i class="nav-icon i-File-Clipboard-File--Text"></i><span class="nav-text">Orders</span></a>
+            <li class="nav-item"><a class="nav-item-hold" href="order.php"><i class="nav-icon i-File-Clipboard-File--Text"><sup class="text-primary"><?php
+            $sq="SELECT COUNT(`name`) FROM `order` WHERE `state`='Pending' OR `state`='Return'";
+            $ores=mysqli_query($con,$sq);
+            if(mysqli_num_rows($ores)>0){
+                $oresult=mysqli_fetch_assoc($ores);
+                echo $oresult['COUNT(`name`)'];
+            }
+            ?></sup></i><span class="nav-text">Orders</span></a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item" data-item="widgets"><a class="nav-item-hold" href="#"><i class="nav-icon i-Computer-Secure"></i><span class="nav-text">Widgets</span></a>
+            <li class="nav-item"><a class="nav-item-hold" href="feedmsg.php"><i class="nav-icon i-File-Clipboard-File--Text"><sup class="text-primary"><?php
+            $sl="SELECT COUNT(`name`) FROM `feedback` WHERE `status`=0";
+            $fres=mysqli_query($con,$sl);
+            if(mysqli_num_rows($fres)>0){
+                $fresult=mysqli_fetch_assoc($fres);
+                echo $fresult['COUNT(`name`)'];
+            }
+            ?></sup></i><span class="nav-text">Feedback</span></a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item" data-item="charts"><a class="nav-item-hold" href="#"><i class="nav-icon i-File-Clipboard-File--Text"></i><span class="nav-text">Charts</span></a>
+            <li class="nav-item" ><a class="nav-item-hold" href="../logout.php"><i class="fa-solid fa-right-from-bracket text-primary fa-2xl mt-3"></i><span class="nav-text mt-4">Logout</span></a>
                 <div class="triangle"></div>
             </li>
-            <li class="nav-item" data-item="forms"><a class="nav-item-hold" href="#"><i class="nav-icon i-File-Clipboard-File--Text"></i><span class="nav-text">Forms</span></a>
-                <div class="triangle"></div>
-            </li>
-            <li class="nav-item"><a class="nav-item-hold" href="datatables.html"><i class="nav-icon i-File-Horizontal-Text"></i><span class="nav-text">Datatables</span></a>
-                <div class="triangle"></div>
-            </li>
-            <li class="nav-item" data-item="sessions"><a class="nav-item-hold" href="#"><i class="nav-icon i-Administrator"></i><span class="nav-text">Sessions</span></a>
-                <div class="triangle"></div>
-            </li>
-            <li class="nav-item active" data-item="others"><a class="nav-item-hold" href="#"><i class="nav-icon i-Double-Tap"></i><span class="nav-text">Others</span></a>
-                <div class="triangle"></div>
-            </li>
-            <li class="nav-item"><a class="nav-item-hold" href="http://demos.ui-lib.com/gull-html-doc/" target="_blank"><i class="nav-icon i-Safe-Box1"></i><span class="nav-text">Doc</span></a>
-                <div class="triangle"></div>
-            </li>
-        </ul>
+            </ul>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
             <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
         </div>

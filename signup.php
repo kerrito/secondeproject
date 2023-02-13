@@ -1,6 +1,6 @@
 <?php
 include_once "slicing/headerlinks.php";
-$page="";
+$page="Register Page";
 if (isset($_POST['btn'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -8,7 +8,7 @@ if (isset($_POST['btn'])) {
     $address=$_POST['address'];
     $pass = md5($_POST['pass']);
     $qu="SELECT * FROM `banuser` WHERE email='$email' AND `pass`='$pass'";
-    $r=mysqli_query($con,$r);
+    $r=mysqli_query($con,$qu);
     if(mysqli_num_rows($r)==0){
     $sql = "INSERT INTO `signup` SET  `name`='$name',`email`='$email',`number`=$number,`address`='$address',`pass`='$pass',`status`=1";
     if (mysqli_query($con, $sql)) {
@@ -36,32 +36,25 @@ if (isset($_POST['btn'])) {
 
 <body>
     <?php
+    // Starting Navbar section
     include_once "slicing/nav.php";
+    // Ending Navbar section
+
+    // Starting Side Navbar section
     include_once "slicing/sidenav.php";
+    // Ending Side Navbar section
 
 
     ?>
     <main class="main__content_wrapper">
 
-        <!-- Start breadcrumb section -->
-        <section class="breadcrumb__section breadcrumb__bg">
-            <div class="container">
-                <div class="row row-cols-1">
-                    <div class="col">
-                        <div class="breadcrumb__content text-center">
-                            <h1 class="breadcrumb__content--title text-white mb-25">Register Page</h1>
-                            <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a class="text-white" href="home.php">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span class="text-white">Register Page</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+         <!-- Starting breadcrum section  -->
+       <?php
+        include_once "slicing/breadcrum.php";
+        ?>
         <!-- End breadcrumb section -->
 
-        <!-- Start login section  -->
+        <!-- Start signup section  -->
         <div class="login__section section--padding">
             <div class="container">
                 <form action="#" method="POST">
@@ -113,17 +106,17 @@ if (isset($_POST['btn'])) {
                                         <p class="account__login--header__desc">Register here if you are a new customer</p>
                                     </div>
                                     <div class="account__login--inner">
-                                        <input class="account__login--input" placeholder="Username" type="text" name="name">
-                                        <input class="account__login--input" placeholder="Email Addres" type="text" name="email">
-                                        <input class="account__login--input" placeholder="Number" type="number" name="number">
-                                        <input class="account__login--input" placeholder="Password" type="password" name="pass">
-                                        <textarea name="address" class="account__login--input" id="" rows="3" placeholder="Address"></textarea>
-                                        <div class="account__login--remember position__relative">
+                                        <input class="account__login--input" placeholder="Username" type="text" name="name" pattern="[A-za-z ]{3,16}" title="Name must contain 3 to 16 character no special character allowed" required>
+                                        <input class="account__login--input" placeholder="Email Addres" type="text" name="email" pattern="[a-zA-z]+[a-zA-z]+[a-zA-z]+[a-zA-Z0-9-_.]+@[a-zA-Z]+\.[a-zA-Z]{2,5}$" title="Your email must contain least 3 character at starting and @" required>
+                                        <input class="account__login--input" placeholder="Number" type="tel" name="number" pattern="[0-9]{11}" title="number must contain 11 numbers" required>
+                                        <input class="account__login--input" placeholder="Password" type="password" name="pass" pattern="[A-Za-z0-9]{6,}" title="password must have 6 digits" required>
+                                        <input name="address" class="account__login--input" id="" rows="3" placeholder="Address" pattern="[A-Za-z0-9,/-_\ ]{20,100}" title="Address must contain 15 to 200 character No special character other than , / - _ \ allowed" required>
+                                        <!-- <div class="account__login--remember position__relative">
                                             <input class="checkout__checkbox--input" id="check2" type="checkbox">
                                             <span class="checkout__checkbox--checkmark"></span>
                                             <label class="checkout__checkbox--label login__remember--label" for="check2">
                                                 I have read and agree to the terms & conditions</label>
-                                        </div>
+                                        </div> -->
                                         <button class="account__login--btn primary__btn mb-10" name="btn" type="submit">Submit & Register</button>
                                     </div>
                                     <p class="account__login--signup__text">Already Have An Account <button type="submit"><a href="login.php">Login now</a></button></p>
@@ -134,52 +127,7 @@ if (isset($_POST['btn'])) {
                 </form>
             </div>
         </div>
-        <!-- End login section  -->
-
-        <!-- Start shipping section -->
-        <!-- <section class="shipping__section2 shipping__style3 section--padding pt-0">
-            <div class="container">
-                <div class="shipping__section2--inner shipping__style3--inner d-flex justify-content-between">
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping1.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Shipping</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping2.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Payment</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping3.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Return</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping4.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Support</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-        <!-- End shipping section -->
+        <!-- End signup section  -->
 
     </main>
 

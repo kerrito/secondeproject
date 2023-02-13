@@ -1,13 +1,17 @@
 <?php
 include_once "slicing/headerlinks.php";
-$page="";
+$page="Contact Us";
+// checking button click
 if(isset($_POST['btn'])){
+// fecthing details 
 $firstname=mysqli_real_escape_string($con,$_POST['firstname']);
 $lastname=mysqli_real_escape_string($con,$_POST['lastname']);
 $email=mysqli_real_escape_string($con,$_POST['email']);
 $msg=mysqli_real_escape_string($con,$_POST['message']);
 $number=$_POST['number'];
+// mysqli command
 $sql="INSERT INTO `contact` SET `name`='$firstname',`lastname`='$lastname',`email`='$email',`msg`='$msg',`number`=$number";
+// inserting data in to database
 if(mysqli_query($con,$sql)){
     $_SESSION['error']=12;
     header("location:contact.php");
@@ -19,6 +23,9 @@ if(mysqli_query($con,$sql)){
 }
 }
 ?>
+<script>
+    var page="contact";
+</script>
 
 <body>
     <?php
@@ -29,28 +36,16 @@ if(mysqli_query($con,$sql)){
     <main class="main__content_wrapper">
 
         <!-- Start breadcrumb section -->
-        <section class="breadcrumb__section breadcrumb__bg">
-            <div class="container">
-                <div class="row row-cols-1">
-                    <div class="col">
-                        <div class="breadcrumb__content text-center">
-                            <h1 class="breadcrumb__content--title text-white mb-25">Contact Us</h1>
-                            <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a class="text-white" href="index.html">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span class="text-white">Contact Us</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+       <?php 
+       include_once "slicing/breadcrum.php";
+       ?>
         <!-- End breadcrumb section -->
 
         <!-- Start contact section -->
         <section class="contact__section section--padding">
             <div class="container">
                 <div class="section__heading text-center mb-40">
-                    <h2 class="section__heading--maintitle">Get In Touch</h2>
+                    <h2 class="section__heading--maintitle style2">Get In Touch</h2>
                 </div>
                 <div class="main__contact--area position__relative">
 
@@ -61,35 +56,40 @@ if(mysqli_query($con,$sql)){
                                 <div class="col-lg-6 col-md-6">
                                     <div class="contact__form--list mb-20">
                                         <label class="contact__form--label" for="input1">First Name <span class="contact__form--label__star">*</span></label>
-                                        <input class="contact__form--input" name="firstname" id="input1" placeholder="Your First Name" type="text">
+                                        <input class="contact__form--input" name="firstname" id="input1" pattern="[A-za-z ]{4,16}" title="Name must contain 4 to 16 character no special character allowed" placeholder="Your First Name" type="text" required>
+                                        <p class="text-danger d-none" id="input1p">First Name must contain 3 to 8 character no special character allowed</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="contact__form--list mb-20">
                                         <label class="contact__form--label" for="input2">Last Name <span class="contact__form--label__star">*</span></label>
-                                        <input class="contact__form--input" name="lastname" id="input2" placeholder="Your Last Name" type="text">
+                                        <input class="contact__form--input" name="lastname" id="input2" placeholder="Your Last Name" pattern="[A-za-z ]{4,16}" title="Last Name must contain 4 to 16 character no special character allowed" type="text" required>
+                                        <p class="text-danger d-none" id="input2p">Last must contain 3 to 8 character no special character allowed</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="contact__form--list mb-20">
                                         <label class="contact__form--label" for="input3">Phone Number <span class="contact__form--label__star">*</span></label>
-                                        <input class="contact__form--input" name="number" id="input3" placeholder="Phone number" type="text">
+                                        <input class="contact__form--input" name="number" id="input3" placeholder="Phone number" pattern="[0-9]{11}" title="number must contain 11 numbers" type="tel" required>
+                                        <p class="text-danger d-none" id="input3p">Phone Number must contain 11 numbers no ther cahacter allowed</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="contact__form--list mb-20">
                                         <label class="contact__form--label" for="input4">Email <span class="contact__form--label__star">*</span></label>
-                                        <input class="contact__form--input" name="email" id="input4" placeholder="Email" type="email">
+                                        <input class="contact__form--input" name="email" id="input4" pattern="[a-zA-z]+[a-zA-z]+[a-zA-z]+[a-zA-Z0-9-_.]+@[a-zA-Z]+\.[a-zA-Z]{2,5}$" title="Please enter valid number" placeholder="Email" type="email" required>
+                                        <p class="text-danger d-none" id="input4p">Email must contain least 3 Character @ and domain name</p>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="contact__form--list mb-15">
                                         <label class="contact__form--label" for="input5">Write Your Message <span class="contact__form--label__star">*</span></label>
-                                        <textarea class="contact__form--textarea" name="message" id="input5" placeholder="Write Your Message"></textarea>
+                                        <textarea class="contact__form--textarea" name="message" id="input5" placeholder="Write Your Message" required></textarea>
+                                        <p class="text-danger d-none" id="input5p">Message must contain least 15 to 200 Character no special character allowed</p>
                                     </div>
                                 </div>
                             </div>
-                            <button class="contact__form--btn primary__btn" name="btn" type="submit">Submit Now</button>
+                            <button class="contact__form--btn primary__btn" name="btn" type="button" onclick="showres()">Submit Now</button>
                         </form>
                     </div>
                     <div class="contact__info border-radius-5">

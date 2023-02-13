@@ -1,9 +1,15 @@
 <?php
 include_once "slicing/headerlinks.php";
-$page="";
+$page="Forgot Password";
 if (isset($_POST['btn'])) {
-    $email = $_POST['email'];
+    $email =mysqli_real_escape_string($con,$_POST['email']);
     $pass = md5($_POST['pass']);
+    $lq="SELECT * FROM `banuser` WHERE `email`='$email'";
+    $test=mysqli_query($con,$lq);
+    if(mysqli_num_rows($test)==0){
+    $sql="SELECT * FROM `signup` WHERE `email`='$email'";
+    $test2=mysqli_query($con,$sql);
+    if(mysqli_num_rows($test2)>0){
     $s = "UPDATE `signup` SET `pass`='$pass',`status`=1 WHERE `email`='$email'";
     $res = mysqli_query($con, $s);
     if ($res) {
@@ -23,39 +29,37 @@ if (isset($_POST['btn'])) {
             }
         }
     }
+}else{
+    $_SESSION['msg']="This account doesn't exist please recheck your Email";
 }
-
+}else{
+    $_SESSION['msg']="This account Have Been Banned By Admin For Further Information Contact The Admin on Email : Admin@gmail.com Or Call : 12345";
+}
+}
 
 ?>
 
 <body>
     <?php
+    // Starting Navbar section
     include_once "slicing/nav.php";
+    // Ending Navbar section
+
+    // Starting Side Navbar section
     include_once "slicing/sidenav.php";
+    // Ending side Navbar section
 
 
     ?>
     <main class="main__content_wrapper">
 
         <!-- Start breadcrumb section -->
-        <section class="breadcrumb__section breadcrumb__bg">
-            <div class="container">
-                <div class="row row-cols-1">
-                    <div class="col">
-                        <div class="breadcrumb__content text-center">
-                            <h1 class="breadcrumb__content--title text-white mb-25">Forgot Password</h1>
-                            <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a class="text-white" href="home.php">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span class="text-white">Forgot Password</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+       <?php 
+       include_once "slicing/breadcrum.php";
+       ?>
         <!-- End breadcrumb section -->
 
-        <!-- Start login section  -->
+        <!-- Start forgot form section  -->
         <div class="login__section section--padding">
             <div class="container">
                 <form action="#" method="POST">
@@ -65,19 +69,27 @@ if (isset($_POST['btn'])) {
                                 <div class="account__login">
                                     <div class="account__login--header mb-25">
                                         <h2 class="account__login--header__title h3 mb-10">Forgot Password</h2>
+                                        <?php 
+                                        if($_SESSION['msg']!=null){
+                                            ?>
+                                            <p class="account__login--header__desc text-danger text-center"><?=$_SESSION['msg']?></p>
+                                            <?php
+                                            $_SESSION['msg']="";
+                                        }
+                                        ?>
                                     </div>
                                     <div class="account__login--inner">
-                                        <input class="account__login--input" placeholder="Email Addres" name="email" type="text">
-                                        <input class="account__login--input" placeholder="Password" name="pass" type="password">
+                                        <input class="account__login--input" placeholder="Enter Email Addres" name="email" pattern="[a-zA-z]+[a-zA-z]+[a-zA-z]+[a-zA-Z0-9-_.]+@[a-zA-Z]+\.[a-zA-Z]{2,5}$" title="Please enter valid email" type="text" required>
+                                        <input class="account__login--input" placeholder="Enter New Password" name="pass" type="password" pattern="[A-Za-z0-9]{6,}" title="password must have 6 digits" required>
                                         <div class="account__login--remember__forgot mb-15 d-flex justify-content-between align-items-center">
-                                            <div class="account__login--remember position__relative">
+                                            <!-- <div class="account__login--remember position__relative">
                                                 <input class="checkout__checkbox--input" id="check1" type="checkbox">
                                                 <span class="checkout__checkbox--checkmark"></span>
                                                 <label class="checkout__checkbox--label login__remember--label" for="check1">
                                                     Remember me</label>
-                                            </div>
+                                            </div> -->
                                         </div>
-                                        <button class="account__login--btn primary__btn" name="btn" type="submit">Reset Password</button>
+                                        <button class="account__login--btn primary__btn mb-3" name="btn" type="submit">Reset Password</button>
                                         <!-- <div class="account__login--divide">
                                             <span class="account__login--divide__text">OR</span>
                                         </div>
@@ -117,52 +129,7 @@ if (isset($_POST['btn'])) {
                 </form>
             </div>
         </div>
-        <!-- End login section  -->
-
-        <!-- Start shipping section -->
-        <section class="shipping__section2 shipping__style3 section--padding pt-0">
-            <div class="container">
-                <div class="shipping__section2--inner shipping__style3--inner d-flex justify-content-between">
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping1.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Shipping</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping2.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Payment</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping3.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Return</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping4.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Support</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End shipping section -->
+        <!-- End forgot form section  -->
 
     </main>
 

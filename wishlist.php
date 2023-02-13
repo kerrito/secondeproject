@@ -1,33 +1,26 @@
 <?php
 include_once "slicing/headerlinks.php";
-$page="";
+$page="Wishlist";
 
 ?>
 
 <body>
     <?php
+    // Starting Navbar section
     include_once "slicing/nav.php";
+    // Ending Navbar section
+
+    // Starting Side Navbar section
     include_once "slicing/sidenav.php";
+    // Ending side Navbar section
     ?>
 
     <main class="main__content_wrapper">
 
-        <!-- Start breadcrumb section -->
-        <section class="breadcrumb__section breadcrumb__bg">
-            <div class="container">
-                <div class="row row-cols-1">
-                    <div class="col">
-                        <div class="breadcrumb__content text-center">
-                            <h1 class="breadcrumb__content--title text-white mb-25">Wishlist</h1>
-                            <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a class="text-white" href="index.html">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span class="text-white">Wishlist</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Starting breadcrum section  -->
+        <?php
+        include_once "slicing/breadcrum.php";
+        ?>
         <!-- End breadcrumb section -->
 
         <!-- cart section start -->
@@ -508,6 +501,26 @@ $page="";
                         success: function(load) {
                             if (load == 1) {
                                 dwonca(id);
+                            }
+                            if(load==2){
+                                Swal.fire({
+                title: 'Sorry',
+                text: "This product is out of stock",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#B79E8C',
+                cancelButtonColor: '#061738',
+                confirmButtonText: ' OK '
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        '',
+                        '',
+                        'success'
+                    )
+                    location.reload();
+                }
+            })  
                             }
                         }
 

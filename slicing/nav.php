@@ -4,21 +4,53 @@
             <div class="container-fluid">
                 <div class="header__topbar--inner d-flex align-items-center justify-content-between">
                     <div class="header__shipping d-none d-lg-block">
-                        <p class="header__shipping--text text-white">Free shipping for orders over $59 !</p>
+                        <p class="header__shipping--text text-white">Free shipping for orders over 5999 Rs !</p>
                     </div>
                     <div class="language__currency ">
                         <ul class="d-flex align-items-center">
-                            <li class="header__shipping--text text-white"><a href="tracking.php"><img class="header__shipping--text__icon" src="assets/img/icon/bus.png" alt="bus-icon"> Track Your Order</a></li>
+                            <?php 
+                            $name="";
+                            if($_SESSION['login']=="true"){
+                                $email=$_SESSION['email'];
+                                $check="SELECT * FROM `signup` WHERE `email`='$email'";
+                                $checkres=mysqli_query($con,$check);
+                                if(mysqli_num_rows($checkres)>0){
+                                    $checkresult=mysqli_fetch_assoc($checkres);
+                                    $name=$checkresult['name'];
+                                    if($checkresult['user_rol']==2 || $checkresult['user_rol']==3){
+                                        ?>
+                                        <li class="language__currency--list text-white"><a class="account__currency--link text-white" href="<?=$checkresult['user_rol']==3?"admin/index.php":"admin/order.php"?>"><span>Dashboard</span></a></li>                      
+                                        <?php
+                                    }
+                                }
+                            }
+                            ?>
+                            <li class="language__currency--list text-white"><a href="tracking.php" ><img class="header__shipping--text__icon" src="assets/img/icon/bus.png" alt="bus-icon"><span class="header__shipping--text__link"> Track Your Order</span></a></li>
                             <li class="language__currency--list d-none d-md-block">
-                                <a class="language__switcher text-white" href="#">
-                                    <img class="language__switcher--icon__img" src="assets/img/icon/language-icon.png" alt="currency">
-                                    <span>English</span></a>
+                                <?php 
+                                if($_SESSION['login']=="true"){
+                                    ?>
+                                    <a class="language__switcher text-white" href="tracking-history.php">
+                                        <span>Order history</span></a>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <a class="language__switcher text-white" onclick="login()">
+                                        <span>Order history</span></a>
+                                    <?php
+                                }
+                                ?>
                             </li>
-                            <li class="language__currency--list d-none d-md-block">
-                                <a class="account__currency--link text-white" href="#">
-                                    <img src="assets/img/icon/usd-icon.png" alt="currency">
-                                    <span>$ US Dollar</span></a>
+                            <?php 
+                            if($_SESSION['login']=="true"){
+                                ?>
+                            <li class="language__currency--list">
+                                <a class="account__currency--link text-white" href="logout.php">
+                                    <span>Logout</span></a>
                             </li>
+                                <?php
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -34,7 +66,7 @@
                         </a>
                     </div>
                     <div class="main__logo">
-                        <h1 class="main__logo--title"><a class="main__logo--link" href="home.php"><img class="main__logo--img" src="assets/img/logo/nav-log2.png" alt="logo-img"></a></h1>
+                        <h1 class="main__logo--title"><a class="main__logo--link" href="index.php"><img class="main__logo--img" src="assets/img/logo/nav-log2.png" alt="logo-img"></a></h1>
                     </div>
                     <div class="header__menu d-none d-lg-block">
                         <nav class="header__menu--navigation">
@@ -52,13 +84,13 @@
                                         </svg>
                                     </a>
                                     <ul class="header__sub--menu">
-                                        <li class="header__sub--menu__items"><a href="product.php?id=handbags" class="header__sub--menu__link">Hand Bags</a></li>
+                                        <li class="header__sub--menu__items"><a href="product.php?id=Hand Bags" class="header__sub--menu__link">Hand Bags</a></li>
                                         <li class="header__sub--menu__items"><a href="product.php?id=art" class="header__sub--menu__link">Arts articals</a></li>
                                         <li class="header__sub--menu__items"><a href="product.php?id=gift" class="header__sub--menu__link">Gift articals</a></li>
                                         <li class="header__sub--menu__items"><a href="product.php?id=wallet" class="header__sub--menu__link">Wallet</a></li>
                                         <li class="header__sub--menu__items"><a href="product.php?id=greeting" class="header__sub--menu__link">Greeting Cards</a></li>
-                                        <li class="header__sub--menu__items"><a href="product.php?id=dolls" class="header__sub--menu__link">Dolls</a></li> 
-                                        <li class="header__sub--menu__items"><a href="product.php?id=files" class="header__sub--menu__link">Files</a></li>           
+                                        <li class="header__sub--menu__items"><a href="product.php?id=Doll" class="header__sub--menu__link">Dolls</a></li> 
+                                        <li class="header__sub--menu__items"><a href="product.php?id=File" class="header__sub--menu__link">Files</a></li>           
                                     </ul>  
                                 </li>
                                 <li class="header__menu--items">
@@ -83,6 +115,9 @@
                                 <li class="header__menu--items">
                                     <a class="header__menu--link" href="contact.php">CONTACT US</a>  
                                 </li>
+                                <li class="header__menu--items">
+                                    <a class="header__menu--link" href="feedback.php">FEEDBACK</a>  
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -100,7 +135,7 @@
                             <li class="header__account--items header__account2--items">
                                 <a class="header__account--btn" href="account.php">
                                     <svg xmlns="http://www.w3.org/2000/svg"  width="26.51" height="23.443" viewBox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg> 
-                                    <span class="visually-hidden">Account</span>  
+                                    <span class=""><?=$name?></span>  
                                 </a>
                             </li>
                             <?php 

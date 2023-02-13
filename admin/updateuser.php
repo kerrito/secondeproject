@@ -1,5 +1,25 @@
 <?php
 include_once "slicing/headerlinks.php";
+if($_SESSION['login']!="true"){
+    header("location:../index.php");
+    exit;
+}
+$email=$_SESSION['email'];
+$chkid="SELECT * FROM `signup` WHERE `email`='$email'";
+$chkres=mysqli_query($con,$chkid);
+if(mysqli_num_rows($chkres)>0){
+    $chkresult=mysqli_fetch_assoc($chkres);
+    $userrol=$chkresult['user_rol'];
+    if($userrol==2){
+
+    }else if( $userrol==3){
+        header("location:order.php");
+        exit;
+    }else{
+        header("location:../index.php");
+        exit;
+    }
+}
 if (isset($_POST['btn'])) {
     if (isset($_POST['btn'])) {
         $is=$_GET['id'];

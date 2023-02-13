@@ -19,5 +19,7 @@ if(!isset($_SESSION['pass'])){
 if(!isset($_SESSION['msg'])){
     $_SESSION['msg']="";
 }
-
+if(!isset($_SESSION['tracking_id'])){
+    $_SESSION['tracking_id']="";
+}
 ?>

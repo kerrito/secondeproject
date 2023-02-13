@@ -1,19 +1,18 @@
-
-    <!-- Start footer section -->
-    <footer class="footer__section bg__black color-scheme-2">
-        <div class="container-fluid">
-            <div class="main__footer d-flex justify-content-between">
-                <div class="footer__widget footer__widget--width">
-                    <h2 class="footer__widget--title text-ofwhite h3">About Us 
-                        <button class="footer__widget--button" aria-label="footer widget button">
-                            <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
-                                <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                            </svg>
-                        </button>
-                    </h2>
-                    <div class="footer__widget--inner">
-                        <p class="footer__widget--desc text-ofwhite mb-20">Lorem ipsum dolor sit amet, consectetur adipisici ti elit <br> seddo eiusmod tempor incididunt utlabore et dolore <br> magna aliqua  enim ad minim veniam quisnostrud <br> exercitation ullamco</p>
-                        <div class="footer__social">
+<!-- Start footer section -->
+<footer class="footer__section bg__black color-scheme-2">
+    <div class="container-fluid">
+        <div class="main__footer d-flex justify-content-between">
+            <div class="footer__widget footer__widget--width">
+                <h2 class="footer__widget--title text-ofwhite h3">About Us
+                    <button class="footer__widget--button" aria-label="footer widget button">
+                        <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
+                            <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </h2>
+                <div class="footer__widget--inner">
+                    <p class="footer__widget--desc text-ofwhite mb-20">Arts is a online shopping store where you can buy all <br> the products of Arts, Dolls, Greeting cards, Wallets,<br> Handbags, Files, etc products we make sure that your<br> product can arrive safetly and try to provide our best services</p>
+                    <!-- <div class="footer__social">
                             <h3 class="social__title text-ofwhite h4 mb-15">Follow Us</h3>
                             <ul class="social__shear d-flex">
                                 <li class="social__shear--list">
@@ -49,107 +48,262 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer__widget--menu__wrapper d-flex footer__widget--width">
-                    <div class="footer__widget">
-                        <h2 class="footer__widget--title text-ofwhite h3">My Account 
-                            <button class="footer__widget--button" aria-label="footer widget button">
-                                <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
-                                    <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                                </svg>
-                            </button>
-                        </h2>
-                        <ul class="footer__widget--menu footer__widget--inner">
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="account.php">My Account</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="about.php">About Us</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="contact.php">Contact Us</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="cart.php">Shopping Cart</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.php">Login</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.php">Sign Up</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="wishlist.php">Wishlist</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer__widget">
-                        <h2 class="footer__widget--title text-ofwhite h3">Categories 
-                            <button class="footer__widget--button" aria-label="footer widget button">
-                                <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
-                                    <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                                </svg>
-                            </button>
-                        </h2>
-                        <ul class="footer__widget--menu footer__widget--inner">
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='gift'">Gifts Artical</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='art'">Art</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='handbags'">Hand Bags</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='wallet'">Wallet</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='dolls'">Dolls</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='files'">Files</a></li>
-                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='greeting'">Greeting Cards</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer__widget footer__widget--width">
-                    <h2 class="footer__widget--title text-ofwhite h3">Instagram 
-                        <button class="footer__widget--button" aria-label="footer widget button">
-                            <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
-                                <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                            </svg>
-                        </button>
-                    </h2>
-                    <div class="footer__instagram footer__widget--inner">
-                        <div class="footer__instagram--list d-flex">
-                            <div class="instagram__thumbnail">
-                                <a class="instagram__thumbnail--img" target="_blank" href="https://www.instagram.com/p/CZkF3TLBTT7"><img src="assets/img/other/instagram1.webp" alt="instagram"></a>
-                            </div>
-                            <div class="instagram__thumbnail">
-                                <a class="instagram__thumbnail--img" target="_blank" href="https://www.instagram.com/p/CZkF60sBxhN"><img src="assets/img/other/instagram2.webp" alt="instagram"></a>
-                            </div>
-                            <div class="instagram__thumbnail">
-                                <a class="instagram__thumbnail--img" target="_blank" href="https://www.instagram.com/p/CZkF90ZB6HG"><img src="assets/img/other/instagram3.webp" alt="instagram"></a>
-                            </div>
-                        </div>
-                        <div class="footer__instagram--list d-flex">
-                            <div class="instagram__thumbnail">
-                                <a class="instagram__thumbnail--img" target="_blank" href="https://www.instagram.com/p/CZkGAe6BQeu"><img src="assets/img/other/instagram4.webp" alt="instagram"></a>
-                            </div>
-                            <div class="instagram__thumbnail">
-                                <a class="instagram__thumbnail--img" target="_blank" href="https://www.instagram.com/p/CZkGCWcBbv9"><img src="assets/img/other/instagram5.webp" alt="instagram"></a>
-                            </div>
-                            <div class="instagram__thumbnail">
-                                <a class="instagram__thumbnail--img" target="_blank" href="https://www.instagram.com/p/CZkGFDMhoid"><img src="assets/img/other/instagram6.webp" alt="instagram"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer__widget footer__widget--width">
-                    <h2 class="footer__widget--title text-ofwhite h3">Arts 
-                        <button class="footer__widget--button" aria-label="footer widget button">
-                            <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
-                                <path  d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
-                            </svg>
-                        </button>
-                    </h2>
-                    <div class="footer__widget--inner">
-                        <p class="footer__widget--desc text-ofwhite m-0">Fill their seed open meat. Sea you <br> great Saw image stl</p> 
-                        <div class="newsletter__subscribe">
-                            <form class="newsletter__subscribe--form" action="#">
-                                <label>
-                                    <input class="newsletter__subscribe--input" placeholder="Email Address" type="email">
-                                </label>
-                                <button class="newsletter__subscribe--button" type="submit">Subscribe</button>
-                            </form>   
-                        </div> 
-                    </div> 
+                        </div> -->
                 </div>
             </div>
-            <div class="footer__bottom d-flex justify-content-between align-items-center">
-                <p class="copyright__content text-ofwhite m-0">Copyright © 2022 <a class="copyright__content--link" href="index.html">Suruchi</a> . All Rights Reserved.Design By Suruchi</p>
-                <div class="footer__payment text-right">
-                    <img class="display-block" src="assets/img/other/payment-visa-card.png" alt="visa-card">
+            <div class="footer__widget--menu__wrapper d-flex footer__widget--width ">
+                <div class="footer__widget">
+                    <h2 class="footer__widget--title text-ofwhite h3">Account
+                        <button class="footer__widget--button" aria-label="footer widget button">
+                            <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
+                                <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                            </svg>
+                        </button>
+                    </h2>
+                    <ul class="footer__widget--menu footer__widget--inner">
+                        <?php
+                        if ($_SESSION['login'] == "true") {
+                        ?>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="account.php">Account</a></li><?php
+                                                                                                                                        } else {
+                                                                                                                                            ?>
+                            <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" onclick="login()">Account</a></li>
+                        <?php
+                                                                                                                                        }
+                        ?>
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="cart.php">Shopping Cart</a></li>
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="wishlist.php">Wishlist</a></li>
+                    </ul>
                 </div>
+                <div class="footer__widget">
+                    <h2 class="footer__widget--title text-ofwhite h3">Categories
+                        <button class="footer__widget--button" aria-label="footer widget button">
+                            <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
+                                <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                            </svg>
+                        </button>
+                    </h2>
+                    <ul class="footer__widget--menu footer__widget--inner">
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='gift'">Gifts Artical</a></li>
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='art'">Art</a></li>
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='Hand bag'">Hand Bags</a></li>
+                    </ul>
+                </div>
+                <div class="footer__widget">
+                    <h2 class="footer__widget--title text-ofwhite h3">Categories
+                        <button class="footer__widget--button" aria-label="footer widget button">
+                            <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
+                                <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                            </svg>
+                        </button>
+                    </h2>
+                    <ul class="footer__widget--menu footer__widget--inner">
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='Wallet'">Wallet</a></li>
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='Doll'">Dolls</a></li>
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='File'">Files</a></li>
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="product.php?id='greeting'">Greeting Cards</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__widget footer__widget--width">
+                <h2 class="footer__widget--title text-ofwhite h3">Quick Links
+                    <button class="footer__widget--button" aria-label="footer widget button">
+                        <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
+                            <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </h2>
+                <ul class="footer__widget--menu footer__widget--inner">
+                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="feedback.php">Feedback</a></li>
+                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.php">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer__widget footer__widget--width">
+                <h2 class="footer__widget--title text-ofwhite h3">Quick Links
+                    <button class="footer__widget--button" aria-label="footer widget button">
+                        <svg class="footer__widget--title__arrowdown--icon" xmlns="http://www.w3.org/2000/svg" width="12.355" height="8.394" viewBox="0 0 10.355 6.394">
+                            <path d="M15.138,8.59l-3.961,3.952L7.217,8.59,6,9.807l5.178,5.178,5.178-5.178Z" transform="translate(-6 -8.59)" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </h2>
+                <ul class="footer__widget--menu footer__widget--inner">
+                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="contact.php">Contact Us</a></li>
+                    <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="about.php">About Us</a></li>
+                    <?php
+                    if ($_SESSION['login'] != "true") {
+                    ?>
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.php">Login</a></li>
+                    <?php
+                    } else {
+                    ?>
+                        <li class="footer__widget--menu__list"><a class="footer__widget--menu__text" href="login.php">Sign Up</a></li>
+                    <?php
+                    }
+                    ?>
+                </ul>
             </div>
         </div>
-    </footer>
-    <!-- End footer section -->
+        <div class="footer__bottom d-flex justify-content-between align-items-center">
+            <p class="copyright__content text-ofwhite m-0">Copyright © <?php
+                                                                        echo date("Y");
+                                                                        ?> <a class="copyright__content--link" href="index.html">Arts</a> . All Rights Reserved.Design By Arts</p>
+            <div class="footer__payment text-right">
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    //login
+    function login() {
+        Swal.fire({
+            title: 'You need to login first!',
+            text: "If you want to login click on login button below",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#B79E8C',
+            cancelButtonColor: '#061738',
+            confirmButtonText: 'Login'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Added',
+                    'Your file has been Added.',
+                    'success'
+                )
+                location.href = "login.php"
+            }
+        })
+    }
+
+    function showres() {
+        console.log("ok")
+        var name = document.getElementById("input1").value
+        var number = document.getElementById("input3").value
+        var email = document.getElementById("input4").value
+        var feedback = document.getElementById("input5").value
+        lastname = document.getElementById("input2").value
+
+        var uemail_regax = /[a-zA-z]+[a-zA-z]+[a-zA-z]+[a-zA-Z0-9-_.]+@[a-zA-Z]+\.[a-zA-Z]{2,5}$/
+        var name_regax = /^[a-zA-Z]{3,8}$/;
+        var address_regax = /^[a-zA-Z ,./-_]{15,200}$/;
+        var phone_regax = /^[0-9]{11}$/;
+        if (name_regax.test(name)) {
+            document.getElementById("input1").style.border = "2px solid green";
+            document.getElementById("input1p").classList.add("d-none");
+            if (name_regax.test(lastname)) {
+                document.getElementById("input2").style.border = "2px solid green";
+            document.getElementById("input2p").classList.add("d-none");
+                if (phone_regax.test(number)) {
+                    document.getElementById("input3").style.border = "2px solid green";
+            document.getElementById("input3p").classList.add("d-none");
+                    if (uemail_regax.test(email)) {
+                        document.getElementById("input4").style.border = "2px solid green";
+            document.getElementById("input4p").classList.add("d-none");
+                        if (address_regax.test(feedback)) {
+                            document.getElementById("input5").style.border = "2px solid green";
+            document.getElementById("input5p").classList.add("d-none");
+                            if (page == "feedback") {
+                                $.ajax({
+                                    url: "slicing/addfeedback.php",
+                                    type: "POST",
+                                    data: {
+                                        "firstname": name,
+                                        "email": email,
+                                        "number": number,
+                                        "message": feedback,
+                                        "lastname": lastname,
+                                        "page": 1
+                                    },
+                                    success: function(load) {
+                                        if (load == 1) {
+
+                                            Swal.fire({
+                                                title: 'Thankyou For Feedback',
+                                                text: "Your feedback has been sent successfully",
+                                                icon: 'success',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#B79E8C',
+                                                cancelButtonColor: '#061738',
+                                                confirmButtonText: '  Ok  '
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    Swal.fire(
+                                                        'Added',
+                                                        'Your file has been Added.',
+                                                        'success'
+                                                    )
+                                                    location.reload();
+                                                }
+                                            })
+                                        } else {
+                                            document.getElementById("input1").innerHTML = "Failed to sent feedback please check your network"
+                                        }
+                                    }
+                                })
+                            }
+
+                            if (page == "contact") {
+                                $.ajax({
+                                    url: "slicing/addfeedback.php",
+                                    type: "POST",
+                                    data: {
+                                        "firstname": name,
+                                        "email": email,
+                                        "number": number,
+                                        "message": feedback,
+                                        "lastname": lastname,
+                                        "page": 2
+                                    },
+                                    success: function(load) {
+                                        if (load == 1) {
+
+                                            Swal.fire({
+                                                title: 'Thankyou For Contact',
+                                                text: "Your message has been sent successfully",
+                                                icon: 'success',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#B79E8C',
+                                                cancelButtonColor: '#061738',
+                                                confirmButtonText: 'Ok'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    Swal.fire(
+                                                        'Added',
+                                                        'Your file has been Added.',
+                                                        'success'
+                                                    )
+                                                    location.reload();
+                                                }
+                                            })
+                                        } else {
+                                            document.getElementById("input1").innerHTML = "Failed to sent feedback please check your network"
+                                        }
+                                    }
+                                })
+                            }
+                        } else {
+                            document.getElementById("input5").style.border = "2px solid red";
+            document.getElementById("input5p").classList.remove("d-none");
+                        }
+
+                    } else {
+                        document.getElementById("input4").style.border = "2px solid red";
+            document.getElementById("input4p").classList.remove("d-none");
+                    }
+                } else {
+                    document.getElementById("input3").style.border = "2px solid red";
+            document.getElementById("input3p").classList.remove("d-none");
+                }
+
+
+            } else {
+                document.getElementById("input2").style.border = "2px solid red";
+            document.getElementById("input2p").classList.remove("d-none");
+            }
+        } else {
+            document.getElementById("input1").style.border = "2px solid red";
+            document.getElementById("input1p").classList.remove("d-none");
+        }
+    }
+</script>
+<!-- End footer section -->

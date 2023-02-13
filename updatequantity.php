@@ -1,5 +1,9 @@
 <?php
 include_once "config.php";
+if($_SESSION['login']!="true"){
+    header("location:index.php");
+    exit;
+}
 $id = $_POST['id'];
 $add = $_POST['add'];
 

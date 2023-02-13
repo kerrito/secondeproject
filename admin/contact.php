@@ -1,6 +1,25 @@
 <?php
 include_once "slicing/headerlinks.php";
+if($_SESSION['login']!="true"){
+    header("location:../index.php");
+    exit;
+}
+$email=$_SESSION['email'];
+$chkid="SELECT * FROM `signup` WHERE `email`='$email'";
+$chkres=mysqli_query($con,$chkid);
+if(mysqli_num_rows($chkres)>0){
+    $chkresult=mysqli_fetch_assoc($chkres);
+    $userrol=$chkresult['user_rol'];
+    if($userrol==2){
 
+    }else if( $userrol==3){
+        header("location:order.php");
+        exit;
+    }else{
+        header("location:../index.php");
+        exit;
+    }
+}
 ?>
 
 <body class="text-left">
@@ -48,7 +67,7 @@ include_once "slicing/headerlinks.php";
                                                 }
 
                                                 ?>
-                                            <table class="table ">
+                                            <table class="table " id="table_id">
                                                 <thead>
                                                     <tr role="row">
                                                         <th scope="col" class="sorting_asc" tabindex="0" aria-controls="user_table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 18.8125px;">#</th>
@@ -73,7 +92,7 @@ include_once "slicing/headerlinks.php";
                                                             <td><?= $value['number'] ?></td>
                                                             <td><p style="white-space: nowrap;width:300px !important;text-overflow: ellipsis;overflow: hidden;"><?= $value['msg'] ?></p></td>
                                                             <td><span class="badge <?= $value['status'] == 1 ? "badge-success" : "badge-warning" ?>"><?= $value['status'] == 1 ? "Read" : "Not Read" ?></span></td>
-                                                            <td><a class="text-success mr-2" href="updatecontact.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" onclick="deleteuser(<?= $value['id'] ?>)"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                                            <td><a class="text-success mr-2" href="updatecontact.php?id=<?= $value['id'] ?>&page=1"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" onclick="deleteuser(<?= $value['id'] ?>)"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -95,27 +114,6 @@ include_once "slicing/headerlinks.php";
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <?php
     include_once "slicing/dashjslinks.php";
     ?>
@@ -124,12 +122,12 @@ include_once "slicing/headerlinks.php";
     function deleteuser(id) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You want to Banned This User",
+                text: "You want to delete this contact",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#B79E8C',
                 cancelButtonColor: '#061738',
-                confirmButtonText: 'Yes, Add it!'
+                confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire(
@@ -141,7 +139,7 @@ include_once "slicing/headerlinks.php";
                         url: "contactdelete.php",
                         type: "POST",
                         data: {
-                            "id": id
+                            "id": id,"page":1
                         },
                         success: function(load) {
                             if (load == 1) {

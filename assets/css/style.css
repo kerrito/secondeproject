@@ -4112,7 +4112,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .home2__slider--bg {
-  background: url(../img/slider/home2-slider1.png);
+  background: url(../img/slider/homebanner3.jpg);
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -4126,7 +4126,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .home2__slider--bg.two {
-  background: url(../img/slider/home2-slider2.png);
+  background: url(../img/slider/homebanner4.jpg);
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -4140,7 +4140,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .home2__slider--bg.three {
-  background: url(../img/slider/home2-slider3.png);
+  background: url(../img/slider/homebanner5.jpg);
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -7938,7 +7938,8 @@ input.quickview__value--number {
     14. Breadcrumb css
 */
 .breadcrumb__bg {
-  background: url(../img/banner/breadcrumb-bg.png);
+  background: url(../img/banner/breedcrem.jpg);
+  object-fit: cover;
   background-repeat: no-repeat;
   height: 130px;
   display: -webkit-box;

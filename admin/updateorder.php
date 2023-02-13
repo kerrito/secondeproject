@@ -1,5 +1,23 @@
 <?php
 include_once "slicing/headerlinks.php";
+if($_SESSION['login']!="true"){
+    header("location:../index.php");
+    exit;
+}
+$email=$_SESSION['email'];
+$chkid="SELECT * FROM `signup` WHERE `email`='$email'";
+$chkres=mysqli_query($con,$chkid);
+if(mysqli_num_rows($chkres)>0){
+    $chkresult=mysqli_fetch_assoc($chkres);
+    $userrol=$chkresult['user_rol'];
+    if($userrol==2){
+
+    }else if( $userrol==3){
+    }else{
+        header("location:../index.php");
+        exit;
+    }
+}
 if (isset($_GET['btn'])) {
     $name = $_GET['name'];
     $ema = $_GET['email'];
@@ -12,12 +30,39 @@ if (isset($_GET['btn'])) {
     $state = $_GET['state'];
     $price = $_GET['price'];
     $iddd=$_GET['id'];
-    $s = "UPDATE `order` SET `name`='$name',`email`='$ema',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`='$payment',`quantity`=$quantity,`price`=$price,`state`='$state' Where `id`=$iddd";
+    $che="SELECT * FROM `order` WHERE id=$iddd";
+    $chec=mysqli_query($con,$che);
+    if(mysqli_num_rows($chec)>0){
+      $check=mysqli_fetch_assoc($chec);
+      if($check['remainning_time']=="" || $check['remainning_time']==null || empty($check['remainning_time'])){
+        if($state=="Recieved"){
+           $retime=time();
+    $s = "UPDATE `order` SET `name`='$name',`remainning_time`=$retime,`email`='$ema',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`='$payment',`quantity`=$quantity,`price`=$price,`state`='$state' Where `id`=$iddd";
     if (mysqli_query($con, $s)) {
         $_SESSION['error']="";
         header("location:order.php");
         exit;
     }
+        }else{
+            if($state!="Recieved"){
+                $s = "UPDATE `order` SET `name`='$name',`email`='$ema',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`='$payment',`quantity`=$quantity,`price`=$price,`state`='$state' Where `id`=$iddd";
+                if (mysqli_query($con, $s)) {
+                    $_SESSION['error']="";
+                    header("location:order.php");
+                    exit;
+                }   
+            }
+        }
+      }else{
+            $s = "UPDATE `order` SET `name`='$name',`email`='$ema',`city`='$city',`country`='$country',`address`='$address',`number`=$number,`payment`='$payment',`quantity`=$quantity,`price`=$price,`state`='$state' Where `id`=$iddd";
+            if (mysqli_query($con, $s)) {
+                $_SESSION['error']="";
+                header("location:order.php");
+                exit;   
+        }    
+      }  
+    }
+    
 }
 
 ?>
@@ -75,11 +120,11 @@ if (isset($_GET['btn'])) {
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="password">Product Name</label>
-                                        <input class="mb-0 form-control" type="text" value="<?=$yt['name']?>" readonly>
+                                        <input class="mb-0 form-control" type="text" value="<?=$yt['name']?>">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="password">Product Brand</label>
-                                        <input class="mb-0 form-control" type="text" value="<?=$yt['brand']?>" readonly>
+                                        <input class="mb-0 form-control" type="text" value="<?=$yt['brand']?>">
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="email">Categories</label>
@@ -112,14 +157,14 @@ if (isset($_GET['btn'])) {
                                         <label for="password">Process Stage</label>
                                         <select name="state" class="form-control" id="">
                                         <option value="<?=$result['state']?>"><?=$result['state']?></option>
-                                        <?php if($result['state']!="Pending"){ ?>
-                                        <option value="Pending">Pending</option>
-                                        <?php }?>
-                                        <?php if($result['state']!="Dispatch"){ ?>
+                                        <?php if($result['state']!="Dispatch" && $result['state']!="Delivered" && $result['state']!="Recieved" && $result['state']!="Return"){ ?>
                                         <option value="Dispatch">Dispatch</option>
                                         <?php }?>
-                                        <?php if($result['state']!="Delivered"){ ?>
+                                        <?php if($result['state']!="Delivered" && $result['state']!="Recieved" && $result['state']!="Return"){ ?>
                                         <option value="Delivered">Delivered</option>
+                                        <?php }?>
+                                        <?php if($result['state']!="Recieved" && $result['state']!="Return"){ ?>
+                                        <option value="Recieved">Recieved</option>
                                         <?php }?>
                                         </select>
                                     </div>

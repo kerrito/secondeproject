@@ -1,6 +1,6 @@
 <?php
 include_once "slicing/headerlinks.php";
-$page="";
+$page="Login Page";
 if (isset($_POST['btnn1'])) {
     $email =mysqli_real_escape_string($con,$_POST['logemail']);
     $pass = md5($_POST['logpass']);
@@ -36,32 +36,25 @@ if (isset($_POST['btnn1'])) {
 
 <body>
     <?php
+    // starting Navbar section
     include_once "slicing/nav.php";
+    // Ending Navbar section
+
+    // Starting Side Navbar section
     include_once "slicing/sidenav.php";
+    // Ending side Navbar section
 
 
     ?>
     <main class="main__content_wrapper">
 
         <!-- Start breadcrumb section -->
-        <section class="breadcrumb__section breadcrumb__bg">
-            <div class="container">
-                <div class="row row-cols-1">
-                    <div class="col">
-                        <div class="breadcrumb__content text-center">
-                            <h1 class="breadcrumb__content--title text-white mb-25">Account Page</h1>
-                            <ul class="breadcrumb__content--menu d-flex justify-content-center">
-                                <li class="breadcrumb__content--menu__items"><a class="text-white" href="index.html">Home</a></li>
-                                <li class="breadcrumb__content--menu__items"><span class="text-white">Account Page</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+       <?php 
+       include_once "slicing/breadcrum.php";
+       ?>
         <!-- End breadcrumb section -->
 
-        <!-- Start login section  -->
+        <!-- Start login form section  -->
         <div class="login__section section--padding">
             <div class="container">
                 <form action="#" method="POST">
@@ -82,26 +75,26 @@ if (isset($_POST['btnn1'])) {
                                         <p class="account__login--header__desc">Login if you area a returning customer.</p>
                                     </div>
                                     <div class="account__login--inner">
-                                        <input class="account__login--input" placeholder="Email Addres" name="logemail" type="text">
-                                        <input class="account__login--input" placeholder="Password" name="logpass" type="password">
+                                        <input class="account__login--input" placeholder="Email Addres" pattern="[a-zA-z]+[a-zA-z]+[a-zA-z]+[a-zA-Z0-9-_.]+@[a-zA-Z]+\.[a-zA-Z]{2,5}$" name="logemail" title="Please enter valid email" type="email" required>
+                                        <input class="account__login--input" placeholder="Password" name="logpass" type="password" pattern="[A-Za-z0-9]{6,}" title="password must have 6 digits" required>
                                         <div class="account__login--remember__forgot mb-15 d-flex justify-content-between align-items-center">
-                                            <div class="account__login--remember position__relative">
+                                            <!-- <div class="account__login--remember position__relative">
                                                 <input class="checkout__checkbox--input" id="check1" type="checkbox">
                                                 <span class="checkout__checkbox--checkmark"></span>
                                                 <label class="checkout__checkbox--label login__remember--label" for="check1">
                                                     Remember me</label>
-                                            </div>
+                                            </div> -->
                                             <button class="account__login--forgot" type="submit"><a href="forgot.php">Forgot Your Password?</a></button>
                                         </div>
-                                        <button class="account__login--btn primary__btn" name="btnn1" type="submit">Login</button>
-                                        <div class="account__login--divide">
+                                        <button class="account__login--btn primary__btn mb-5" name="btnn1" type="submit">Login</button>
+                                        <!-- <div class="account__login--divide">
                                             <span class="account__login--divide__text">OR</span>
                                         </div>
                                         <div class="account__social d-flex justify-content-center mb-15">
                                             <a class="account__social--link facebook" target="_blank" href="https://www.facebook.com">Facebook</a>
                                             <a class="account__social--link google" target="_blank" href="https://www.google.com">Google</a>
                                             <a class="account__social--link twitter" target="_blank" href="https://twitter.com">Twitter</a>
-                                        </div>
+                                        </div> -->
                                         <p class="account__login--signup__text">Don,t Have an Account? <button type="submit"><a href="signup.php">Sign up now</a></button></p>
                                     </div>
                                 </div>
@@ -133,52 +126,7 @@ if (isset($_POST['btnn1'])) {
                 </form>
             </div>
         </div>
-        <!-- End login section  -->
-
-        <!-- Start shipping section -->
-        <section class="shipping__section2 shipping__style3 section--padding pt-0">
-            <div class="container">
-                <div class="shipping__section2--inner shipping__style3--inner d-flex justify-content-between">
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping1.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Shipping</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping2.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Payment</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping3.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Return</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                    <div class="shipping__items2 d-flex align-items-center">
-                        <div class="shipping__items2--icon">
-                            <img src="assets/img/other/shipping4.png" alt="">
-                        </div>
-                        <div class="shipping__items2--content">
-                            <h2 class="shipping__items2--content__title h3">Support</h2>
-                            <p class="shipping__items2--content__desc">From handpicked sellers</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End shipping section -->
+        <!-- End login form section  -->
 
     </main>
 

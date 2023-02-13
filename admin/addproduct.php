@@ -1,5 +1,25 @@
 <?php
 include_once "slicing/headerlinks.php";
+if($_SESSION['login']!="true"){
+    header("location:../index.php");
+    exit;
+}
+$email=$_SESSION['email'];
+$chkid="SELECT * FROM `signup` WHERE `email`='$email'";
+$chkres=mysqli_query($con,$chkid);
+if(mysqli_num_rows($chkres)>0){
+    $chkresult=mysqli_fetch_assoc($chkres);
+    $userrol=$chkresult['user_rol'];
+    if($userrol==2){
+
+    }else if( $userrol==3){
+        header("location:order.php");
+        exit;
+    }else{
+        header("location:../index.php");
+        exit;
+    }
+}
 if(isset($_POST['btn'])){
     $name=mysqli_real_escape_string($con,$_POST['name']);
     $price=$_POST['price'];
@@ -22,6 +42,8 @@ if(isset($_POST['btn'])){
         }
     }
         
+    }else{
+        $_SESSION['error']="Image only allowed in .JPG(.jpg) and .PNG(.png) format";
     }
     
 }
@@ -50,6 +72,14 @@ if(isset($_POST['btn'])){
                         <form method="POST" enctype="multipart/form-data">
                             <div class="login-form">
                                 <h4 class="login-title text-center mb-4">Add Product Here</h4>
+                                <?php 
+                                if($_SESSION['error']!=null){
+                                    ?>
+                                    <p class="text-center text-danger"></p>
+                                    <?php
+                                    $_SESSION['error']="";
+                                }
+                                ?>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="email">Name</label>
