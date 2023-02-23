@@ -1,27 +1,6 @@
 <?php
 include_once "slicing/headerlinks.php";
 $page="Contact Us";
-// checking button click
-if(isset($_POST['btn'])){
-// fecthing details 
-$firstname=mysqli_real_escape_string($con,$_POST['firstname']);
-$lastname=mysqli_real_escape_string($con,$_POST['lastname']);
-$email=mysqli_real_escape_string($con,$_POST['email']);
-$msg=mysqli_real_escape_string($con,$_POST['message']);
-$number=$_POST['number'];
-// mysqli command
-$sql="INSERT INTO `contact` SET `name`='$firstname',`lastname`='$lastname',`email`='$email',`msg`='$msg',`number`=$number";
-// inserting data in to database
-if(mysqli_query($con,$sql)){
-    $_SESSION['error']=12;
-    header("location:contact.php");
-    exit;
-}else{
-    $_SESSION['error']=13;
-    header("location:contact.php");
-    exit;
-}
-}
 ?>
 <script>
     var page="contact";
