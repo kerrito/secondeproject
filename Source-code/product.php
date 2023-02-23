@@ -307,14 +307,24 @@ $page = "";
                                 confirmButtonText: ' OK '
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    Swal.fire(
-                                        '',
-                                        '',
-                                        'success'
-                                    )
                                     location.reload();
                                 }
                             })
+                        }
+                        if(load==9){
+                            Swal.fire({
+                                title: 'Aready Exsits',
+                                text: "This product is already in your cart",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#B79E8C',
+                                cancelButtonColor: '#061738',
+                                confirmButtonText: ' OK '
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            })              
                         }
                     }
 
@@ -351,6 +361,36 @@ $page = "";
                         if (load == 1) {
                             location.reload();
                         }
+                        if(load==2){
+                                Swal.fire({
+                title: 'Sorry',
+                text: "Due to some disturbance failed to add product to your wishlist",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#B79E8C',
+                cancelButtonColor: '#061738',
+                confirmButtonText: ' OK '
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            })  
+                            }
+                        if(load==9){
+                            Swal.fire({
+                                title: 'Aready Exsits',
+                                text: "This product is already in your Wishlist",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#B79E8C',
+                                cancelButtonColor: '#061738',
+                                confirmButtonText: ' OK '
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            })              
+                        } 
                     }
 
 

@@ -1,6 +1,6 @@
 <?php
 include_once "slicing/headerlinks.php";
-$page="product Details";
+$page = "product Details";
 ?>
 
 <body>
@@ -16,8 +16,8 @@ $page="product Details";
 
 
     <main class="main__content_wrapper">
-       <!-- Starting breadcrum section  -->
-       <?php
+        <!-- Starting breadcrum section  -->
+        <?php
         include_once "slicing/breadcrum.php";
         ?>
         <!-- End breadcrumb section -->
@@ -135,10 +135,10 @@ $page="product Details";
                                         <div class="product__details--info__meta mb-15">
                                             <p class="product__details--info__meta--list"><strong>Brand :</strong> <span><?= $result['brand'] ?></span> </p>
                                             <p class="product__details--info__meta--list"><strong>Stock :</strong> <span><?= $result['stock'] ?></span> </p>
-                                            <p class="product__details--info__meta--list"><strong>Available :</strong> <span><?= $result['status']==1?"Yes":"No" ?></span> </p>
+                                            <p class="product__details--info__meta--list"><strong>Available :</strong> <span><?= $result['status'] == 1 ? "Yes" : "No" ?></span> </p>
                                             <p class="product__details--info__meta--list"><strong>categories :</strong> <span><?= $result['categories'] ?></span> </p>
                                         </div>
-                                        <div class="product__variant--list mb-15" >
+                                        <div class="product__variant--list mb-15">
                                             <a class="variant__wishlist--icon mb-15" onclick="addwishlist(<?= $result['id'] ?>)" title="Add to wishlist">
                                                 <svg class="quickview__variant--wishlist__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                                                     <path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
@@ -187,73 +187,133 @@ $page="product Details";
 </body>
 <script>
     function addwishlist(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You want it to add to your wishlist",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#B79E8C',
-                cancelButtonColor: '#061738',
-                confirmButtonText: 'Yes, Add it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Added',
-                        'Your file has been Added.',
-                        'success'
-                    )
-                    $.ajax({
-                        url: "addwishlist.php",
-                        type: "POST",
-                        data: {
-                            "id": id
-                        },
-                        success: function(load) {
-                            console.log("ok function success");
-                            console.log(load);
-                            if (load == 1) {
-                                location.reload();
-                            }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want it to add to your wishlist",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#B79E8C',
+            cancelButtonColor: '#061738',
+            confirmButtonText: 'Yes, Add it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Added',
+                    'Your file has been Added.',
+                    'success'
+                )
+                $.ajax({
+                    url: "addwishlist.php",
+                    type: "POST",
+                    data: {
+                        "id": id
+                    },
+                    success: function(load) {
+                        if (load == 1) {
+                            location.reload();
+                        }
+                        if (load == 2) {
+                            Swal.fire({
+                                title: 'Sorry',
+                                text: "Due to some disturbance failed to add product to your wishlist",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#B79E8C',
+                                cancelButtonColor: '#061738',
+                                confirmButtonText: ' OK '
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            })
+                        }
+                        if (load == 9) {
+                            Swal.fire({
+                                title: 'Aready Exsits',
+                                text: "This product is already in your Wishlist",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#B79E8C',
+                                cancelButtonColor: '#061738',
+                                confirmButtonText: ' OK '
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            })
+                        }
+                    }
+
+
+                })
+            }
+        })
+    }
+
+    function addtocard(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want it to add to your Cart",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#B79E8C',
+            cancelButtonColor: '#061738',
+            confirmButtonText: 'Yes, Add it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Added',
+                    'Your file has been Added.',
+                    'success'
+                )
+                $.ajax({
+                    url: "cartadd.php",
+                    type: "POST",
+                    data: {
+                        "id": id
+                    },
+                    success: function(load) {
+                        if (load == 1) {
+                            location.reload();
                         }
 
-
-                    })
-                }
-            })
-        }
-        function addtocard(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You want it to add to your Cart",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#B79E8C',
-                cancelButtonColor: '#061738',
-                confirmButtonText: 'Yes, Add it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Added',
-                        'Your file has been Added.',
-                        'success'
-                    )
-                    $.ajax({
-                        url: "cartadd.php",
-                        type: "POST",
-                        data: {
-                            "id": id
-                        },
-                        success: function(load) {
-                            if (load == 1) {
-                                location.reload();
-                            }
+                        if (load == 2) {
+                            Swal.fire({
+                                title: 'Sorry',
+                                text: "This product is out of stock",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#B79E8C',
+                                cancelButtonColor: '#061738',
+                                confirmButtonText: ' OK '
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            })
                         }
+                        if (load == 9) {
+                            Swal.fire({
+                                title: 'Aready Exsits',
+                                text: "This product is already in your cart",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#B79E8C',
+                                cancelButtonColor: '#061738',
+                                confirmButtonText: ' OK '
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            })
+                        }
+                    }
 
 
-                    })
-                }
-            })
-        }
+                })
+            }
+        })
+    }
 </script>
 
 </html>

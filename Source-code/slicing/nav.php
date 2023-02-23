@@ -19,7 +19,7 @@
                                     $name=$checkresult['name'];
                                     if($checkresult['user_rol']==2 || $checkresult['user_rol']==3){
                                         ?>
-                                        <li class="language__currency--list text-white"><a class="account__currency--link text-white" href="<?=$checkresult['user_rol']==3?"admin/index.php":"admin/order.php"?>"><span>Dashboard</span></a></li>                      
+                                        <li class="language__currency--list text-white"><a class="account__currency--link text-white" href="<?=$checkresult['user_rol']==2?"admin/index.php":"admin/order.php"?>"><span>Dashboard</span></a></li>                      
                                         <?php
                                     }
                                 }

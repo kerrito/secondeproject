@@ -1,6 +1,6 @@
 <?php
 include_once "slicing/headerlinks.php";
-$page="Wishlist";
+$page = "Wishlist";
 
 ?>
 
@@ -477,107 +477,119 @@ $page="Wishlist";
 </body>
 <script>
     function addtocard(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You want it to add to your Cart",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#B79E8C',
-                cancelButtonColor: '#061738',
-                confirmButtonText: 'Yes, Add it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Added',
-                        'Your file has been Added.',
-                        'success'
-                    )
-                    $.ajax({
-                        url: "cartadd.php",
-                        type: "POST",
-                        data: {
-                            "id": id
-                        },
-                        success: function(load) {
-                            if (load == 1) {
-                                dwonca(id);
-                            }
-                            if(load==2){
-                                Swal.fire({
-                title: 'Sorry',
-                text: "This product is out of stock",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#B79E8C',
-                cancelButtonColor: '#061738',
-                confirmButtonText: ' OK '
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        '',
-                        '',
-                        'success'
-                    )
-                    location.reload();
-                }
-            })  
-                            }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want it to add to your Cart",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#B79E8C',
+            cancelButtonColor: '#061738',
+            confirmButtonText: 'Yes, Add it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Added',
+                    'Your file has been Added.',
+                    'success'
+                )
+                $.ajax({
+                    url: "cartadd.php",
+                    type: "POST",
+                    data: {
+                        "id": id
+                    },
+                    success: function(load) {
+                        if (load == 1) {
+                            dwonca(id);
                         }
-
-
-                    })
-                }
-            })
-        }
-        function dwonca(id){
-            $.ajax({
-                        url: "deletewishlist.php",
-                        type: "POST",
-                        data: {
-                            "id": id
-                        },
-                        success: function(load) {
-                            if (load == 1) {
-                                location.reload();
-                            }
+                        if (load == 2) {
+                            Swal.fire({
+                                title: 'Sorry',
+                                text: "This product is out of stock",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#B79E8C',
+                                cancelButtonColor: '#061738',
+                                confirmButtonText: ' OK '
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            })
                         }
-
-
-                    })
-        }
-        function deletewishlist(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You want to delete it from your wishlist",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#B79E8C',
-                cancelButtonColor: '#061738',
-                confirmButtonText: 'Yes, Delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Deleted',
-                        'Your file has been Deleted.',
-                        'success'
-                    )
-                    $.ajax({
-                        url: "deletewishlist.php",
-                        type: "POST",
-                        data: {
-                            "id": id
-                        },
-                        success: function(load) {
-                            if (load == 1) {
-                                location.reload();
-                            }
+                        if (load == 9) {
+                            Swal.fire({
+                                title: 'Aready Exsits',
+                                text: "This product is already in your cart",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#B79E8C',
+                                cancelButtonColor: '#061738',
+                                confirmButtonText: ' OK '
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            })
                         }
+                    }
 
 
-                    })
-                }
-            })
-        }
+                })
+            }
+        })
+    }
+
+    // function dwonca(id) {
+    //     $.ajax({
+    //         url: "deletewishlist.php",
+    //         type: "POST",
+    //         data: {
+    //             "id": id
+    //         },
+    //         success: function(load) {
+    //             if (load == 1) {
+    //                 location.reload();
+    //             }
+    //         }
+
+
+    //     })
+    // }
+
+    function deletewishlist(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete it from your wishlist",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#B79E8C',
+            cancelButtonColor: '#061738',
+            confirmButtonText: 'Yes, Delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted',
+                    'Your file has been Deleted.',
+                    'success'
+                )
+                $.ajax({
+                    url: "deletewishlist.php",
+                    type: "POST",
+                    data: {
+                        "id": id
+                    },
+                    success: function(load) {
+                        if (load == 1) {
+                            location.reload();
+                        }
+                    }
+
+
+                })
+            }
+        })
+    }
 </script>
 
 </html>

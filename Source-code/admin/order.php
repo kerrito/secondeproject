@@ -110,7 +110,7 @@ if (mysqli_num_rows($chkres) > 0) {
                                                             <td><?= $re['brand'] ?></td>
                                                             <td><?= $re['categories'] ?></td>
                                                             <td><span class="badge <?= $value['payment'] == 1 ? "badge-warning" : "badge-danger" ?>"><?= $value['payment'] == 1 ? "Payment By Card" : "Payment On Delivery" ?></span></td>
-                                                            <td><a href="seeorder.php?id=<?= $value['id'] ?>" class="text-success mr-2"><i class="fa-regular fa-eye"></i></a><a class="text-success mr-2" href="updateorder.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="deleteorder.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                                            <td><a href="seeorder.php?id=<?= $value['id'] ?>" class="text-success mr-2"><i class="fa-regular fa-eye"></i></a><a class="text-success mr-2" href="updateorder.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" onclick="deleteorder(<?= $value['id'] ?>)"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -158,7 +158,7 @@ if (mysqli_num_rows($chkres) > 0) {
                                                             <td><?= $re['brand'] ?></td>
                                                             <td><?= $re['categories'] ?></td>
                                                             <td><span class="badge <?= $value['payment'] == 1 ? "badge-warning" : "badge-danger" ?>"><?= $value['payment'] == 1 ? "Payment By Card" : "Payment On Delivery" ?></span></td>
-                                                            <td><a href="seeorder.php?id=<?= $value['id'] ?>" class="text-success mr-2"><i class="fa-regular fa-eye"></i></a><a class="text-success mr-2" href="updateorder.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="deleteorder.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                                            <td><a href="seeorder.php?id=<?= $value['id'] ?>" class="text-success mr-2"><i class="fa-regular fa-eye"></i></a><a class="text-success mr-2" href="updateorder.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" onclick="deleteorder(<?= $value['id'] ?>)"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                                         </tr>
                                                     <?php
                                                     }

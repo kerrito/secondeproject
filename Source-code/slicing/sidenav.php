@@ -191,7 +191,7 @@
         ?>
                     <div class="minicart__product--items d-flex">
                         <div class="minicart__thumb">
-                            <a href="product-details.html"><img src="uploads/img/<?= $finalresult['img'] ?>" class="cardnav_an" alt="prduct-img"></a>
+                            <a href="productdetail.php?id=<?= $finalresult['id'] ?>"><img src="uploads/img/<?= $finalresult['img'] ?>" class="cardnav_an" alt="prduct-img"></a>
                         </div>
                         <div class="minicart__text">
                             <h3 class="minicart__subtitle h4"><a href="product-details.html"><?= $finalresult['name'] ?></a></h3>

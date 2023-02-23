@@ -19,6 +19,10 @@ if ($res) {
         $lr = mysqli_fetch_assoc($lres);
         if ($lr['stock'] > 0) {
 
+            $ckrecord="SELECT * FROM `addtocart` WHERE `product_id`=$product_id AND `user_id`=$user_id AND `state`='pending'";
+            $resckrecord=mysqli_query($con,$ckrecord);
+            if(mysqli_num_rows($resckrecord)==0){
+
             $stock = $lr['stock'] - 1;
             $lsq = "UPDATE `product` SET `stock`=$stock WHERE `id`=$product_id";
             if (mysqli_query($con, $lsq)) {
@@ -27,6 +31,9 @@ if ($res) {
                     echo 1;
                 }
             } 
+        }else{
+            echo 9;
+        }
         }else {
             echo 2;
         }

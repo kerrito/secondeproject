@@ -20,16 +20,12 @@ if(mysqli_num_rows($chkres)>0){
         exit;
     }
 }
-$id=$_GET['id'];
+$id=$_POST['id'];
 $sql="DELETE FROM `product` WHERE id=$id";
 if(mysqli_query($con,$sql)){
-    $_SESSION['error']=2;
-    header("location:product.php");
-    exit;
+   echo 1;
 }else{
-    $_SESSION['error']=3;
-    header("location:product.php");
-    exit;
+    echo 2;
 }
 
 ?>

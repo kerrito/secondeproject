@@ -31,8 +31,9 @@ if(mysqli_num_rows($res)>0){
 
 
 $sql="DELETE FROM `signup` WHERE id=$id";
+
+if(mysqli_query($con,$s)){
 if(mysqli_query($con,$sql)){
-    if(mysqli_query($con,$s)){
     echo 1;
     }
 }

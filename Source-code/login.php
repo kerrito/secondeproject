@@ -22,7 +22,7 @@ if (isset($_POST['btnn1'])) {
             }
         }
     }else{
-        $qu="SELECT * FROM `banuser` WHERE `email`='$email' AND `pass`='$pass'";
+        $qu="SELECT * FROM `banuser` WHERE `email`='$email'";
         $or=mysqli_query($con,$qu);
         if(mysqli_num_rows($or)>0){
             $_SESSION['msg']="You Have Been Banned By Admin For Further Information Contact The Admin on Email : Admin@gmail.com Or Call : 12345"; 

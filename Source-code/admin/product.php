@@ -81,7 +81,7 @@ if(mysqli_num_rows($chkres)>0){
                                                             <td class="h-25 overflow-hidden"><?= $value['desc'] ?></td>
                                                             <td><?= $value['stock'] ?></td>
                                                             <td><span class="badge <?= $value['status'] == 1 ? "badge-success" : "badge-warning" ?>"><?= $value['status'] == 1 ? "Available" : "Not Available" ?></span></td>
-                                                            <td><a class="text-success mr-2" href="updateproduct.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" href="deleteproduct.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
+                                                            <td><a class="text-success mr-2" href="updateproduct.php?id=<?= $value['id'] ?>"><i class="nav-icon i-Pen-2 font-weight-bold"></i></a><a class="text-danger mr-2" onclick="deleteproduct(<?= $value['id'] ?>)"><i class="nav-icon i-Close-Window font-weight-bold"></i></a></td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -125,5 +125,42 @@ if(mysqli_num_rows($chkres)>0){
     ?>
 
 </body>
+<script>
+    function deleteproduct(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to Delete This Product",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#B79E8C',
+            cancelButtonColor: '#061738',
+            confirmButtonText: 'Yes, Add it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Added',
+                    'Order Has Been deleted',
+                    'success'
+                )
+                $.ajax({
+                    url: "deleteproduct.php",
+                    type: "POST",
+                    data: {
+                        "id": id
+                    },
+                    success: function(load) {
+                        if (load == 1) {
+
+                            location.reload();
+
+                        }
+                    }
+
+
+                })
+            }
+        })
+    }
+</script>
 
 </html>
