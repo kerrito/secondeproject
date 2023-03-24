@@ -540,22 +540,22 @@ $page = "Wishlist";
         })
     }
 
-    // function dwonca(id) {
-    //     $.ajax({
-    //         url: "deletewishlist.php",
-    //         type: "POST",
-    //         data: {
-    //             "id": id
-    //         },
-    //         success: function(load) {
-    //             if (load == 1) {
-    //                 location.reload();
-    //             }
-    //         }
+    function dwonca(id) {
+        $.ajax({
+            url: "deletewishlist.php",
+            type: "POST",
+            data: {
+                "id": id
+            },
+            success: function(load) {
+                if (load == 1) {
+                    location.reload();
+                }
+            }
 
 
-    //     })
-    // }
+        })
+    }
 
     function deletewishlist(id) {
         Swal.fire({

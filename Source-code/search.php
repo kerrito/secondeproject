@@ -115,20 +115,20 @@ if(isset($_GET['btn1'])){
                     <?php
                     if ($GLOBALS['select'] == null) {
                         if (isset($_GET['name'])) {
-                            $name = $_GET['name'];
+                            $name =mysqli_real_escape_string($con,$_GET['name']);
                             $sql = "SELECT * FROM `product` WHERE `name` LIKE '%$name%'";
                         }
                     }
                     if ($GLOBALS['select'] == "search") {
                         if (isset($_GET['name1'])) {
-                            $name = $_GET['name1'];
+                            $name =mysqli_real_escape_string($con,$_GET['name1']);
                             $sql = "SELECT * FROM `product` WHERE `name` LIKE '%$name%'";
                         }
                     }
                     if ($GLOBALS['select'] == "advancesearch") {
-                            $name = $_GET['name2'];
-                            $brand= $_GET['brand'];
-                            $categories= $_GET['categories'];
+                            $name =mysqli_real_escape_string($con,$_GET['name2']);
+                            $brand=mysqli_real_escape_string($con,$_GET['brand']);
+                            $categories=mysqli_real_escape_string($con,$_GET['categories']);
                             $quantity= $_GET['quantity'];
                             if($_GET['price']==null){
 
